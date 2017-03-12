@@ -10,3 +10,4 @@ pull_from_github_and_restart.sh
 # Idea #
 target/
 .idea/
+jobhunter.iml
