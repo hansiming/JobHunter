@@ -54,22 +54,22 @@
             <input type="password" id="cityKey" lay-verify="pass" placeholder="城市参数名" autocomplete="off" class="layui-input">
         </div>
         <div class="layui-input-inline">
-            <input type="password" id="cityValue" lay-verify="pass" placeholder="城市参数值" autocomplete="off" class="layui-input">
+            <input type="password" id="cityValue" placeholder="城市参数值" autocomplete="off" class="layui-input">
         </div>
     </div>
     <div class="layui-form-item">
         <label class="layui-form-label">关键字参数</label>
         <div class="layui-input-inline">
-            <input type="password" id="keyWordKey" lay-verify="pass" placeholder="关键字参数名" autocomplete="off" class="layui-input">
+            <input type="password" id="keyWordKey" placeholder="关键字参数名" autocomplete="off" class="layui-input">
         </div>
         <div class="layui-input-inline">
-            <input type="password" id="keyWordValue" lay-verify="pass" placeholder="关键字值" autocomplete="off" class="layui-input">
+            <input type="password" id="keyWordValue" placeholder="关键字值" autocomplete="off" class="layui-input">
         </div>
     </div>
     <div class="layui-form-item">
         <label class="layui-form-label">页数</label>
         <div class="layui-input-inline">
-            <input type="password" id="keyWordKey" lay-verify="pass" placeholder="页数参数名" autocomplete="off" class="layui-input">
+            <input type="password" id="keyWordKey" placeholder="页数参数名" autocomplete="off" class="layui-input">
         </div>
     </div>
 
@@ -82,45 +82,45 @@
     <div class="layui-form-item">
         <label class="layui-form-label">职位名</label>
         <div class="layui-input-inline">
-            <input type="password" id="jobName" lay-verify="pass" placeholder="职位名" autocomplete="off" class="layui-input">
+            <input type="password" id="jobName" placeholder="职位名" autocomplete="off" class="layui-input">
         </div>
     </div>
 
     <div class="layui-form-item">
         <label class="layui-form-label">职位地点</label>
         <div class="layui-input-inline">
-            <input type="password" id="addressName" lay-verify="pass" placeholder="职位地点" autocomplete="off" class="layui-input">
+            <input type="password" id="addressName" placeholder="职位地点" autocomplete="off" class="layui-input">
         </div>
     </div>
 
     <div class="layui-form-item">
         <label class="layui-form-label">发布时间</label>
         <div class="layui-input-inline">
-            <input type="password" id="createTime" lay-verify="pass" placeholder="发布时间" autocomplete="off" class="layui-input">
+            <input type="password" id="createTime" placeholder="发布时间" autocomplete="off" class="layui-input">
         </div>
     </div>
 
     <div class="layui-form-item">
         <label class="layui-form-label">薪资范围</label>
         <div class="layui-input-inline">
-            <input type="password" id="minMoney" lay-verify="pass" placeholder="最小薪资" autocomplete="off" class="layui-input">
+            <input type="password" id="minMoney" placeholder="最小薪资" autocomplete="off" class="layui-input">
         </div>
         <div class="layui-input-inline">
-            <input type="password" id="maxMoney" lay-verify="pass" placeholder="最大薪资" autocomplete="off" class="layui-input">
+            <input type="password" id="maxMoney" placeholder="最大薪资" autocomplete="off" class="layui-input">
         </div>
     </div>
 
     <div class="layui-form-item">
         <label class="layui-form-label">学历要求</label>
         <div class="layui-input-inline">
-            <input type="password" id="educationRequire" lay-verify="pass" placeholder="学历要求" autocomplete="off" class="layui-input">
+            <input type="password" id="educationRequire" placeholder="学历要求" autocomplete="off" class="layui-input">
         </div>
     </div>
 
     <div class="layui-form-item">
         <label class="layui-form-label">公司名</label>
         <div class="layui-input-inline">
-            <input type="password" id="companyName" lay-verify="pass" placeholder="公司名" autocomplete="off" class="layui-input">
+            <input type="password" id="companyName" placeholder="公司名" autocomplete="off" class="layui-input">
         </div>
     </div>
 
