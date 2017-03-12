@@ -1,6 +1,7 @@
 package com.cszjo.jobhunter.controller;
 
 import com.cszjo.jobhunter.model.BaseResponse;
+import com.cszjo.jobhunter.model.ClawerTask;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -32,7 +33,7 @@ public class JobHunterController {
      */
     @RequestMapping("/doAddTask")
     @ResponseBody
-    public BaseResponse doAddTask() {
+    public BaseResponse doAddTask(ClawerTask task) {
 
         return null;
     }
