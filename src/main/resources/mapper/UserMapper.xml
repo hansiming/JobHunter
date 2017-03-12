@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="com.cszjo.jobhunter.dao.UserDao">
+
+    <resultMap id="users" type="com.cszjo.jobhunter.model.Users">
+        <id property="id" column="id"/>
+        <result property="userName" column="userName"/>
+        <result property="password" column="passwd"/>
+    </resultMap>
+
+    <select id="userNameIsExists" resultType="Integer">
+        SELECT COUNT(*) FROM users WHERE userName = #{userName};
+    </select>
+
+    <select id="login" resultMap="users">
+        SELECT * FROM users WHERE userName = #{userName} AND passwd = #{password};
+  </select>
+</mapper>

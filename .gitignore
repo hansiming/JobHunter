@@ -1,0 +1,12 @@
+*.class
+pull_from_github_and_restart.sh
+.DS_Store
+
+# Package Files #
+*.jar
+*.war
+*.ear
+
+# Idea #
+target/
+.idea/
