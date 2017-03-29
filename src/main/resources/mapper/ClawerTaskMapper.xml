@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="com.cszjo.jobhunter.dao.ClawerTaskDao">
+
+    <resultMap id="clawerTask" type="com.cszjo.jobhunter.model.ClawerTask">
+        <id property="id" column="id"/>
+        <result property="taskName" column="task_name"/>
+        <result property="url" column="url"/>
+        <result property="jobCount" column="job_count"/>
+        <result property="statu" column="statu"/>
+        <result property="createTime" column="create_time"/>
+        <result property="userId" column="user_id"/>
+        <result property="threadCount" column="thread_count"/>
+        <result property="cityKey" column="city_key"/>
+        <result property="cityValue" column="city_value"/>
+        <result property="keyWordKey" column="key_word_key"/>
+        <result property="keyWordValue" column="key_word_value"/>
+    </resultMap>
+
+    <select id="selectAll" resultMap="clawerTask">
+        SELECT * FROM clawer_task;
+    </select>
+</mapper>
