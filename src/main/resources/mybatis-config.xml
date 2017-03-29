@@ -5,16 +5,6 @@
 <configuration>
     <!-- before -->
     <settings>
-        <!--
-         <setting name="logImpl" value="LOG4J"/>
-         <setting name="cacheEnabled" value="false"/>
-         <setting name="lazyLoadingEnabled" value="true"/>
-         <setting name="aggressiveLazyLoading" value="false"/>
-         <setting name="multipleResultSetsEnabled" value="true"/>
-         <setting name="useColumnLabel" value="true"/>
-         <setting name="defaultExecutorType" value="SIMPLE"/>
-         <setting name="defaultStatementTimeout" value="25000"/>
-         -->
         <setting name="useGeneratedKeys" value="false"/>
         <setting name="mapUnderscoreToCamelCase" value="true"/>
 
