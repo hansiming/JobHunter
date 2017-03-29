@@ -24,13 +24,13 @@
     <div class="layui-form-item">
         <label class="layui-form-label">任务名称</label>
         <div class="layui-input-block">
-            <input type="text" id="taskName" lay-verify="title" autocomplete="off" placeholder="任务名称" class="layui-input">
+            <input type="text" id="taskName" lay-verify="required" autocomplete="off" placeholder="任务名称" class="layui-input">
         </div>
     </div>
     <div class="layui-form-item">
         <label class="layui-form-label">任务链接</label>
         <div class="layui-input-block">
-            <input type="text" name="taskUrl" lay-verify="title" autocomplete="off" placeholder="任务链接" class="layui-input">
+            <input type="text" id="taskUrl" lay-verify="required" autocomplete="off" placeholder="任务链接" class="layui-input">
         </div>
     </div>
     <div class="layui-form-item">
@@ -45,31 +45,31 @@
     <div class="layui-form-item">
         <label class="layui-form-label">爬取数量</label>
         <div class="layui-input-inline">
-            <input type="text" id="jobCount" lay-verify="identity" placeholder="" autocomplete="off" class="layui-input">
+            <input type="text" id="jobCount" lay-verify="number" placeholder="" autocomplete="off" class="layui-input">
         </div>
     </div>
     <div class="layui-form-item">
         <label class="layui-form-label">城市参数</label>
         <div class="layui-input-inline">
-            <input type="password" id="cityKey" lay-verify="pass" placeholder="城市参数名" autocomplete="off" class="layui-input">
+            <input type="text" id="cityKey" lay-verify="required" placeholder="城市参数名" autocomplete="off" class="layui-input">
         </div>
         <div class="layui-input-inline">
-            <input type="password" id="cityValue" placeholder="城市参数值" autocomplete="off" class="layui-input">
+            <input type="text" id="cityValue" placeholder="城市参数值" autocomplete="off" class="layui-input">
         </div>
     </div>
     <div class="layui-form-item">
         <label class="layui-form-label">关键字参数</label>
         <div class="layui-input-inline">
-            <input type="password" id="keyWordKey" placeholder="关键字参数名" autocomplete="off" class="layui-input">
+            <input type="text" id="keyWordKey" lay-verify="required" placeholder="关键字参数名" autocomplete="off" class="layui-input">
         </div>
         <div class="layui-input-inline">
-            <input type="password" id="keyWordValue" placeholder="关键字值" autocomplete="off" class="layui-input">
+            <input type="text" id="keyWordValue" lay-verify="required" placeholder="关键字值" autocomplete="off" class="layui-input">
         </div>
     </div>
     <div class="layui-form-item">
         <label class="layui-form-label">页数</label>
         <div class="layui-input-inline">
-            <input type="password" id="keyWordKey" placeholder="页数参数名" autocomplete="off" class="layui-input">
+            <input type="text" id="keyWordKey" lay-verify="required" placeholder="页数参数名" autocomplete="off" class="layui-input">
         </div>
     </div>
 
@@ -82,45 +82,45 @@
     <div class="layui-form-item">
         <label class="layui-form-label">职位名</label>
         <div class="layui-input-inline">
-            <input type="password" id="jobName" placeholder="职位名" autocomplete="off" class="layui-input">
+            <input type="text" id="jobName" lay-verify="required" placeholder="职位名" autocomplete="off" class="layui-input">
         </div>
     </div>
 
     <div class="layui-form-item">
         <label class="layui-form-label">职位地点</label>
         <div class="layui-input-inline">
-            <input type="password" id="addressName" placeholder="职位地点" autocomplete="off" class="layui-input">
+            <input type="text" id="addressName" lay-verify="required" placeholder="职位地点" autocomplete="off" class="layui-input">
         </div>
     </div>
 
     <div class="layui-form-item">
         <label class="layui-form-label">发布时间</label>
         <div class="layui-input-inline">
-            <input type="password" id="createTime" placeholder="发布时间" autocomplete="off" class="layui-input">
+            <input type="text" id="createTime" lay-verify="required" placeholder="发布时间" autocomplete="off" class="layui-input">
         </div>
     </div>
 
     <div class="layui-form-item">
         <label class="layui-form-label">薪资范围</label>
         <div class="layui-input-inline">
-            <input type="password" id="minMoney" placeholder="最小薪资" autocomplete="off" class="layui-input">
+            <input type="text" id="minMoney" placeholder="最小薪资" autocomplete="off" class="layui-input">
         </div>
         <div class="layui-input-inline">
-            <input type="password" id="maxMoney" placeholder="最大薪资" autocomplete="off" class="layui-input">
+            <input type="text" id="maxMoney" placeholder="最大薪资" autocomplete="off" class="layui-input">
         </div>
     </div>
 
     <div class="layui-form-item">
         <label class="layui-form-label">学历要求</label>
         <div class="layui-input-inline">
-            <input type="password" id="educationRequire" placeholder="学历要求" autocomplete="off" class="layui-input">
+            <input type="text" id="educationRequire" placeholder="学历要求" autocomplete="off" class="layui-input">
         </div>
     </div>
 
     <div class="layui-form-item">
         <label class="layui-form-label">公司名</label>
         <div class="layui-input-inline">
-            <input type="password" id="companyName" placeholder="公司名" autocomplete="off" class="layui-input">
+            <input type="text" id="companyName" placeholder="公司名" autocomplete="off" class="layui-input">
         </div>
     </div>
 
@@ -132,12 +132,13 @@
     </div>
     <div class="layui-form-item">
         <div class="layui-input-block">
-            <button class="layui-btn" lay-submit="" lay-filter="demo1">立即提交</button>
+            <button class="layui-btn" lay-submit="" lay-filter="demo1" onclick="addTask()">立即提交</button>
             <button type="reset" class="layui-btn layui-btn-primary">重置</button>
         </div>
     </div>
 </div>
 <script type="text/javascript" src="plugins/layui/layui.js"></script>
+<script type="text/javascript" src="js/jquery.js"></script>
 <script>
     layui.use(['form', 'layedit', 'laydate'], function() {
         var form = layui.form(),
@@ -168,6 +169,34 @@
             return false;
         });
     });
+
+    document.ready(function () {
+        $('input').blur(function(){
+
+        });
+    });
+
+    function addTask() {
+
+        var taskName = $('#taskName').val();
+        var taskUrl = $('#taskUrl').val();
+        var threadCount = $('#threadCount').val();
+        var jobCount = $('#jobCount').val();
+        var cityKey = $('#cityKey').val();
+        var cityValue = $('#cityValue').val();
+        var keyWordKey = $('#keyWordKey').val();
+        var keyWordValue = $('#keyWordValue').val();
+        var keyWordKey = $('#keyWordKey').val();
+        var jobName = $('#jobName').val();
+        var addressName = $('#addressName').val();
+        var createTime = $('#createTime').val();
+        var minMoney = $('#minMoney').val();
+        var maxMoney = $('#maxMoney').val();
+        var educationRequire = $('#educationRequire').val();
+        var companyName = $('#companyName').val();
+        var content = $('#content').val();
+
+    }
 </script>
 </body>
 
