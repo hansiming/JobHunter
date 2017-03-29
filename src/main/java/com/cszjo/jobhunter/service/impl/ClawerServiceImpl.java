@@ -1,6 +1,5 @@
 package com.cszjo.jobhunter.service.impl;
 
-import com.cszjo.jobhunter.service.ClawerService;
 import com.cszjo.jobhunter.service.abs.AbstractClawerService;
 
 /**

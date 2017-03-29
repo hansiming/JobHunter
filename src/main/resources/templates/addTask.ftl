@@ -132,7 +132,7 @@
     </div>
     <div class="layui-form-item">
         <div class="layui-input-block">
-            <button class="layui-btn" lay-submit="" lay-filter="demo1" onclick="addTask()">立即提交</button>
+            <button id="submitButton" class="layui-btn" lay-submit="" lay-filter="demo1" onclick="addTask()">立即提交</button>
             <button type="reset" class="layui-btn layui-btn-primary">重置</button>
         </div>
     </div>
@@ -178,6 +178,9 @@
 
     function addTask() {
 
+        $('#submitButton').attr('disable', 'disable');
+        $('#submitButton').innerHTML('正在提交...');
+
         var taskName = $('#taskName').val();
         var taskUrl = $('#taskUrl').val();
         var threadCount = $('#threadCount').val();
@@ -186,7 +189,6 @@
         var cityValue = $('#cityValue').val();
         var keyWordKey = $('#keyWordKey').val();
         var keyWordValue = $('#keyWordValue').val();
-        var keyWordKey = $('#keyWordKey').val();
         var jobName = $('#jobName').val();
         var addressName = $('#addressName').val();
         var createTime = $('#createTime').val();
@@ -196,6 +198,23 @@
         var companyName = $('#companyName').val();
         var content = $('#content').val();
 
+        $.ajax({
+            type : 'POST',
+            url : 'doAddTask',
+            data : {taskName : taskName, taskUrl : taskUrl, threadCount : threadCount, jobCount : jobCount, cityKey : cityKey, cityValue : cityValue,
+                keyWordKey : keyWordKey, keyWordValue : keyWordValue, jobName : jobName, addressName : addressName, createTime : createTime, minMoney : minMoney,
+                maxMoney : maxMoney, educationRequire : educationRequire, companyName : companyName, content : content},
+            dataType : 'json',
+            success : function (data) {
+                if (data.status == 1) {
+                    window.location.href='/index';
+                } else if (data.status == 2) {
+                    loginInfo(data.info, "red");
+                    $("#loginInput").innerHTML("立即提交");
+                    $("#loginInput").attr("disable", "");
+                }
+            }
+        })
     }
 </script>
 </body>
