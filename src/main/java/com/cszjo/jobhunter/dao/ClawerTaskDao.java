@@ -12,4 +12,6 @@ import java.util.List;
 public interface ClawerTaskDao {
 
     List<ClawerTask> selectAll();
+
+    void addTask(ClawerTask task);
 }

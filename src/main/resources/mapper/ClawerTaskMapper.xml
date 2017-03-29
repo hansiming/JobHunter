@@ -22,4 +22,33 @@
     <select id="selectAll" resultMap="clawerTask">
         SELECT * FROM clawer_task;
     </select>
+
+    <insert id="addTask" parameterMap="clawerTask">
+        INSERT INTO clawer_task
+            (task_name,
+            url,
+            job_count,
+            statu,
+            create_time,
+            user_id,
+            thread_count,
+            city_key,
+            city_value,
+            key_word_key,
+            key_word_value
+            )
+            VALUES
+            (#{task_name},
+            #{url},
+            #{job_count},
+            #{statu},
+            #{create_time},
+            #{user_id},
+            #{thread_count},
+            #{city_key},
+            #{city_value},
+            #{key_word_key},
+            #{key_word_value}
+            );
+    </insert>
 </mapper>
