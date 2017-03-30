@@ -10,4 +10,6 @@ import java.util.List;
 public interface ClawerTaskService {
 
     List<ClawerTask> selectAll();
+
+    void addTask(ClawerTask task);
 }

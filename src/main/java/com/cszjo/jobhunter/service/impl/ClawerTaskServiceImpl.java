@@ -21,4 +21,8 @@ public class ClawerTaskServiceImpl implements ClawerTaskService {
     public List<ClawerTask> selectAll() {
         return dao.selectAll();
     }
+
+    public void addTask(ClawerTask task) {
+        dao.addTask(task);
+    }
 }
