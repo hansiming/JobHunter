@@ -43,6 +43,7 @@ public class ClawerTaskTest {
         task.setThreadCount(5);
         task.setUrl("23");
         task.setKeyWordKey("123");
+        task.setKeyWordValue("123");
         task.setUserId(1);
         service.addTask(task);
     }

@@ -18,28 +18,13 @@
         <result property="keyWordKey" column="key_word_key"/>
         <result property="keyWordValue" column="key_word_value"/>
     </resultMap>
-    
-    <parameterMap id="clawerTaskParam" type="com.cszjo.jobhunter.model.ClawerTask">
-        <parameter property="id" resultMap="clawerTask" />
-        <parameter property="taskName" resultMap="clawerTask" />
-        <parameter property="url" resultMap="clawerTask" />
-        <parameter property="jobCount" resultMap="clawerTask" />
-        <parameter property="statu" resultMap="clawerTask" />
-        <parameter property="createTime" resultMap="clawerTask" />
-        <parameter property="userId" resultMap="clawerTask" />
-        <parameter property="threadCount" resultMap="clawerTask" />
-        <parameter property="cityKey" resultMap="clawerTask" />
-        <parameter property="cityValue" resultMap="clawerTask" />
-        <parameter property="keyWordKey" resultMap="clawerTask" />
-        <parameter property="keyWordValue" resultMap="clawerTask" />
-    </parameterMap>
 
     <select id="selectAll" resultMap="clawerTaskResult">
         SELECT * FROM clawer_task;
     </select>
 
-    <insert id="addTask" parameterMap="clawerTaskParam">
+    <insert id="addTask" parameterType="com.cszjo.jobhunter.model.ClawerTask">
         INSERT INTO clawer_task(task_name,url,job_count,statu,create_time,user_id,thread_count,city_key,city_value,key_word_key,key_word_value)
-            VALUES(#{task_name},#{url},#{job_count},#{statu},#{create_time},#{user_id},#{thread_count},#{city_key},#{city_value},#{key_word_key},#{key_word_value});
+            VALUES(#{taskName},#{url},#{jobCount},#{statu},#{createTime},#{userId},#{threadCount},#{cityKey},#{cityValue},#{keyWordKey},#{keyWordValue});
     </insert>
 </mapper>
