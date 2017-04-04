@@ -1,8 +1,7 @@
 package com.cszjo.jobhunter.serializer;
 
-import com.cszjo.jobhunter.model.LoginResponse;
+import com.cszjo.jobhunter.model.response.LoginResponse;
 import com.fasterxml.jackson.core.JsonGenerator;
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonSerializer;
 import com.fasterxml.jackson.databind.SerializerProvider;
 

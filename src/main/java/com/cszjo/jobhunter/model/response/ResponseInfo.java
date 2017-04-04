@@ -1,4 +1,4 @@
-package com.cszjo.jobhunter.model;
+package com.cszjo.jobhunter.model.response;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 

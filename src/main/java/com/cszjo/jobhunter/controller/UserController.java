@@ -1,7 +1,7 @@
 package com.cszjo.jobhunter.controller;
 
-import com.cszjo.jobhunter.model.LoginResponse;
-import com.cszjo.jobhunter.model.ResponseStatus;
+import com.cszjo.jobhunter.model.response.LoginResponse;
+import com.cszjo.jobhunter.model.response.ResponseStatus;
 import com.cszjo.jobhunter.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

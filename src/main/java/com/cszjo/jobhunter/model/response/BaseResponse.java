@@ -1,4 +1,7 @@
-package com.cszjo.jobhunter.model;
+package com.cszjo.jobhunter.model.response;
+
+import com.cszjo.jobhunter.model.response.ResponseInfo;
+import com.cszjo.jobhunter.model.response.ResponseStatus;
 
 /**
  * Created by Han on 2017/3/5.

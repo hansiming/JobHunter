@@ -1,4 +1,4 @@
-package com.cszjo.jobhunter.model;
+package com.cszjo.jobhunter.model.response;
 
 /**
  * Created by Han on 2017/3/5.

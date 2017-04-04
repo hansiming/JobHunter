@@ -1,10 +1,9 @@
 package com.cszjo.jobhunter.service.impl;
 
 import com.cszjo.jobhunter.dao.UserDao;
-import com.cszjo.jobhunter.model.BaseResponse;
-import com.cszjo.jobhunter.model.LoginResponse;
-import com.cszjo.jobhunter.model.ResponseInfo;
-import com.cszjo.jobhunter.model.ResponseStatus;
+import com.cszjo.jobhunter.model.response.LoginResponse;
+import com.cszjo.jobhunter.model.response.ResponseInfo;
+import com.cszjo.jobhunter.model.response.ResponseStatus;
 import com.cszjo.jobhunter.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;

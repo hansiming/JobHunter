@@ -1,5 +1,6 @@
-package com.cszjo.jobhunter.model;
+package com.cszjo.jobhunter.model.response;
 
+import com.cszjo.jobhunter.model.Users;
 import com.cszjo.jobhunter.serializer.LoginResponseSerializer;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import org.springframework.context.annotation.Scope;

@@ -1,6 +1,6 @@
 package com.cszjo.jobhunter.service;
 
-import com.cszjo.jobhunter.model.LoginResponse;
+import com.cszjo.jobhunter.model.response.LoginResponse;
 
 /**
  * Created by Han on 2017/3/5.

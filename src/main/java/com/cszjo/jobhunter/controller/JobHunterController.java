@@ -1,6 +1,6 @@
 package com.cszjo.jobhunter.controller;
 
-import com.cszjo.jobhunter.model.BaseResponse;
+import com.cszjo.jobhunter.model.response.BaseResponse;
 import com.cszjo.jobhunter.model.ClawerTask;
 import com.cszjo.jobhunter.service.ClawerTaskService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +24,8 @@ public class JobHunterController {
 
     @Autowired
     private ClawerTaskService clawerTaskService;
+
+    private BaseResponse baseResponse;
 
     @InitBinder
     protected void initBinder(WebDataBinder binder) {
@@ -55,7 +57,7 @@ public class JobHunterController {
     @RequestMapping("/doAddTask")
     @ResponseBody
     public BaseResponse doAddTask(ClawerTask task) {
-
+        clawerTaskService.addTask(task);
         return null;
     }
 }
