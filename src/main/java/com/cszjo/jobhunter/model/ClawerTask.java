@@ -12,7 +12,7 @@ public class ClawerTask {
     private String taskName;
     private String url;
     private int jobCount;
-    private ClawerStatus statu;
+    private int statu;
     private Date createTime;
     private int userId;
     private int threadCount;
@@ -54,10 +54,10 @@ public class ClawerTask {
     }
 
     public int getStatu() {
-        return statu.getStatus();
+        return statu;
     }
 
-    public void setStatu(ClawerStatus statu) {
+    public void setStatu(int statu) {
         this.statu = statu;
     }
 

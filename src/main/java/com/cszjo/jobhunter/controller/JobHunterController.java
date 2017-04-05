@@ -57,7 +57,6 @@ public class JobHunterController {
     @RequestMapping("/doAddTask")
     @ResponseBody
     public BaseResponse doAddTask(ClawerTask task) {
-        clawerTaskService.addTask(task);
-        return null;
+        return clawerTaskService.addTask(task);
     }
 }

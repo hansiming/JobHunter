@@ -1,6 +1,7 @@
 package com.cszjo.jobhunter.service;
 
 import com.cszjo.jobhunter.model.ClawerTask;
+import com.cszjo.jobhunter.model.response.BaseResponse;
 
 import java.util.List;
 
@@ -11,5 +12,5 @@ public interface ClawerTaskService {
 
     List<ClawerTask> selectAll();
 
-    void addTask(ClawerTask task);
+    BaseResponse addTask(ClawerTask task);
 }

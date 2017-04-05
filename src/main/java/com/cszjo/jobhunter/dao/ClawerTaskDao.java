@@ -13,5 +13,5 @@ public interface ClawerTaskDao {
 
     List<ClawerTask> selectAll();
 
-    void addTask(ClawerTask task);
+    int addTask(ClawerTask task);
 }

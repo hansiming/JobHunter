@@ -1,7 +1,7 @@
 package com.cszjo.jobhunter.model.response;
 
 import com.cszjo.jobhunter.model.Users;
-import com.cszjo.jobhunter.serializer.LoginResponseSerializer;
+import com.cszjo.jobhunter.serializer.BaseResponseSerializer;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
@@ -12,7 +12,7 @@ import org.springframework.stereotype.Component;
  */
 @Component(value = "loginResponse")
 @Scope("prototype")
-@JsonSerialize(using = LoginResponseSerializer.class)
+@JsonSerialize(using = BaseResponseSerializer.class)
 public class LoginResponse extends BaseResponse {
 
     private Users users;
