@@ -34,7 +34,7 @@ public class ClawerTaskTest {
     @Test
     public void addTask() {
         ClawerTask task = new ClawerTask();
-        task.setStatu(ClawerStatus.IN_CLAWERING);
+        task.setStatu(ClawerStatus.IN_CLAWERING.getStatus());
         task.setCityKey("123");
         task.setCityValue("123");
         task.setCreateTime(new Date());

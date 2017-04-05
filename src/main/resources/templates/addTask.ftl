@@ -16,7 +16,8 @@
 </head>
 
 <body>
-<div style="margin: 15px;">
+<form class="layui-form" action="doAddTask" type="POST">
+    <div style="margin: 15px;">
     <fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;">
         <legend>任务主要信息</legend>
     </fieldset>
@@ -24,20 +25,20 @@
     <div class="layui-form-item">
         <label class="layui-form-label">任务名称</label>
         <div class="layui-input-block">
-            <input type="text" id="taskName" lay-verify="required" autocomplete="off" placeholder="任务名称" class="layui-input">
+            <input type="text" name="taskName" lay-verify="required" autocomplete="off" placeholder="任务名称" class="layui-input">
         </div>
     </div>
     <div class="layui-form-item">
         <label class="layui-form-label">任务链接</label>
         <div class="layui-input-block">
-            <input type="text" id="taskUrl" lay-verify="required" autocomplete="off" placeholder="任务链接" class="layui-input">
+            <input type="text" name="taskUrl" lay-verify="required" autocomplete="off" placeholder="任务链接" class="layui-input">
         </div>
     </div>
     <div class="layui-form-item">
         <div class="layui-inline">
             <label class="layui-form-label">线程数</label>
             <div class="layui-input-inline">
-                <input type="number" id="threadCount" lay-verify="number" value="1" autocomplete="off" class="layui-input">
+                <input type="number" name="threadCount" lay-verify="number" value="1" autocomplete="off" class="layui-input">
             </div>
             <div class="layui-form-mid layui-word-aux">*线程数推荐5-10个</div>
         </div>
@@ -45,31 +46,31 @@
     <div class="layui-form-item">
         <label class="layui-form-label">爬取数量</label>
         <div class="layui-input-inline">
-            <input type="text" id="jobCount" lay-verify="number" placeholder="" autocomplete="off" class="layui-input">
+            <input type="text" name="jobCount" lay-verify="number" placeholder="" autocomplete="off" class="layui-input">
         </div>
     </div>
     <div class="layui-form-item">
         <label class="layui-form-label">城市参数</label>
         <div class="layui-input-inline">
-            <input type="text" id="cityKey" lay-verify="required" placeholder="城市参数名" autocomplete="off" class="layui-input">
+            <input type="text" name="cityKey" lay-verify="required" placeholder="城市参数名" autocomplete="off" class="layui-input">
         </div>
         <div class="layui-input-inline">
-            <input type="text" id="cityValue" placeholder="城市参数值" autocomplete="off" class="layui-input">
+            <input type="text" name="cityValue" placeholder="城市参数值" autocomplete="off" class="layui-input">
         </div>
     </div>
     <div class="layui-form-item">
         <label class="layui-form-label">关键字参数</label>
         <div class="layui-input-inline">
-            <input type="text" id="keyWordKey" lay-verify="required" placeholder="关键字参数名" autocomplete="off" class="layui-input">
+            <input type="text" name="keyWordKey" lay-verify="required" placeholder="关键字参数名" autocomplete="off" class="layui-input">
         </div>
         <div class="layui-input-inline">
-            <input type="text" id="keyWordValue" lay-verify="required" placeholder="关键字值" autocomplete="off" class="layui-input">
+            <input type="text" name="keyWordValue" lay-verify="required" placeholder="关键字值" autocomplete="off" class="layui-input">
         </div>
     </div>
     <div class="layui-form-item">
         <label class="layui-form-label">页数</label>
         <div class="layui-input-inline">
-            <input type="text" id="keyWordKey" lay-verify="required" placeholder="页数参数名" autocomplete="off" class="layui-input">
+            <input type="text" name="keyWordKey" lay-verify="required" placeholder="页数参数名" autocomplete="off" class="layui-input">
         </div>
     </div>
 
@@ -80,47 +81,54 @@
     </fieldset>
 
     <div class="layui-form-item">
+        <label class="layui-form-label">职位列表</label>
+        <div class="layui-input-inline">
+            <input type="text" name="jobList" lay-verify="required" placeholder="职位列表" autocomplete="off" class="layui-input">
+        </div>
+    </div>
+
+    <div class="layui-form-item">
         <label class="layui-form-label">职位名</label>
         <div class="layui-input-inline">
-            <input type="text" id="jobName" lay-verify="required" placeholder="职位名" autocomplete="off" class="layui-input">
+            <input type="text" name="jobName" lay-verify="required" placeholder="职位名" autocomplete="off" class="layui-input">
         </div>
     </div>
 
     <div class="layui-form-item">
         <label class="layui-form-label">职位地点</label>
         <div class="layui-input-inline">
-            <input type="text" id="addressName" lay-verify="required" placeholder="职位地点" autocomplete="off" class="layui-input">
+            <input type="text" name="addressName" lay-verify="required" placeholder="职位地点" autocomplete="off" class="layui-input">
         </div>
     </div>
 
     <div class="layui-form-item">
         <label class="layui-form-label">发布时间</label>
         <div class="layui-input-inline">
-            <input type="text" id="createTime" lay-verify="required" placeholder="发布时间" autocomplete="off" class="layui-input">
+            <input type="text" name="createTime" lay-verify="required" placeholder="发布时间" autocomplete="off" class="layui-input">
         </div>
     </div>
 
     <div class="layui-form-item">
         <label class="layui-form-label">薪资范围</label>
         <div class="layui-input-inline">
-            <input type="text" id="minMoney" placeholder="最小薪资" autocomplete="off" class="layui-input">
+            <input type="text" name="minMoney" placeholder="最小薪资" autocomplete="off" class="layui-input">
         </div>
         <div class="layui-input-inline">
-            <input type="text" id="maxMoney" placeholder="最大薪资" autocomplete="off" class="layui-input">
+            <input type="text" name="maxMoney" placeholder="最大薪资" autocomplete="off" class="layui-input">
         </div>
     </div>
 
     <div class="layui-form-item">
         <label class="layui-form-label">学历要求</label>
         <div class="layui-input-inline">
-            <input type="text" id="educationRequire" placeholder="学历要求" autocomplete="off" class="layui-input">
+            <input type="text" name="educationRequire" placeholder="学历要求" autocomplete="off" class="layui-input">
         </div>
     </div>
 
     <div class="layui-form-item">
         <label class="layui-form-label">公司名</label>
         <div class="layui-input-inline">
-            <input type="text" id="companyName" placeholder="公司名" autocomplete="off" class="layui-input">
+            <input type="text" name="companyName" placeholder="公司名" autocomplete="off" class="layui-input">
         </div>
     </div>
 
@@ -132,11 +140,12 @@
     </div>
     <div class="layui-form-item">
         <div class="layui-input-block">
-            <button id="submitButton" class="layui-btn" lay-submit="" lay-filter="demo1" onclick="addTask()">立即提交</button>
+            <button id="submitButton" class="layui-btn" lay-submit="" lay-filter="demo1"">立即提交</button>
             <button type="reset" class="layui-btn layui-btn-primary">重置</button>
         </div>
     </div>
 </div>
+</form>
 <script type="text/javascript" src="plugins/layui/layui.js"></script>
 <script type="text/javascript" src="js/jquery.js"></script>
 <script>
@@ -169,54 +178,6 @@
             return false;
         });
     });
-
-    document.ready(function () {
-        $('input').blur(function(){
-
-        });
-    });
-
-    function addTask() {
-
-        $('#submitButton').attr('disable', 'disable');
-        $('#submitButton').innerHTML('正在提交...');
-
-        var taskName = $('#taskName').val();
-        var taskUrl = $('#taskUrl').val();
-        var threadCount = $('#threadCount').val();
-        var jobCount = $('#jobCount').val();
-        var cityKey = $('#cityKey').val();
-        var cityValue = $('#cityValue').val();
-        var keyWordKey = $('#keyWordKey').val();
-        var keyWordValue = $('#keyWordValue').val();
-        var jobName = $('#jobName').val();
-        var addressName = $('#addressName').val();
-        var createTime = $('#createTime').val();
-        var minMoney = $('#minMoney').val();
-        var maxMoney = $('#maxMoney').val();
-        var educationRequire = $('#educationRequire').val();
-        var companyName = $('#companyName').val();
-        var content = $('#content').val();
-
-        $.ajax({
-            type : 'POST',
-            url : 'doAddTask',
-            data : {taskName : taskName, taskUrl : taskUrl, threadCount : threadCount, jobCount : jobCount, cityKey : cityKey, cityValue : cityValue,
-                keyWordKey : keyWordKey, keyWordValue : keyWordValue, jobName : jobName, addressName : addressName, createTime : createTime, minMoney : minMoney,
-                maxMoney : maxMoney, educationRequire : educationRequire, companyName : companyName, content : content},
-            dataType : 'json',
-            success : function (data) {
-                if (data.status == 1) {
-                    window.location.href='/index';
-                } else if (data.status == 2) {
-                    loginInfo(data.info, "red");
-                    $("#loginInput").innerHTML("立即提交");
-                    $("#loginInput").attr("disable", "");
-                }
-            }
-        })
-    }
-</script>
 </body>
 
 </html>
