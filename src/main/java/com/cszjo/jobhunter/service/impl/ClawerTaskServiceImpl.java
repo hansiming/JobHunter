@@ -1,6 +1,7 @@
 package com.cszjo.jobhunter.service.impl;
 
 import com.cszjo.jobhunter.dao.ClawerTaskDao;
+import com.cszjo.jobhunter.model.ClawerStatus;
 import com.cszjo.jobhunter.model.ClawerTask;
 import com.cszjo.jobhunter.model.response.BaseResponse;
 import com.cszjo.jobhunter.model.response.ResponseInfo;
@@ -31,6 +32,9 @@ public class ClawerTaskServiceImpl implements ClawerTaskService {
     }
 
     public BaseResponse addTask(ClawerTask task) {
+
+        //set clawer status
+        task.setStatu(ClawerStatus.IN_CLAWERING.getStatus());
         if(dao.addTask(task) == 0) {
             //add task fail
             baseResponse.setStatus(ResponseStatus.FAIL);
@@ -38,6 +42,7 @@ public class ClawerTaskServiceImpl implements ClawerTaskService {
         } else {
             baseResponse.setStatus(ResponseStatus.SUCCESS);
             baseResponse.setInfo(ResponseInfo.ADD_TASK_SUCCESS);
+            //start clawer
         }
         return baseResponse;
     }
