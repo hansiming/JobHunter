@@ -1,6 +1,9 @@
 package com.cszjo.jobhunter.clawer;
 
 import com.cszjo.jobhunter.model.ClawerTask;
+import org.jsoup.Jsoup;
+
+import java.io.IOException;
 
 /**
  * Created by Han on 2017/4/5.
@@ -17,6 +20,10 @@ public class JobHunterClawer implements Runnable {
 
     @Override
     public void run() {
+        try {
+            Jsoup.connect(task.getFullPath(this.page)).get();
+        } catch (IOException e) {
 
+        }
     }
 }

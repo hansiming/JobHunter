@@ -26,6 +26,7 @@
         <result property="educationRequire" column="education_require_jquery"/>
         <result property="companyName" column="company_name_jquery"/>
         <result property="remark" column="remark"/>
+        <result property="pageKey" column="page_key"/>
     </resultMap>
 
     <select id="selectAll" resultMap="clawerTaskResult">
@@ -34,9 +35,9 @@
 
     <insert id="addTask" parameterType="com.cszjo.jobhunter.model.ClawerTask">
         INSERT INTO clawer_task (task_name, url, job_count, statu, create_time, thread_count, city_key, city_value, key_word_key, key_word_value, job_list_jquery, job_name_jquery, place_time_jquery,
-         job_address_jquery, max_money_jquery, min_money_jquery, education_require_jquery, company_name_jquery, remark)
+         job_address_jquery, max_money_jquery, min_money_jquery, education_require_jquery, company_name_jquery, remark, page_key)
           VALUES (#{taskName}, #{url}, #{jobCount}, #{statu}, NOW(), #{threadCount}, #{cityKey}, #{cityValue}, #{keyWordKey}, #{keyWordValue},
-          #{jobList}, #{jobName}, #{placeTime}, #{jobAddress}, #{maxMoney}, #{minMoney}, #{educationRequire}, #{companyName}, #{remark});
+          #{jobList}, #{jobName}, #{placeTime}, #{jobAddress}, #{maxMoney}, #{minMoney}, #{educationRequire}, #{companyName}, #{remark}, #{pageKey});
     </insert>
 
     <select id="selectById" resultMap="clawerTaskResult" parameterType="Integer">
@@ -47,7 +48,7 @@
         UPDATE jobhunter.clawer_task SET  task_name = #{taskName}, url = #{url}, job_count = #{jobCount}, statu = #{statu}, thread_count = #{threadCount}, city_key = #{cityKey},
          city_value = #{cityValue}, key_word_key = #{keyWordKey}, key_word_value = #{keyWordValue}, job_name_jquery = #{jobName},
 	     place_time_jquery = #{placeTime}, job_address_jquery = #{jobAddress}, max_money_jquery = #{maxMoney}, min_money_jquery = #{minMoney},
-	    education_require_jquery = #{educationRequire}, company_name_jquery = #{companyName}, job_list_jquery = #{jobList}, remark = #{remark}
+	    education_require_jquery = #{educationRequire}, company_name_jquery = #{companyName}, job_list_jquery = #{jobList}, remark = #{remark}, page_key = #{pageKey}
 	    WHERE id = #{id};
     </update>
 

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="com.cszjo.jobhunter.dao.JobsDao">
+
+    <resultMap id="clawerTaskResult" type="com.cszjo.jobhunter.model.Jobs">
+        <id property="id" column="id"/>
+        <result property="jobName" column="job_name"/>
+        <result property="addressName" column="address_name"/>
+        <result property="createDate" column="create_time"/>
+        <result property="maxMoney" column="max_money"/>
+        <result property="minMoney" column="min_money"/>
+        <result property="educationRequire" column="education_require"/>
+        <result property="companyName" column="company_name"/>
+        <result property="remark" column="remark"/>
+        <result property="taskId" column="task_id"/>
+    </resultMap>
+
+    <insert id="insertJobs" parameterType="java.util.List">
+        INSERT INTO jobhunter.jobs (job_name, address_name, create_time, min_money, max_money, education_require,
+        company_name, remark, task_id)
+        VALUES
+        <foreach collection="list" item="item" index="index" separator=",">
+            (#{item.jobName}, #{item.addressName}, NOW(), #{item.minMoney}, #{item.maxMoney}, #{item.},
+            #{item.educationRequire}, #{item.companyName}, #{item.remark}, #{item.taskId})
+        </foreach>
+    </insert>
+</mapper>

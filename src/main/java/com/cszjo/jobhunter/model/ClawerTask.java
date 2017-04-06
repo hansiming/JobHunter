@@ -19,6 +19,7 @@ public class ClawerTask {
     private String cityValue;
     private String keyWordKey;
     private String keyWordValue;
+    private String pageKey;
     private String jobList;
     private String jobName;
     private String placeTime;
@@ -117,6 +118,14 @@ public class ClawerTask {
         this.keyWordValue = keyWordValue;
     }
 
+    public String getPageKey() {
+        return pageKey;
+    }
+
+    public void setPageKey(String pageKey) {
+        this.pageKey = pageKey;
+    }
+
     public String getJobList() {
         return jobList;
     }
@@ -187,5 +196,14 @@ public class ClawerTask {
 
     public void setRemark(String remark) {
         this.remark = remark;
+    }
+
+    public String getFullPath(int page) {
+        StringBuilder sb = new StringBuilder();
+        sb.append(this.url);
+        sb.append("&" + this.keyWordKey + "=" + this.keyWordValue);
+        sb.append("&" + this.cityKey + "=" + this.cityValue);
+        sb.append("&" + this.pageKey + "=" + page);
+        return sb.toString();
     }
 }

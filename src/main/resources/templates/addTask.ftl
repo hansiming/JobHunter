@@ -70,7 +70,7 @@
     <div class="layui-form-item">
         <label class="layui-form-label">页数</label>
         <div class="layui-input-inline">
-            <input type="text" name="keyWordKey" lay-verify="required" placeholder="页数参数名" autocomplete="off" class="layui-input">
+            <input type="text" name="pageKey" lay-verify="required" placeholder="页数参数名" autocomplete="off" class="layui-input">
         </div>
     </div>
 
