@@ -38,4 +38,20 @@
           VALUES (#{taskName}, #{url}, #{jobCount}, #{statu}, NOW(), #{threadCount}, #{cityKey}, #{cityValue}, #{keyWordKey}, #{keyWordValue},
           #{jobList}, #{jobName}, #{placeTime}, #{jobAddress}, #{maxMoney}, #{minMoney}, #{educationRequire}, #{companyName}, #{remark});
     </insert>
+
+    <select id="selectById" resultMap="clawerTaskResult" parameterType="Integer">
+        SELECT * FROM clawer_task WHERE id = #{id};
+    </select>
+
+    <update id="updateById" parameterType="com.cszjo.jobhunter.model.ClawerTask">
+        UPDATE jobhunter.clawer_task SET  task_name = #{taskName}, url = #{url}, job_count = #{jobCount}, statu = #{statu}, thread_count = #{threadCount}, city_key = #{cityKey},
+         city_value = #{cityValue}, key_word_key = #{keyWordKey}, key_word_value = #{keyWordValue}, job_name_jquery = #{jobName},
+	     place_time_jquery = #{placeTime}, job_address_jquery = #{jobAddress}, max_money_jquery = #{maxMoney}, min_money_jquery = #{minMoney},
+	    education_require_jquery = #{educationRequire}, company_name_jquery = #{companyName}, job_list_jquery = #{jobList}, remark = #{remark}
+	    WHERE id = #{id};
+    </update>
+
+    <delete id="deleteById" parameterType="Integer">
+        DELETE FROM jobhunter.clawer_task WHERE id = #{id} ;
+    </delete>
 </mapper>

@@ -46,4 +46,22 @@ public class ClawerTaskServiceImpl implements ClawerTaskService {
         }
         return baseResponse;
     }
+
+    @Override
+    public BaseResponse updateById(ClawerTask task) {
+        dao.updateById(task);
+        baseResponse.setStatus(ResponseStatus.SUCCESS);
+        baseResponse.setInfo(ResponseInfo.UPDATE_TASK_SUCCESS);
+        return baseResponse;
+    }
+
+    @Override
+    public int deleteById(int id) {
+        return dao.deleteById(id);
+    }
+
+    @Override
+    public ClawerTask selectById(int id) {
+        return dao.selectById(id);
+    }
 }

@@ -33,18 +33,25 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr>
-                    <td>中华英才网</td>
-                    <td>2017-03-05 16:25:47</td>
-                    <td>http://www.chinahr.com/sou/</td>
-                    <td style="text-align:center;"><i class="layui-icon" style="color:yellow;"></i>爬取中...</td>
-                    <td>74</td>
-                    <td>
-                        <a href="/detail-19" target="_blank">预览</a>
-                        <a href="/manage/article_edit_19">编辑</a>
-                        <a href="javascript:;" data-id="19" data-opt="del">删除</a>
-                    </td>
-                </tr>
+                <#list taskList as task>
+                    <tr>
+                        <td>${task.taskName}</td>
+                        <td>${task.createTime?string("yyyy-MM-dd HH:mm:ss")}</td>
+                        <td>${task.url}</td>
+                        <#if task.statu == 0>
+                            <td style="text-align:center;"><i class="layui-icon" style="color:yellow;"></i>爬取中...</td>
+                        <#elseif task.statu == 1>
+                            <td style="text-align:center;"><i class="layui-icon" style="color:red;"></i>爬取失败</td>
+                        <#else>
+                            <td style="text-align:center;"><i class="layui-icon" style="color:green;"></i>爬取成功</td>
+                        </#if>
+                        <td>${task.jobCount}</td>
+                        <td>
+                            <a href="editTask?id=${task.id}">编辑</a>
+                            <a href="javascript:void(0);" data-id="${task.id}" class="del">删除</a>
+                        </td>
+                    </tr>
+                </#list>
                 </tbody>
             </table>
         </div>
@@ -86,35 +93,20 @@
             }
         });
 
-        $('#search').on('click', function() {
-            parent.layer.alert('你点击了搜索按钮')
+        $('.del').on('click', function() {
+            layer.confirm('确定要删除吗？', {
+                btn: ['确定', '取消'] //可以无限个按钮
+                ,btn2: function(index, layero){
+
+                }
+            }, function(index, layero){
+                var id = $(this).attr("data-id");
+                $.ajax({url:"doDeleteTask?id=" + id,async:false})
+            });
         });
 
-        $('#add').on('click', function() {
-            $.get('temp/edit-form.html', null, function(form) {
-                layer.open({
-                    type: 1,
-                    title: '添加表单',
-                    content: form,
-                    btn: ['保存', '取消'],
-                    area: ['600px', '400px'],
-                    maxmin: true,
-                    yes: function(index) {
-                        console.log(index);
-                    },
-                    full: function(elem) {
-                        var win = window.top === window.self ? window : parent.window;
-                        $(win).on('resize', function() {
-                            var $this = $(this);
-                            elem.width($this.width()).height($this.height()).css({
-                                top: 0,
-                                left: 0
-                            });
-                            elem.children('div.layui-layer-content').height($this.height() - 95);
-                        });
-                    }
-                });
-            });
+        $('#search').on('click', function() {
+            window.reload(true);
         });
 
         $('#import').on('click', function() {

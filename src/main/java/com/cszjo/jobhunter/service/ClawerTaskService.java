@@ -13,4 +13,10 @@ public interface ClawerTaskService {
     List<ClawerTask> selectAll();
 
     BaseResponse addTask(ClawerTask task);
+
+    ClawerTask selectById(int id);
+
+    BaseResponse updateById(ClawerTask task);
+
+    int deleteById(int id);
 }

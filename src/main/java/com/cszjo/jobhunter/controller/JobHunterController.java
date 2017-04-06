@@ -32,14 +32,14 @@ public class JobHunterController {
     }
 
     @RequestMapping("/index")
-    public String toIndex(Map<String,Object> model) {
-        List<ClawerTask> taskList = clawerTaskService.selectAll();
-        model.put("taskList", taskList);
+    public String toIndex() {
         return "index";
     }
 
     @RequestMapping("/main")
-    public String toMain() {
+    public String toMain(Map<String,Object> model) {
+        List<ClawerTask> taskList = clawerTaskService.selectAll();
+        model.put("taskList", taskList);
         return "main";
     }
 
@@ -56,5 +56,23 @@ public class JobHunterController {
     @ResponseBody
     public BaseResponse doAddTask(@RequestBody ClawerTask task) {
         return clawerTaskService.addTask(task);
+    }
+
+    @RequestMapping("/editTask")
+    public String taskEdit(int id, Map<String,Object> model) {
+        ClawerTask task = clawerTaskService.selectById(id);
+        model.put("task", task);
+        return "editTask";
+    }
+    @RequestMapping(value = "/doEditTask", method = RequestMethod.POST)
+    @ResponseBody
+    public BaseResponse doEditTask(@RequestBody ClawerTask task) {
+        return clawerTaskService.updateById(task);
+    }
+
+    @RequestMapping("/doDeleteTask")
+    public String doDeleteTask(int id) {
+        clawerTaskService.deleteById(id);
+        return "main";
     }
 }
