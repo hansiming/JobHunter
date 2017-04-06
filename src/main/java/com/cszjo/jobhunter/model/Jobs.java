@@ -10,7 +10,7 @@ public class Jobs {
     private int id;
     private String jobName;
     private String addressName;
-    private Date createDate;
+    private String createDate;
     private String maxMoney;
     private String minMoney;
     private String educationRequire;
@@ -42,11 +42,11 @@ public class Jobs {
         this.addressName = addressName;
     }
 
-    public Date getCreateDate() {
+    public String getCreateDate() {
         return createDate;
     }
 
-    public void setCreateDate(Date createDate) {
+    public void setCreateDate(String createDate) {
         this.createDate = createDate;
     }
 
