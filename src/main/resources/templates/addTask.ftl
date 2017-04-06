@@ -16,7 +16,7 @@
 </head>
 
 <body>
-<form class="layui-form" action="doAddTask" type="POST">
+<form class="layui-form" action="doAddTask" method="POST">
     <div style="margin: 15px;">
     <fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;">
         <legend>任务主要信息</legend>
@@ -31,7 +31,7 @@
     <div class="layui-form-item">
         <label class="layui-form-label">任务链接</label>
         <div class="layui-input-block">
-            <input type="text" name="taskUrl" lay-verify="required" autocomplete="off" placeholder="任务链接" class="layui-input">
+            <input type="text" name="url" lay-verify="required" autocomplete="off" placeholder="任务链接" class="layui-input">
         </div>
     </div>
     <div class="layui-form-item">
@@ -97,14 +97,14 @@
     <div class="layui-form-item">
         <label class="layui-form-label">职位地点</label>
         <div class="layui-input-inline">
-            <input type="text" name="addressName" lay-verify="required" placeholder="职位地点" autocomplete="off" class="layui-input">
+            <input type="text" name="jobAddress" lay-verify="required" placeholder="职位地点" autocomplete="off" class="layui-input">
         </div>
     </div>
 
     <div class="layui-form-item">
         <label class="layui-form-label">发布时间</label>
         <div class="layui-input-inline">
-            <input type="text" name="createTime" lay-verify="required" placeholder="发布时间" autocomplete="off" class="layui-input">
+            <input type="text" name="placeTime" lay-verify="required" placeholder="发布时间" autocomplete="off" class="layui-input">
         </div>
     </div>
 
@@ -133,21 +133,20 @@
     </div>
 
     <div class="layui-form-item layui-form-text">
-        <label class="layui-form-label">备注</label>
+        <label class="layui-form-label">编辑器</label>
         <div class="layui-input-block">
-            <textarea class="layui-textarea layui-hide" name="content" lay-verify="content" id="LAY_demo_editor"></textarea>
+            <textarea class="layui-textarea layui-hide" name="remark" lay-verify="content" id="LAY_demo_editor"></textarea>
         </div>
     </div>
     <div class="layui-form-item">
         <div class="layui-input-block">
-            <button id="submitButton" class="layui-btn" lay-submit="" lay-filter="demo1"">立即提交</button>
+            <button class="layui-btn" lay-submit="" lay-filter="demo1">立即提交</button>
             <button type="reset" class="layui-btn layui-btn-primary">重置</button>
         </div>
     </div>
 </div>
 </form>
 <script type="text/javascript" src="plugins/layui/layui.js"></script>
-<script type="text/javascript" src="js/jquery.js"></script>
 <script>
     layui.use(['form', 'layedit', 'laydate'], function() {
         var form = layui.form(),
@@ -172,12 +171,34 @@
 
         //监听提交
         form.on('submit(demo1)', function(data) {
-            layer.alert(JSON.stringify(data.field), {
-                title: '最终的提交信息'
-            })
+
+            var jsonData = JSON.stringify(data.field);
+
+            $.ajax({
+                type:'POST',
+                url: 'doAddTask',
+                timeout: 3000,
+                data: jsonData,
+                dataType:'json',
+                success:function(data){
+                    if(data.status == 1){
+                        location.reload(true)
+                    }else{
+                        showInfo(data.info);
+                    }
+                }
+            });
             return false;
         });
     });
+
+    function showInfo(info) {
+
+        layer.alert(info, {
+            title: '最终的提交信息'
+        });
+    }
+</script>
 </body>
 
 </html>

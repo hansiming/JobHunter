@@ -14,7 +14,6 @@ public class ClawerTask {
     private int jobCount;
     private int statu;
     private Date createTime;
-    private int userId;
     private int threadCount;
     private String cityKey;
     private String cityValue;
@@ -28,6 +27,7 @@ public class ClawerTask {
     private String minMoney;
     private String educationRequire;
     private String companyName;
+    private String remark;
 
     public int getId() {
         return id;
@@ -75,14 +75,6 @@ public class ClawerTask {
 
     public void setCreateTime(Date createTime) {
         this.createTime = createTime;
-    }
-
-    public int getUserId() {
-        return userId;
-    }
-
-    public void setUserId(int userId) {
-        this.userId = userId;
     }
 
     public int getThreadCount() {
@@ -187,5 +179,13 @@ public class ClawerTask {
 
     public void setCompanyName(String companyName) {
         this.companyName = companyName;
+    }
+
+    public String getRemark() {
+        return remark;
+    }
+
+    public void setRemark(String remark) {
+        this.remark = remark;
     }
 }

@@ -37,14 +37,13 @@ public class ClawerTaskTest {
         task.setStatu(ClawerStatus.IN_CLAWERING.getStatus());
         task.setCityKey("123");
         task.setCityValue("123");
-        task.setCreateTime(new Date());
+        //task.setCreateTime(new Date());
         task.setJobCount(100);
         task.setTaskName("first clawer");
         task.setThreadCount(5);
         task.setUrl("23");
         task.setKeyWordKey("123");
         task.setKeyWordValue("123");
-        task.setUserId(1);
         service.addTask(task);
     }
 }

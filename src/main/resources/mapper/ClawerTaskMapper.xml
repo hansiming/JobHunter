@@ -17,6 +17,15 @@
         <result property="cityValue" column="city_value"/>
         <result property="keyWordKey" column="key_word_key"/>
         <result property="keyWordValue" column="key_word_value"/>
+        <result property="jobList" column="job_list_jquery"/>
+        <result property="jobName" column="job_name_jquery"/>
+        <result property="placeTime" column="place_time_jquery"/>
+        <result property="jobAddress" column="job_address_jquery"/>
+        <result property="maxMoney" column="max_money_jquery"/>
+        <result property="minMoney" column="min_money_jquery"/>
+        <result property="educationRequire" column="education_require_jquery"/>
+        <result property="companyName" column="company_name_jquery"/>
+        <result property="remark" column="remark"/>
     </resultMap>
 
     <select id="selectAll" resultMap="clawerTaskResult">
@@ -24,7 +33,9 @@
     </select>
 
     <insert id="addTask" parameterType="com.cszjo.jobhunter.model.ClawerTask">
-        INSERT INTO clawer_task(task_name,url,job_count,statu,create_time,user_id,thread_count,city_key,city_value,key_word_key,key_word_value)
-            VALUES(#{taskName},#{url},#{jobCount},#{statu},#{createTime},#{userId},#{threadCount},#{cityKey},#{cityValue},#{keyWordKey},#{keyWordValue});
+        INSERT INTO clawer_task (task_name, url, job_count, statu, create_time, thread_count, city_key, city_value, key_word_key, key_word_value, job_list_jquery, job_name_jquery, place_time_jquery,
+         job_address_jquery, max_money_jquery, min_money_jquery, education_require_jquery, company_name_jquery, job_list_jquery, remark)
+          VALUES (#{taskName}, #{url}, #{jobCount}, #{statu}, NOW(), #{threadCount}, #{cityKey}, #{cityValue}, #{keyWordKey}, #{keyWordValue},
+          #{jobList}, #{jobName}, #{placeTime}, #{jobAddress}, #{maxMoney}, #{minMoney}, #{educationRequire}, #{companyName}, #{remark});
     </insert>
 </mapper>

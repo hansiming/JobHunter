@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.text.SimpleDateFormat;
@@ -54,7 +55,7 @@ public class JobHunterController {
      * 添加爬取任务
      * @return
      */
-    @RequestMapping("/doAddTask")
+    @RequestMapping(value = "/doAddTask", method = RequestMethod.POST)
     @ResponseBody
     public BaseResponse doAddTask(ClawerTask task) {
         return clawerTaskService.addTask(task);
