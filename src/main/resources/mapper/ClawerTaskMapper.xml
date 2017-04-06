@@ -34,7 +34,7 @@
 
     <insert id="addTask" parameterType="com.cszjo.jobhunter.model.ClawerTask">
         INSERT INTO clawer_task (task_name, url, job_count, statu, create_time, thread_count, city_key, city_value, key_word_key, key_word_value, job_list_jquery, job_name_jquery, place_time_jquery,
-         job_address_jquery, max_money_jquery, min_money_jquery, education_require_jquery, company_name_jquery, job_list_jquery, remark)
+         job_address_jquery, max_money_jquery, min_money_jquery, education_require_jquery, company_name_jquery, remark)
           VALUES (#{taskName}, #{url}, #{jobCount}, #{statu}, NOW(), #{threadCount}, #{cityKey}, #{cityValue}, #{keyWordKey}, #{keyWordValue},
           #{jobList}, #{jobName}, #{placeTime}, #{jobAddress}, #{maxMoney}, #{minMoney}, #{educationRequire}, #{companyName}, #{remark});
     </insert>

@@ -147,6 +147,7 @@
 </div>
 </form>
 <script type="text/javascript" src="plugins/layui/layui.js"></script>
+<script type="text/javascript" src="js/jquery.js"></script>
 <script>
     layui.use(['form', 'layedit', 'laydate'], function() {
         var form = layui.form(),
@@ -172,17 +173,19 @@
         //监听提交
         form.on('submit(demo1)', function(data) {
 
-            var jsonData = JSON.stringify(data.field);
+            console.log(typeof data.field);
 
             $.ajax({
                 type:'POST',
                 url: 'doAddTask',
                 timeout: 3000,
-                data: jsonData,
-                dataType:'json',
-                success:function(data){
+                data: JSON.stringify(data.field),
+                dataType: 'json',
+                contentType: 'application/json;charse=UTF-8',
+                success: function(data){
                     if(data.status == 1){
-                        location.reload(true)
+                        showInfo(data.info);
+                        window.location.href="main";
                     }else{
                         showInfo(data.info);
                     }
