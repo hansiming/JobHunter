@@ -7,6 +7,7 @@ import com.cszjo.jobhunter.model.response.BaseResponse;
 import com.cszjo.jobhunter.model.response.ResponseInfo;
 import com.cszjo.jobhunter.model.response.ResponseStatus;
 import com.cszjo.jobhunter.service.ClawerTaskService;
+import com.cszjo.jobhunter.service.JobsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
@@ -21,6 +22,9 @@ public class ClawerTaskServiceImpl implements ClawerTaskService {
 
     @Autowired
     private ClawerTaskDao dao;
+
+    @Autowired
+    private JobsService jobsService;
 
     @Autowired
     @Qualifier("addTaskResponse")
@@ -42,7 +46,7 @@ public class ClawerTaskServiceImpl implements ClawerTaskService {
         } else {
             baseResponse.setStatus(ResponseStatus.SUCCESS);
             baseResponse.setInfo(ResponseInfo.ADD_TASK_SUCCESS);
-            //TODO start clawer
+            jobsService.startClawer(task);
         }
         return baseResponse;
     }

@@ -1,5 +1,6 @@
 package com.cszjo.jobhunter.service;
 
+import com.cszjo.jobhunter.model.ClawerTask;
 import com.cszjo.jobhunter.model.Jobs;
 
 import java.util.List;
@@ -10,4 +11,6 @@ import java.util.List;
 public interface JobsService {
 
     int insertJobs(List<Jobs> jobs);
+
+    void startClawer(ClawerTask task);
 }
