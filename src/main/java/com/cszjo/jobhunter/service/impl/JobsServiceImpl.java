@@ -31,6 +31,6 @@ public class JobsServiceImpl implements JobsService {
     @Override
     public void startClawer(ClawerTask task) {
         executorService = Executors.newFixedThreadPool(task.getThreadCount());
-        executorService.execute(new JobHunterClawer(task, 1, this));
+        executorService.execute(new JobHunterClawer(task, 2, this));
     }
 }
