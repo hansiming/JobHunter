@@ -1,5 +1,6 @@
 package com.cszjo.jobhunter.model;
 
+import com.google.common.collect.Maps;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -27,6 +28,7 @@ public class CityKey51Job {
         ClassLoader classLoader = getClass().getClassLoader();
         URL url = classLoader.getResource(JOB_CITY);
         File file = new File(url.getFile());
+        cityKeyMap = Maps.newHashMap();
 
         try {
 
@@ -37,6 +39,7 @@ public class CityKey51Job {
                 String value = e.attr("data-value");
                 cityKeyMap.put(key, value);
             }
+            System.out.println(cityKeyMap);
         } catch (IOException e) {
             e.printStackTrace();
         }
