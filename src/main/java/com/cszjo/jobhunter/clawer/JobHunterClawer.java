@@ -1,7 +1,7 @@
 package com.cszjo.jobhunter.clawer;
 
 import com.cszjo.jobhunter.model.ClawerTask;
-import com.cszjo.jobhunter.model.Jobs;
+import com.cszjo.jobhunter.model.JobInfo;
 import com.cszjo.jobhunter.service.JobsService;
 import com.google.common.collect.Lists;
 import org.jsoup.Jsoup;
@@ -30,11 +30,11 @@ public class JobHunterClawer implements Runnable {
     @Override
     public void run() {
         try {
-            List<Jobs> jobs = Lists.newArrayList();
+            List<JobInfo> jobs = Lists.newArrayList();
             Document doc = Jsoup.connect(task.getFullPath(this.page)).get();
             Elements jobList = doc.select(task.getJobList());
             for(Element e : jobList) {
-                Jobs job = new Jobs();
+                JobInfo job = new JobInfo();
                 job.setJobName(e.select(task.getJobName()).html());
                 job.setAddressName(e.select(task.getJobAddress()).html());
                 job.setCompanyName(e.select(task.getJobName()).html());

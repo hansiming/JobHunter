@@ -5,7 +5,7 @@ import java.util.Date;
 /**
  * Created by Han on 2017/4/6.
  */
-public class Jobs {
+public class JobInfo {
 
     private int id;
     private String jobName;
@@ -17,6 +17,7 @@ public class Jobs {
     private String companyName;
     private String remark;
     private int taskId;
+    private String url;
 
     public int getId() {
         return id;
@@ -96,5 +97,13 @@ public class Jobs {
 
     public void setTaskId(int taskId) {
         this.taskId = taskId;
+    }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
     }
 }

@@ -3,7 +3,7 @@ package com.cszjo.jobhunter.service.impl;
 import com.cszjo.jobhunter.clawer.JobHunterClawer;
 import com.cszjo.jobhunter.dao.JobsDao;
 import com.cszjo.jobhunter.model.ClawerTask;
-import com.cszjo.jobhunter.model.Jobs;
+import com.cszjo.jobhunter.model.JobInfo;
 import com.cszjo.jobhunter.service.JobsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -24,7 +24,7 @@ public class JobsServiceImpl implements JobsService {
     private ExecutorService executorService;
 
     @Override
-    public int insertJobs(List<Jobs> jobs) {
+    public int insertJobs(List<JobInfo> jobs) {
         return dao.insertJobs(jobs);
     }
 

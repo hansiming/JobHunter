@@ -1,6 +1,6 @@
 package com.cszjo.jobhunter.dao;
 
-import com.cszjo.jobhunter.model.Jobs;
+import com.cszjo.jobhunter.model.JobInfo;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -11,5 +11,5 @@ import java.util.List;
 @Repository
 public interface JobsDao {
 
-    int insertJobs(List<Jobs> jobs);
+    int insertJobs(List<JobInfo> jobs);
 }

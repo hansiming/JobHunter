@@ -15,6 +15,7 @@ public class LagouJobInfo {
     private String district;
     private String companyFullName;
     private String positionId;
+    private String createTime;
 
     public String getPositionName() {
         return positionName;
@@ -78,5 +79,13 @@ public class LagouJobInfo {
 
     public void setPositionId(String positionId) {
         this.positionId = positionId;
+    }
+
+    public String getCreateTime() {
+        return createTime;
+    }
+
+    public void setCreateTime(String createTime) {
+        this.createTime = createTime;
     }
 }
