@@ -77,6 +77,13 @@
             <artifactId>jsoup</artifactId>
             <version>1.7.2</version>
         </dependency>
+
+        <!-- FastJson -->
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
+            <version>1.2.24</version>
+        </dependency>
     </dependencies>
 
 </project>

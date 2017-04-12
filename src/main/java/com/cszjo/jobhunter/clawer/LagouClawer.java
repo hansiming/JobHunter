@@ -1,9 +1,64 @@
 package com.cszjo.jobhunter.clawer;
 
+import com.google.common.collect.Maps;
+import org.jsoup.Connection;
+import org.jsoup.Jsoup;
+
+import java.io.IOException;
+import java.util.Map;
+
 /**
+ * 拉勾网有反爬取措施，只有Request Header一一对应，才能爬取
  * Created by Han on 2017/4/11.
  */
-public class LagouClawer {
+public class LagouClawer implements Runnable {
 
+    private final String URL = "https://www.lagou.com/jobs/positionAjax.json?gj=%s&px=default&city=%s&needAddtionalResult=false";
+    private int page;
+    private String city;
+    private String keyWord;
+    private String experience;
 
+    public LagouClawer(int page, String city, String keyWord, String experience) {
+        this.page = page;
+        this.city = city;
+        this.keyWord = keyWord;
+        this.experience = experience;
+    }
+
+    @Override
+    public void run() {
+
+        Map<String, String> data = Maps.newHashMap();
+        data.put("first", "true");
+        data.put("pn", String.valueOf(this.page));
+        data.put("kd", this.keyWord);
+
+        try {
+            final String url = this.getUrl();
+            Connection.Response res = Jsoup.connect(url).
+                    header("Accept", "application/json, text/javascript, */*; q=0.01").
+                    header("Accept-Encoding", "gzip, deflate, br").
+                    header("Accept-Language", "zh-CN,zh;q=0.8").
+                    header("Connection", "keep-alive").
+                    header("Content-Length", "22").
+                    header("Content-Type", "application/x-www-form-urlencoded; charset=UTF-8").
+                    ignoreContentType(true).
+                    header("Cookie", "user_trace_token=20160821185106-85f17b62695544629f059c2855aca300; LGUID=20160821185106-29797195-678d-11e6-ac36-525400f775ce; JSESSIONID=21DC10B903BCA12CA259E64927DA8B98; TG-TRACK-CODE=search_code; SEARCH_ID=b2a85ebc9f8b4e2ca335aa2c15bd4f74").
+                    header("Host", "www.lagou.com").
+                    header("Origin", "https://www.lagou.com").
+                    header("Referer", "https://www.lagou.com/jobs/list_php?city=%E6%88%90%E9%83%BD&cl=false&fromSearch=true&labelWords=&suginput=").
+                    header("User-Agent", "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36").
+                    header("X-Anit-Forge-Code", "0").
+                    header("X-Anit-Forge-Token", "None").
+                    header("X-Requested-With", "XMLHttpRequest").
+                    data(data).method(Connection.Method.POST).execute();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private String getUrl() {
+        return String.format(this.URL, this.experience, this.city);
+    }
 }
