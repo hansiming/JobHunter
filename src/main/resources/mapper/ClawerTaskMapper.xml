@@ -11,7 +11,6 @@
         <result property="jobCount" column="job_count"/>
         <result property="statu" column="statu"/>
         <result property="createTime" column="create_time"/>
-        <result property="userId" column="user_id"/>
         <result property="threadCount" column="thread_count"/>
         <result property="cityKey" column="city_key"/>
         <result property="cityValue" column="city_value"/>
