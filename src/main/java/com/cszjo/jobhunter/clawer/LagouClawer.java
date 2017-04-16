@@ -1,17 +1,22 @@
 package com.cszjo.jobhunter.clawer;
 
+import com.cszjo.jobhunter.model.JobInfo;
+import com.cszjo.jobhunter.model.LagouJobInfo;
+import com.cszjo.jobhunter.parse.ParseUtils;
 import com.google.common.collect.Maps;
 import org.jsoup.Connection;
 import org.jsoup.Jsoup;
 
 import java.io.IOException;
+import java.util.List;
 import java.util.Map;
+import java.util.concurrent.Callable;
 
 /**
  * 拉勾网有反爬取措施，只有Request Header一一对应，才能爬取
  * Created by Han on 2017/4/11.
  */
-public class LagouClawer implements Runnable {
+public class LagouClawer implements Callable<List<JobInfo>> {
 
     private final String URL = "https://www.lagou.com/jobs/positionAjax.json?gj=%s&px=default&city=%s&needAddtionalResult=false";
     private int page;
@@ -27,7 +32,7 @@ public class LagouClawer implements Runnable {
     }
 
     @Override
-    public void run() {
+    public List<JobInfo> call() {
 
         Map<String, String> data = Maps.newHashMap();
         data.put("first", "true");
@@ -53,9 +58,17 @@ public class LagouClawer implements Runnable {
                     header("X-Anit-Forge-Token", "None").
                     header("X-Requested-With", "XMLHttpRequest").
                     data(data).method(Connection.Method.POST).execute();
+
+            //parse to LagouJobInfos
+            List<LagouJobInfo> lagouJobInfos = ParseUtils.result2LagouJobInfoList(res.body());
+            //parse to jobinfo
+            return ParseUtils.lagouJobInfoList2JobInfoList(lagouJobInfos);
+
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+        return null;
     }
 
     private String getUrl() {
