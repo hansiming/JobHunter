@@ -1,8 +1,11 @@
 package com.cszjo.jobhunter.clawer;
 
 import com.cszjo.jobhunter.model.JobInfo;
+import com.google.common.collect.Lists;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
+import org.jsoup.select.Elements;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -36,7 +39,29 @@ public class Job51Clawer implements Callable<List<JobInfo>> {
 
         try {
             Document doc = Jsoup.connect(this.getUrl()).get();
-            LOGGER.debug("get a 51 Job result, {}", doc);
+            Element resultList = doc.getElementById("resultList");
+            Elements jobs = resultList.select(".el");
+            List<JobInfo> jobInfos = Lists.newArrayList();
+
+            for (Element job : jobs) {
+
+                JobInfo jobInfo = new JobInfo();
+                Elements jobNameElements = job.select("$('.t1 span a')");
+                for (Element jobNameElement : jobNameElements) {
+                    jobInfo.setJobName(jobNameElement.attr("title"));
+                    jobInfo.setUrl(jobNameElement.attr("href"));
+                }
+                Elements companyNameElements = job.select("$('.t2 a')");
+                for (Element companyNameElement : companyNameElements) {
+                    jobInfo.setCompanyName(companyNameElement.attr("title"));
+                }
+                Elements addressElements = job.select(".t3");
+                for (Element addressElement : addressElements) {
+                    jobInfo.setAddressName(addressElement.html());
+                }
+            }
+
+            return jobInfos;
         } catch (IOException e) {
             e.printStackTrace();
         }
