@@ -17,6 +17,7 @@ public class Job51Test {
 
         FutureTask<List<JobInfo>> future = new FutureTask<List<JobInfo>>(new Job51Clawer( 1,"020000", "Java", ""));
         new Thread(future).start();
+        System.out.println(future.get());
         Thread.sleep(3000);
     }
 }

@@ -84,6 +84,13 @@
             <artifactId>fastjson</artifactId>
             <version>1.2.24</version>
         </dependency>
+
+        <!-- Apache Commons -->
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+            <version>3.4</version>
+        </dependency>
     </dependencies>
 
 </project>

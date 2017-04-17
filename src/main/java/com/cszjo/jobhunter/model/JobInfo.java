@@ -106,4 +106,21 @@ public class JobInfo {
     public void setUrl(String url) {
         this.url = url;
     }
+
+    @Override
+    public String toString() {
+        return "JobInfo{" +
+                "id=" + id +
+                ", jobName='" + jobName + '\'' +
+                ", addressName='" + addressName + '\'' +
+                ", createDate='" + createDate + '\'' +
+                ", maxMoney='" + maxMoney + '\'' +
+                ", minMoney='" + minMoney + '\'' +
+                ", educationRequire='" + educationRequire + '\'' +
+                ", companyName='" + companyName + '\'' +
+                ", remark='" + remark + '\'' +
+                ", taskId=" + taskId +
+                ", url='" + url + '\'' +
+                '}';
+    }
 }
