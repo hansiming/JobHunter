@@ -3,6 +3,8 @@ package com.cszjo.jobhunter.clawer;
 import com.cszjo.jobhunter.model.JobInfo;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 import java.util.List;
@@ -13,6 +15,8 @@ import java.util.concurrent.Callable;
  * Created by Han on 2017/4/16.
  */
 public class Job51Clawer implements Callable<List<JobInfo>> {
+
+    private final Logger LOGGER = LoggerFactory.getLogger(Job51Clawer.class);
 
     private final String url = "http://search.51job.com/list/%s,000000,0000,00,9,99,%s,2,%d.html";
     private int page;
@@ -32,7 +36,7 @@ public class Job51Clawer implements Callable<List<JobInfo>> {
 
         try {
             Document doc = Jsoup.connect(this.getUrl()).get();
-            System.out.println(doc);
+            LOGGER.debug("get a 51 Job result, {}", doc);
         } catch (IOException e) {
             e.printStackTrace();
         }
