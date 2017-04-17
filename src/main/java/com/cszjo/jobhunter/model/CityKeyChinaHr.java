@@ -48,4 +48,8 @@ public class CityKeyChinaHr {
             e.printStackTrace();
         }
     }
+
+    public String getCityKey(String city) {
+        return cityKeyMap.get(city);
+    }
 }

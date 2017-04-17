@@ -1,5 +1,6 @@
 package com.cszjo.jobhunter.clawer;
 
+import com.cszjo.jobhunter.model.CityKeyChinaHr;
 import com.cszjo.jobhunter.model.JobInfo;
 import com.cszjo.jobhunter.utils.ClawerUtils;
 import com.google.common.collect.Lists;
@@ -9,6 +10,8 @@ import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.io.IOException;
 import java.util.List;
@@ -26,12 +29,14 @@ public class ChinaHrClawer implements Callable<List<JobInfo>> {
     private String city;
     private String keyWord;
     private String experience;
+    private CityKeyChinaHr cityKeyChinaHr;
 
-    public ChinaHrClawer(int page, String city, String keyWord, String experience) {
+    public ChinaHrClawer(int page, String city, String keyWord, String experience, CityKeyChinaHr cityKeyChinaHr) {
         this.page = page;
         this.city = city;
         this.keyWord = keyWord;
         this.experience = experience;
+        this.cityKeyChinaHr = cityKeyChinaHr;
     }
 
     @Override
@@ -66,6 +71,6 @@ public class ChinaHrClawer implements Callable<List<JobInfo>> {
     }
 
     private String getUrl() {
-        return String.format(this.url, this.keyWord, this.page);
+        return String.format(this.url, this.keyWord, this.cityKeyChinaHr.getCityKey(this.city), this.page);
     }
 }

@@ -2,7 +2,7 @@ package com.cszjo.jobhunter.clawer;
 
 import com.cszjo.jobhunter.model.JobInfo;
 import com.cszjo.jobhunter.model.LagouJobInfo;
-import com.cszjo.jobhunter.parse.ParseUtils;
+import com.cszjo.jobhunter.utils.ParseUtils;
 import com.google.common.collect.Maps;
 import org.jsoup.Connection;
 import org.jsoup.Jsoup;

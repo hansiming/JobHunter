@@ -1,5 +1,6 @@
 package com.cszjo.jobhunter.clawer;
 
+import com.cszjo.jobhunter.model.CityKey51Job;
 import com.cszjo.jobhunter.model.JobInfo;
 import com.cszjo.jobhunter.utils.ClawerUtils;
 import com.google.common.collect.Lists;
@@ -28,12 +29,14 @@ public class Job51Clawer implements Callable<List<JobInfo>> {
     private String city;
     private String keyWord;
     private String experience;
+    private CityKey51Job cityKey51Job;
 
-    public Job51Clawer(int page, String city, String keyWord, String experience) {
+    public Job51Clawer(int page, String city, String keyWord, String experience, CityKey51Job cityKey51Job) {
         this.page = page;
         this.city = city;
         this.keyWord = keyWord;
         this.experience = experience;
+        this.cityKey51Job = cityKey51Job;
     }
 
     @Override
@@ -69,6 +72,6 @@ public class Job51Clawer implements Callable<List<JobInfo>> {
     }
 
     private String getUrl() {
-        return String.format(this.url, this.city, this.keyWord, this.page);
+        return String.format(this.url, this.cityKey51Job.getCityKey(this.city), this.keyWord, this.page);
     }
 }
