@@ -1,6 +1,7 @@
 package com.cszjo.jobhunter.clawer;
 
 import com.cszjo.jobhunter.model.JobInfo;
+import com.cszjo.jobhunter.utils.ClawerUtils;
 import com.google.common.collect.Lists;
 import org.apache.commons.lang3.StringUtils;
 import org.jsoup.Jsoup;
@@ -47,38 +48,22 @@ public class Job51Clawer implements Callable<List<JobInfo>> {
             for (Element job : jobs) {
 
                 JobInfo jobInfo = new JobInfo();
-                //get job name
-                Elements jobNameElements = job.select(".t1 span a");
-                for (Element jobNameElement : jobNameElements) {
-                    jobInfo.setJobName(jobNameElement.attr("title"));
-                    jobInfo.setUrl(jobNameElement.attr("href"));
-                }
-                //get company name
-                Elements companyNameElements = job.select(".t2 a");
-                for (Element companyNameElement : companyNameElements) {
-                    jobInfo.setCompanyName(companyNameElement.attr("title"));
-                }
-                //get address
-                Elements addressElements = job.select(".t3");
-                for (Element addressElement : addressElements) {
-                    jobInfo.setAddressName(addressElement.html());
-                }
-                //get money
-                Elements moneyElements = job.select(".t4");
-                for (Element moneyElement : moneyElements) {
-                    jobInfo.setMaxMoney(moneyElement.html());
-                }
-                //get createTime
-                Elements createTimeElements = job.select(".t5");
-                for (Element createTimeElement : createTimeElements) {
-                    jobInfo.setCreateDate(createTimeElement.html());
-                }
+
+                jobInfo.setJobName(ClawerUtils.clawerAttrBySelectQuery(".t1 span a","title", job));
+                jobInfo.setUrl(ClawerUtils.clawerAttrBySelectQuery(".t1 span a","href", job));
+                jobInfo.setCompanyName(ClawerUtils.clawerAttrBySelectQuery(".t2 a","title", job));
+                jobInfo.setAddressName(ClawerUtils.clawerHtmlBySelectQuery(".t3", job));
+                jobInfo.setMaxMoney(ClawerUtils.clawerHtmlBySelectQuery(".t4", job));
+                jobInfo.setCreateDate(ClawerUtils.clawerHtmlBySelectQuery(".t5", job));
+
                 LOGGER.info("get a job info from 51 job, job info = {}", jobInfo);
+                jobInfos.add(jobInfo);
             }
 
             return jobInfos;
         } catch (IOException e) {
-            e.printStackTrace();
+
+            LOGGER.error("get a job info form 51 job create a error, error = {}, url = {}", e.getMessage(), this.getUrl());
         }
         return null;
     }

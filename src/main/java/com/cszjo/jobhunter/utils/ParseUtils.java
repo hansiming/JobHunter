@@ -1,4 +1,4 @@
-package com.cszjo.jobhunter.parse;
+package com.cszjo.jobhunter.utils;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
