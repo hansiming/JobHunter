@@ -11,3 +11,5 @@ pull_from_github_and_restart.sh
 target/
 .idea/
 jobhunter.iml
+
+src/main/resources/logback.xml

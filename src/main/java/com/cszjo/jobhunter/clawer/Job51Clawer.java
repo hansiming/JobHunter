@@ -32,7 +32,7 @@ public class Job51Clawer implements Callable<List<JobInfo>> {
 
         try {
             Document doc = Jsoup.connect(this.getUrl()).get();
-
+            System.out.println(doc);
         } catch (IOException e) {
             e.printStackTrace();
         }
