@@ -16,15 +16,15 @@ import java.net.URL;
 import java.util.Map;
 
 /**
- * Created by Han on 2017/4/12.
+ * Created by Han on 2017/4/17.
  */
 @Component
-public class CityKey51Job {
+public class CityKeyChinaHr {
 
-    private final Logger LOGGER = LoggerFactory.getLogger(CityKey51Job.class);
+    private final Logger LOGGER = LoggerFactory.getLogger(CityKeyChinaHr.class);
 
     private Map<String, String> cityKeyMap;
-    private final String JOB_CITY = "city/51jobcity.html";
+    private final String JOB_CITY = "city/chinahr_city.html";
 
     @PostConstruct
     public void init() {
@@ -37,19 +37,15 @@ public class CityKey51Job {
         try {
 
             Document doc = Jsoup.parse(file, "utf-8");
-            Elements elements = doc.select(".cityKey");
+            Elements elements = doc.select("li");
             for (Element e : elements) {
                 String key = e.text();
-                String value = e.attr("data-value");
+                String value = e.attr("data-id");
                 cityKeyMap.put(key, value);
             }
-            LOGGER.info("load city key from 51 job, maps = {}", cityKeyMap);
+            LOGGER.info("load city key from china hr, maps = {}", cityKeyMap);
         } catch (IOException e) {
             e.printStackTrace();
         }
-    }
-
-    public String getCityKey(String cityName) {
-        return cityKeyMap.get(cityName);
     }
 }
