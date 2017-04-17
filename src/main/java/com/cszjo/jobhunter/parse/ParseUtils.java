@@ -1,9 +1,13 @@
 package com.cszjo.jobhunter.parse;
 
+import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
 import com.cszjo.jobhunter.model.JobInfo;
 import com.cszjo.jobhunter.model.LagouJobInfo;
 import com.google.common.collect.Lists;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.List;
 
@@ -12,6 +16,8 @@ import java.util.List;
  */
 public class ParseUtils {
 
+    private static final Logger LOGGER = LoggerFactory.getLogger(ParseUtils.class);
+
     public static final String LAGOU_PRE_URL = "https://www.lagou.com/jobs/";
     public static final String LAGOU_NEXT_URL = ".html";
 
@@ -19,8 +25,11 @@ public class ParseUtils {
         //防止实例化
     }
 
-    public static List<LagouJobInfo> result2LagouJobInfoList(String boby) {
-        return (List<LagouJobInfo>) JSONArray.parse(boby);
+    public static List<LagouJobInfo> result2LagouJobInfoList(String body) {
+        JSONObject object = (JSONObject) JSON.parse(body);
+        JSONObject content = (JSONObject) object.get("content");
+        JSONObject positionResult = (JSONObject) content.get("positionResult");
+        return JSON.parseArray( ((JSONArray)positionResult.get("result")).toJSONString(), LagouJobInfo.class);
     }
 
     public static List<JobInfo> lagouJobInfoList2JobInfoList(List<LagouJobInfo> lagouJobInfos) {
@@ -37,25 +46,11 @@ public class ParseUtils {
             jobInfo.setCreateDate(lagouJobInfo.getCreateTime());
             jobInfo.setJobName(lagouJobInfo.getPositionName());
             jobInfo.setUrl(LAGOU_PRE_URL + lagouJobInfo.getPositionId() + LAGOU_NEXT_URL);
-            parseMoney(jobInfo, lagouJobInfo);
+            jobInfo.setMaxMoney(lagouJobInfo.getSalary());
 
+            LOGGER.info("get a job info from la gou, job info = {}", jobInfo);
             jobInfos.add(jobInfo);
         }
         return jobInfos;
-    }
-
-    private static JobInfo parseMoney(JobInfo jobInfo, LagouJobInfo lagouJobInfo) {
-
-        String salary = lagouJobInfo.getSalary();
-        String[] maxAndMinMoney = salary.split("-");
-        String maxMoney = maxAndMinMoney[0];
-        String minMoney = maxAndMinMoney[1];
-        if(maxMoney.endsWith("k")) {
-            jobInfo.setMaxMoney(maxMoney);
-        }
-        if(minMoney.endsWith("k")) {
-            jobInfo.setMinMoney(minMoney);
-        }
-        return jobInfo;
     }
 }

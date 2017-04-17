@@ -1,12 +1,17 @@
 package com.cszjo.test;
 
+import com.cszjo.jobhunter.clawer.Job51Clawer;
+import com.cszjo.jobhunter.clawer.LagouClawer;
+import com.cszjo.jobhunter.model.JobInfo;
 import com.google.common.collect.Maps;
 import org.jsoup.Connection;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.junit.Test;
 
+import java.util.List;
 import java.util.Map;
+import java.util.concurrent.FutureTask;
 
 /**
  * Created by Han on 2017/4/11.
@@ -40,5 +45,14 @@ public class LagouTest {
                 header("X-Requested-With", "XMLHttpRequest").
                 data(data).method(Connection.Method.POST).execute();
         System.out.println(res.body());
+    }
+
+    @Test
+    public void lagouJobInfoTest() throws Exception {
+
+        FutureTask<List<JobInfo>> future = new FutureTask<List<JobInfo>>(new LagouClawer( 1,"成都", "Java", ""));
+        new Thread(future).start();
+        System.out.println(future.get());
+        Thread.sleep(3000);
     }
 }
