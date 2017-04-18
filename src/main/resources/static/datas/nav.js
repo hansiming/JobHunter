@@ -7,6 +7,10 @@ var navs = [
             {
                 "title": "添加任务",
                 "href": "addTask"
+            },
+            {
+                "title": "在线爬取",
+                "href": "online"
             }
 		]
 	}
