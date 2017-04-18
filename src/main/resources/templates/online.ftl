@@ -5,31 +5,50 @@
     <meta charset="UTF-8">
     <title>Table</title>
     <link rel="stylesheet" href="plugins/layui/css/layui.css" media="all" />
-    <link rel="stylesheet" href="css/global.css" media="all">
-    <link rel="stylesheet" type="text/css" href="http://www.jq22.com/jquery/font-awesome.4.6.0.css">
+    <link rel="stylesheet" href="plugins/font-awesome/css/font-awesome.min.css">
     <link rel="stylesheet" href="css/table.css" />
+    <link rel="stylesheet" href="css/global.css" media="all">
 </head>
 
 <body>
 <div class="admin-main">
-
-    <blockquote class="layui-elem-quote">
-        <a href="javascript:;" class="layui-btn layui-btn-small" id="search">
-            <i class="layui-icon">&#x1002;</i> 刷新
-        </a>
-    </blockquote>
+    <form class="layui-form">
+        <blockquote class="layui-elem-quote">
+            <div class="layui-input-inline">
+                <input type="text" id="keyWord" lay-verify="required" autocomplete="off" placeholder="你想要查询的职位" class="layui-input">
+            </div>
+            <div class="layui-input-inline">
+                <select name="interest" lay-filter="aihao">
+                    <option value=""></option>
+                    <option value="0" selected="">北京</option>
+                    <option value="1">上海</option>
+                    <option value="2">广州</option>
+                    <option value="3">杭州</option>
+                    <option value="4">成都</option>
+                </select>
+            </div>
+            <div class="layui-input-inline" style="margin: 0 20px;">
+                <input type="checkbox" name="like[write]" title="拉勾网" checked="">
+                <input type="checkbox" name="like[read]" title="前程无忧" checked="">
+                <input type="checkbox" name="like[game]" title="中华英才网" checked="">
+            </div>
+            <a href="javascript:;" class="layui-btn layui-btn-small" id="search">
+                <i class="layui-icon">&#xe615;</i> 搜索
+            </a>
+        </blockquote>
+    </form>
     <fieldset class="layui-elem-field">
         <legend>任务列表</legend>
         <div class="layui-field-box">
             <table class="site-table table-hover" id="tastTable">
                 <thead>
                 <tr>
-                    <th>任务名</th>
-                    <th>创建时间</th>
-                    <th>爬取路径</th>
-                    <th>爬取状态</th>
-                    <th>爬取条数</th>
-                    <th>操作</th>
+                    <th>职位名称</th>
+                    <th>公司名称</th>
+                    <th>薪资</th>
+                    <th>地址</th>
+                    <th>发布时间</th>
+                    <th>发布地址</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -54,17 +73,24 @@
 <script type="text/javascript" src="js/jquery.js"></script>
 <script type="text/javascript" src="plugins/layui/layui.js"></script>
 <script>
+
     layui.config({
         base: 'plugins/layui/modules/'
     });
 
-    layui.use(['icheck', 'laypage','layer'], function() {
+    layui.use(['icheck', 'laypage','layer', 'form', 'layedit', 'laydate'], function() {
+
+        var form = layui.form(),
+                layer = layui.layer,
+                layedit = layui.layedit,
+                laydate = layui.laydate;
+
         var $ = layui.jquery,
                 laypage = layui.laypage,
                 layer = parent.layer === undefined ? layui.layer : parent.layer;
-        $('input').iCheck({
-            checkboxClass: 'icheckbox_flat-green'
-        });
+        // $('input').iCheck({
+        //     checkboxClass: 'icheckbox_flat-green'
+        // });
 
         //page
         laypage({
