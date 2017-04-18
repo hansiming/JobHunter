@@ -60,4 +60,16 @@ public class ClawerRequest {
     public void setPage(int page) {
         this.page = page;
     }
+
+    @Override
+    public String toString() {
+        return "ClawerRequest{" +
+                "keyWord='" + keyWord + '\'' +
+                ", area='" + area + '\'' +
+                ", lagou=" + lagou +
+                ", job51=" + job51 +
+                ", chinahr=" + chinahr +
+                ", page=" + page +
+                '}';
+    }
 }

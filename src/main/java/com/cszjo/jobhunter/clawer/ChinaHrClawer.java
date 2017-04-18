@@ -56,6 +56,7 @@ public class ChinaHrClawer implements Callable<List<JobInfo>> {
                 jobInfo.setCompanyName(ClawerUtils.clawerHtmlBySelectQuery(".l1 .e3 a", job));
                 jobInfo.setMaxMoney(ClawerUtils.clawerHtmlBySelectQuery(".l2 .e2", job));
                 jobInfo.setAddressName(this.city);
+                jobInfo.setTaskId(2);
 
                 LOGGER.info("get a job info from china hr, job info = {}", jobInfo);
                 jobInfos.add(jobInfo);

@@ -18,7 +18,7 @@ import java.util.concurrent.Callable;
  */
 public class LagouClawer implements Callable<List<JobInfo>> {
 
-    private final String URL = "https://www.lagou.com/jobs/positionAjax.json?gj=%s&px=default&city=%s&needAddtionalResult=false";
+    private final String URL = "https://www.lagou.com/jobs/positionAjax.json?px=default&city=%s&needAddtionalResult=false";
     private int page;
     private String city;
     private String keyWord;
@@ -72,6 +72,6 @@ public class LagouClawer implements Callable<List<JobInfo>> {
     }
 
     private String getUrl() {
-        return String.format(this.URL, this.experience, this.city);
+        return String.format(this.URL, this.city);
     }
 }

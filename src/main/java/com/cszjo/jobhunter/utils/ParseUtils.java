@@ -47,6 +47,7 @@ public class ParseUtils {
             jobInfo.setJobName(lagouJobInfo.getPositionName());
             jobInfo.setUrl(LAGOU_PRE_URL + lagouJobInfo.getPositionId() + LAGOU_NEXT_URL);
             jobInfo.setMaxMoney(lagouJobInfo.getSalary());
+            jobInfo.setTaskId(0);
 
             LOGGER.info("get a job info from la gou, job info = {}", jobInfo);
             jobInfos.add(jobInfo);

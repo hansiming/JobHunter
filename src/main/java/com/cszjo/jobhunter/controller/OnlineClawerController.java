@@ -1,11 +1,15 @@
 package com.cszjo.jobhunter.controller;
 
+import com.cszjo.jobhunter.model.JobInfo;
 import com.cszjo.jobhunter.model.request.ClawerRequest;
+import com.cszjo.jobhunter.service.ClawerService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -14,6 +18,9 @@ import java.util.Map;
 @Controller
 public class OnlineClawerController {
 
+    @Autowired
+    private ClawerService service;
+
     @RequestMapping("online")
     public String toOnline(Map<String,Object> model) {
         return "online";
@@ -21,9 +28,8 @@ public class OnlineClawerController {
 
     @RequestMapping(value = "doClawer", method = RequestMethod.POST)
     @ResponseBody
-    public String doClawer(ClawerRequest request) {
+    public List<JobInfo> doClawer(ClawerRequest request) {
 
-
-        return null;
+        return service.clawer(request);
     }
 }

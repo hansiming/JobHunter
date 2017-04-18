@@ -51,7 +51,7 @@
                     <th>发布地址</th>
                 </tr>
                 </thead>
-                <tbody>
+                <tbody id="resultBody">
                 <tr>
                     <td>123</td>
                     <td>123</td>
@@ -108,10 +108,30 @@
         $('#search').on('click', function() {
 
             var keyWord = $("#keyWord").val();
-            var area = $("#areaSelect").val();
-            var lagou = $("#lagou").attr("selected") == true ? true : false;
-            var job51 = $("#job51").attr("selected") == true ? true : false;
-            var chinahr = $("#chinahr").attr("selected") == true ? true : false;
+            var area = $("#areaSelect").find("option:selected").text();;
+            var lagou = $("#lagou").is(':checked') == true ? true : false;
+            var job51 = $("#job51").is(':checked') == true ? true : false;
+            var chinahr = $("#chinahr").is(':checked') == true ? true : false;
+            var page = 1;
+
+            $.ajax({
+                type : 'POST',
+                url : 'doClawer',
+                data : {keyWord : keyWord, area : area, lagou : lagou, job51 : job51, chinahr : chinahr, page : page},
+                dataType : 'json',
+                success : function (data) {
+                    $("#resultBody").empty();
+                    $.each(data, function(index, value){
+
+                        var taskId = value["taskId"];
+                        var domain = taskId == 0 ? "拉勾网" : taskId == 1 ? "前程无忧" : "中华英才网";
+                        $("#resultBody").append("<tr><td><a href='" + value["url"] + "' target='view_window'>" + value["jobName"] + "</a></td>"
+                                + "<td>" + value["companyName"] + "</td>" + "<td>" + value["maxMoney"] + "</td>"
+                                + "<td>" + value["addressName"] + "</td>" + "<td>" + value["createDate"] + "</td>"
+                                + "<td>" + domain + "</td></tr>");
+                    });
+                }
+            })
         });
 
         $('.site-table tbody tr').on('click', function(event) {

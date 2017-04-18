@@ -58,6 +58,7 @@ public class Job51Clawer implements Callable<List<JobInfo>> {
                 jobInfo.setAddressName(ClawerUtils.clawerHtmlBySelectQuery(".t3", job));
                 jobInfo.setMaxMoney(ClawerUtils.clawerHtmlBySelectQuery(".t4", job));
                 jobInfo.setCreateDate(ClawerUtils.clawerHtmlBySelectQuery(".t5", job));
+                jobInfo.setTaskId(1);
 
                 LOGGER.info("get a job info from 51 job, job info = {}", jobInfo);
                 jobInfos.add(jobInfo);
