@@ -1,5 +1,6 @@
 package com.cszjo.jobhunter.controller;
 
+import com.cszjo.jobhunter.model.request.ClawerRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -20,7 +21,8 @@ public class OnlineClawerController {
 
     @RequestMapping(value = "doClawer", method = RequestMethod.POST)
     @ResponseBody
-    public String doClawer() {
+    public String doClawer(ClawerRequest request) {
+
 
         return null;
     }
