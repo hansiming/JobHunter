@@ -18,7 +18,7 @@
                 <input type="text" id="keyWord" lay-verify="required" autocomplete="off" placeholder="你想要查询的职位" class="layui-input">
             </div>
             <div class="layui-input-inline">
-                <select name="interest" lay-filter="aihao">
+                <select id="areaSelect" lay-filter="aihao">
                     <option value=""></option>
                     <option value="0" selected="">北京</option>
                     <option value="1">上海</option>
@@ -28,9 +28,9 @@
                 </select>
             </div>
             <div class="layui-input-inline" style="margin: 0 20px;">
-                <input type="checkbox" name="like[write]" title="拉勾网" checked="">
-                <input type="checkbox" name="like[read]" title="前程无忧" checked="">
-                <input type="checkbox" name="like[game]" title="中华英才网" checked="">
+                <input type="checkbox" id="lagou" title="拉勾网" checked="">
+                <input type="checkbox" id="job51" title="前程无忧" checked="">
+                <input type="checkbox" id="chinahr" title="中华英才网" checked="">
             </div>
             <a href="javascript:;" class="layui-btn layui-btn-small" id="search">
                 <i class="layui-icon">&#xe615;</i> 搜索
@@ -40,7 +40,7 @@
     <fieldset class="layui-elem-field">
         <legend>任务列表</legend>
         <div class="layui-field-box">
-            <table class="site-table table-hover" id="tastTable">
+            <table class="site-table table-hover" id="resultTable">
                 <thead>
                 <tr>
                     <th>职位名称</th>
@@ -105,26 +105,13 @@
             }
         });
 
-        $('.del').on('click', function() {
-            layer.confirm('确定要删除吗？', {
-                btn: ['确定', '取消'] //可以无限个按钮
-                ,btn2: function(index, layero){
-
-                }
-            }, function(index, layero){
-                var id = $(this).attr("data-id");
-                $.ajax({url:"doDeleteTask?id=" + id,async:false})
-            });
-        });
-
         $('#search').on('click', function() {
-            window.reload(true);
-        });
 
-        $('#import').on('click', function() {
-            var that = this;
-            var index = layer.tips('只想提示地精准些', that,{tips: [1, 'white']});
-            $('#layui-layer'+index).children('div.layui-layer-content').css('color','#000000');
+            var keyWord = $("#keyWord").val();
+            var area = $("#areaSelect").val();
+            var lagou = $("#lagou").attr("selected") == true ? true : false;
+            var job51 = $("#job51").attr("selected") == true ? true : false;
+            var chinahr = $("#chinahr").attr("selected") == true ? true : false;
         });
 
         $('.site-table tbody tr').on('click', function(event) {

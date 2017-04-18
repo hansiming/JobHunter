@@ -2,6 +2,8 @@ package com.cszjo.jobhunter.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.Map;
 
@@ -14,5 +16,12 @@ public class OnlineClawerController {
     @RequestMapping("online")
     public String toOnline(Map<String,Object> model) {
         return "online";
+    }
+
+    @RequestMapping(value = "doClawer", method = RequestMethod.POST)
+    @ResponseBody
+    public String doClawer() {
+
+        return null;
     }
 }
