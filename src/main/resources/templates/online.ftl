@@ -88,9 +88,6 @@
         var $ = layui.jquery,
                 laypage = layui.laypage,
                 layer = parent.layer === undefined ? layui.layer : parent.layer;
-        // $('input').iCheck({
-        //     checkboxClass: 'icheckbox_flat-green'
-        // });
 
         //page
         laypage({
