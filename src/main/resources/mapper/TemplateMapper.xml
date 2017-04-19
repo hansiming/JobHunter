@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="com.cszjo.jobhunter.dao.TemplateDao">
+
+    <resultMap id="templateResult" type="com.cszjo.jobhunter.model.Template">
+        <id property="id" column="id"/>
+        <result property="taskName" column="task_name"/>
+        <result property="url" column="url"/>
+        <result property="statu" column="statu"/>
+        <result property="createTime" column="create_time"/>
+        <result property="cityKey" column="city_key"/>
+        <result property="cityValue" column="city_value"/>
+        <result property="keyWordKey" column="key_word_key"/>
+        <result property="keyWordValue" column="key_word_value"/>
+        <result property="jobList" column="job_list_jquery"/>
+        <result property="jobName" column="job_name_jquery"/>
+        <result property="placeTime" column="place_time_jquery"/>
+        <result property="jobAddress" column="job_address_jquery"/>
+        <result property="maxMoney" column="max_money_jquery"/>
+        <result property="minMoney" column="min_money_jquery"/>
+        <result property="educationRequire" column="education_require_jquery"/>
+        <result property="companyName" column="company_name_jquery"/>
+        <result property="remark" column="remark"/>
+        <result property="pageKey" column="page_key"/>
+    </resultMap>
+
+    <select id="selectAll" resultMap="templateResult">
+        SELECT * FROM template;
+    </select>
+
+    <insert id="addTemplate" parameterType="com.cszjo.jobhunter.model.Template">
+        INSERT INTO template (task_name, url, job_count, statu, create_time, thread_count, city_key, city_value, key_word_key, key_word_value, job_list_jquery, job_name_jquery, place_time_jquery,
+        job_address_jquery, max_money_jquery, min_money_jquery, education_require_jquery, company_name_jquery, remark, page_key)
+        VALUES (#{taskName}, #{url}, #{jobCount}, #{statu}, NOW(), #{threadCount}, #{cityKey}, #{cityValue}, #{keyWordKey}, #{keyWordValue},
+        #{jobList}, #{jobName}, #{placeTime}, #{jobAddress}, #{maxMoney}, #{minMoney}, #{educationRequire}, #{companyName}, #{remark}, #{pageKey});
+    </insert>
+
+    <select id="selectById" resultMap="templateResult" parameterType="Integer">
+        SELECT * FROM template WHERE id = #{id};
+    </select>
+
+    <update id="updateById" parameterType="com.cszjo.jobhunter.model.Template">
+        UPDATE jobhunter.template SET  task_name = #{taskName}, url = #{url}, job_count = #{jobCount}, statu = #{statu}, thread_count = #{threadCount}, city_key = #{cityKey},
+        city_value = #{cityValue}, key_word_key = #{keyWordKey}, key_word_value = #{keyWordValue}, job_name_jquery = #{jobName},
+        place_time_jquery = #{placeTime}, job_address_jquery = #{jobAddress}, max_money_jquery = #{maxMoney}, min_money_jquery = #{minMoney},
+        education_require_jquery = #{educationRequire}, company_name_jquery = #{companyName}, job_list_jquery = #{jobList}, remark = #{remark}, page_key = #{pageKey}
+        WHERE id = #{id};
+    </update>
+
+    <delete id="deleteById" parameterType="Integer">
+        DELETE FROM jobhunter.template WHERE id = #{id} ;
+    </delete>
+</mapper>

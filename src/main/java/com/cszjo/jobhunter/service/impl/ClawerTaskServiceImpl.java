@@ -38,24 +38,25 @@ public class ClawerTaskServiceImpl implements ClawerTaskService {
     public BaseResponse addTask(ClawerTask task) {
 
         //set clawer status
-        task.setStatu(ClawerStatus.IN_CLAWERING.getStatus());
-        if(dao.addTask(task) == 0) {
-            //add task fail
-            baseResponse.setStatus(ResponseStatus.FAIL);
-            baseResponse.setInfo(ResponseInfo.ADD_TASK_FAIL);
-        } else {
-            baseResponse.setStatus(ResponseStatus.SUCCESS);
-            baseResponse.setInfo(ResponseInfo.ADD_TASK_SUCCESS);
-            jobsService.startClawer(task);
-        }
-        return baseResponse;
+//        task.setStatu(ClawerStatus.IN_CLAWERING.getStatus());
+//        if(dao.addTask(task) == 0) {
+//            //add task fail
+//            baseResponse.setStatus(ResponseStatus.FAIL);
+//            baseResponse.setInfo(ResponseInfo.ADD_TASK_FAIL);
+//        } else {
+//            baseResponse.setStatus(ResponseStatus.SUCCESS);
+//            baseResponse.setInfo(ResponseInfo.ADD_TASK_SUCCESS);
+//            jobsService.startClawer(task);
+//        }
+//        return baseResponse;
+        return null;
     }
 
     @Override
     public BaseResponse updateById(ClawerTask task) {
-        dao.updateById(task);
-        baseResponse.setStatus(ResponseStatus.SUCCESS);
-        baseResponse.setInfo(ResponseInfo.UPDATE_TASK_SUCCESS);
+//        dao.updateById(task);
+//        baseResponse.setStatus(ResponseStatus.SUCCESS);
+//        baseResponse.setInfo(ResponseInfo.UPDATE_TASK_SUCCESS);
         return baseResponse;
     }
 

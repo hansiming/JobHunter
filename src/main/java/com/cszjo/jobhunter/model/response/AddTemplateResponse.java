@@ -8,8 +8,8 @@ import org.springframework.stereotype.Component;
 /**
  * Created by Han on 2017/4/5.
  */
-@Component(value = "addTaskResponse")
+@Component(value = "addTemplateResponse")
 @Scope("prototype")
 @JsonSerialize(using = BaseResponseSerializer.class)
-public class AddTaskResponse extends BaseResponse {
+public class AddTemplateResponse extends BaseResponse {
 }
