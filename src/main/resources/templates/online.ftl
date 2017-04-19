@@ -53,15 +53,12 @@
                 </thead>
                 <tbody id="resultBody">
                 <tr>
-                    <td>123</td>
-                    <td>123</td>
-                    <td>123</td>
-                    <td>123</td>
-                    <td>123</td>
-                    <td>123</td>
                 </tr>
                 </tbody>
             </table>
+            <div id="progress" class="layui-progress layui-progress-big" lay-showPercent="yes" lay-filter="myProgress" style="margin-top: 40px">
+                <div class="layui-progress-bar layui-bg-green" lay-percent="0%"></div>
+            </div>
         </div>
     </fieldset>
     <div class="admin-table-page">
@@ -78,12 +75,14 @@
         base: 'plugins/layui/modules/'
     });
 
-    layui.use(['icheck', 'laypage','layer', 'form', 'layedit', 'laydate'], function() {
+    layui.use(['icheck', 'laypage','layer', 'form', 'layedit', 'laydate', 'element'], function() {
 
         var form = layui.form(),
                 layer = layui.layer,
                 layedit = layui.layedit,
                 laydate = layui.laydate;
+
+        var element = layui.element();
 
         var $ = layui.jquery,
                 laypage = layui.laypage,
@@ -100,12 +99,31 @@
                 //得到了当前页，用于向服务端请求对应数据
                 var curr = obj.curr;
                 if(!first) {
-                    //layer.msg('第 '+ obj.curr +' 页');
+                    clawer(curr);
                 }
             }
         });
 
-        $('#search').on('click', function() {
+
+        $("#progress").hide();
+        var progressTime = 0;
+        var clock;
+
+        function progressFun() {
+
+            element.progress('myProgress', progressTime + '%');
+            progressTime += 10;
+            if(progressTime >= 110) {
+                clearInterval(clock);
+                progressTime = 0;
+            }
+        }
+
+        function clawer(page) {
+
+            $("#resultBody").empty();
+            //$("#progress").show();
+            //clock = window.setInterval(progressFun, 300);
 
             var keyWord = $("#keyWord").val();
             var area = $("#areaSelect").find("option:selected").text();;
@@ -120,7 +138,7 @@
                 data : {keyWord : keyWord, area : area, lagou : lagou, job51 : job51, chinahr : chinahr, page : page},
                 dataType : 'json',
                 success : function (data) {
-                    $("#resultBody").empty();
+                    $("#progress").hide();
                     $.each(data, function(index, value){
 
                         var taskId = value["taskId"];
@@ -131,7 +149,12 @@
                                 + "<td>" + domain + "</td></tr>");
                     });
                 }
-            })
+            });
+        }
+
+        $('#search').on('click', function() {
+
+            clawer(1);
         });
 
         $('.site-table tbody tr').on('click', function(event) {

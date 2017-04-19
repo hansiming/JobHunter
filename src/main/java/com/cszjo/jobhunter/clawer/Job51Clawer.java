@@ -51,6 +51,7 @@ public class Job51Clawer implements Callable<List<JobInfo>> {
 
             for (Element job : jobs) {
 
+                //first job info has error
                 if (!isFirst) {
                     isFirst = true;
                     continue;
