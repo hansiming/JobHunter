@@ -47,8 +47,14 @@ public class Job51Clawer implements Callable<List<JobInfo>> {
             Element resultList = doc.getElementById("resultList");
             Elements jobs = resultList.select(".el");
             List<JobInfo> jobInfos = Lists.newArrayList();
+            boolean isFirst = false;
 
             for (Element job : jobs) {
+
+                if (!isFirst) {
+                    isFirst = true;
+                    continue;
+                }
 
                 JobInfo jobInfo = new JobInfo();
 
