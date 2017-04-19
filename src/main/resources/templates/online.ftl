@@ -8,6 +8,23 @@
     <link rel="stylesheet" href="plugins/font-awesome/css/font-awesome.min.css">
     <link rel="stylesheet" href="css/table.css" />
     <link rel="stylesheet" href="css/global.css" media="all">
+
+    <style>
+        .loadingWrap{
+            position:fixed;
+            top:0;
+            left:0;
+            width:100%;
+            height:100%;
+            z-index:300;
+            background-image:url(images/loading.gif);
+            background-repeat:no-repeat;
+            background-position:center center;
+            background-color:#000;
+            background-color:rgba(0,0,0,0.5);
+            filter:alpha(opacity=50);
+        }
+    </style>
 </head>
 
 <body>
@@ -56,9 +73,7 @@
                 </tr>
                 </tbody>
             </table>
-            <div id="progress" class="layui-progress layui-progress-big" lay-showPercent="yes" lay-filter="myProgress" style="margin-top: 40px">
-                <div class="layui-progress-bar layui-bg-green" lay-percent="0%"></div>
-            </div>
+            <div class="loadingWrap"></div>
         </div>
     </fieldset>
     <div class="admin-table-page">
@@ -82,8 +97,6 @@
                 layedit = layui.layedit,
                 laydate = layui.laydate;
 
-        var element = layui.element();
-
         var $ = layui.jquery,
                 laypage = layui.laypage,
                 layer = parent.layer === undefined ? layui.layer : parent.layer;
@@ -104,33 +117,18 @@
             }
         });
 
-
-        $("#progress").hide();
-        var progressTime = 0;
-        var clock;
-
-        function progressFun() {
-
-            element.progress('myProgress', progressTime + '%');
-            progressTime += 10;
-            if(progressTime >= 110) {
-                clearInterval(clock);
-                progressTime = 0;
-            }
-        }
+        $(".loadingWrap").hide();
 
         function clawer(page) {
 
             $("#resultBody").empty();
-            //$("#progress").show();
-            //clock = window.setInterval(progressFun, 300);
+            $(".loadingWrap").show();
 
             var keyWord = $("#keyWord").val();
             var area = $("#areaSelect").find("option:selected").text();;
             var lagou = $("#lagou").is(':checked') == true ? true : false;
             var job51 = $("#job51").is(':checked') == true ? true : false;
             var chinahr = $("#chinahr").is(':checked') == true ? true : false;
-            var page = 1;
 
             $.ajax({
                 type : 'POST',
@@ -140,7 +138,7 @@
                 success : function (data) {
                     $("#progress").hide();
                     $.each(data, function(index, value){
-
+                        $(".loadingWrap").hide();
                         var taskId = value["taskId"];
                         var domain = taskId == 0 ? "拉勾网" : taskId == 1 ? "前程无忧" : "中华英才网";
                         $("#resultBody").append("<tr><td><a href='" + value["url"] + "' target='view_window'>" + value["jobName"] + "</a></td>"
