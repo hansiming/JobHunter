@@ -50,9 +50,9 @@ public class LagouTest {
     @Test
     public void lagouJobInfoTest() throws Exception {
 
-        FutureTask<List<JobInfo>> future = new FutureTask<List<JobInfo>>(new LagouClawer( 1,"成都", "Java", ""));
-        new Thread(future).start();
-        System.out.println(future.get());
-        Thread.sleep(3000);
+//        FutureTask<List<JobInfo>> future = new FutureTask<List<JobInfo>>(new LagouClawer( 1,"成都", "Java", ""));
+//        new Thread(future).start();
+//        System.out.println(future.get());
+//        Thread.sleep(3000);
     }
 }
