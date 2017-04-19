@@ -2,6 +2,7 @@ package com.cszjo.jobhunter.clawer;
 
 import com.cszjo.jobhunter.model.JobInfo;
 import com.cszjo.jobhunter.model.LagouJobInfo;
+import com.cszjo.jobhunter.model.experience.ExperienceKey;
 import com.cszjo.jobhunter.utils.ParseUtils;
 import com.google.common.collect.Maps;
 import org.jsoup.Connection;
@@ -18,17 +19,19 @@ import java.util.concurrent.Callable;
  */
 public class LagouClawer implements Callable<List<JobInfo>> {
 
-    private final String URL = "https://www.lagou.com/jobs/positionAjax.json?px=default&city=%s&needAddtionalResult=false";
+    private final String URL = "https://www.lagou.com/jobs/positionAjax.json?gj=%s&px=default&city=%s&needAddtionalResult=false";
     private int page;
     private String city;
     private String keyWord;
     private String experience;
+    private ExperienceKey experienceKey;
 
-    public LagouClawer(int page, String city, String keyWord, String experience) {
+    public LagouClawer(int page, String city, String keyWord, String experience, ExperienceKey experienceKey) {
         this.page = page;
         this.city = city;
         this.keyWord = keyWord;
         this.experience = experience;
+        this.experienceKey = experienceKey;
     }
 
     @Override
@@ -72,6 +75,6 @@ public class LagouClawer implements Callable<List<JobInfo>> {
     }
 
     private String getUrl() {
-        return String.format(this.URL, this.city);
+        return String.format(this.URL, this.experienceKey.getLagouExperience(this.experience), this.city);
     }
 }

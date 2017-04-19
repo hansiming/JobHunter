@@ -5,12 +5,16 @@
 		"spread": true,
 		"children": [
 			{
-				"title": "添加任务",
+				"title": "在线爬取",
+				"href": "online"
+			},
+			{
+				"title": "添加离线任务",
 				"href": "addTask"
 			},
 			{
-				"title": "在线爬取",
-				"href": "online"
+				"title": "添加爬取模板",
+				"href": "addTemplate"
 			}
 		]
 	}

@@ -1,7 +1,8 @@
 package com.cszjo.jobhunter.clawer;
 
-import com.cszjo.jobhunter.model.CityKeyChinaHr;
+import com.cszjo.jobhunter.model.city.CityKeyChinaHr;
 import com.cszjo.jobhunter.model.JobInfo;
+import com.cszjo.jobhunter.model.experience.ExperienceKey;
 import com.cszjo.jobhunter.utils.ClawerUtils;
 import com.google.common.collect.Lists;
 import org.jsoup.Jsoup;
@@ -22,19 +23,21 @@ public class ChinaHrClawer implements Callable<List<JobInfo>> {
 
     private final Logger LOGGER = LoggerFactory.getLogger(ChinaHrClawer.class);
 
-    private final String url = "http://www.chinahr.com/sou/?orderField=relate&keyword=%s&city=%s&page=%d";
+    private final String url = "http://www.chinahr.com/sou/?orderField=relate&keyword=%s&city=%s&page=%d&workAge=%s";
     private int page;
     private String city;
     private String keyWord;
     private String experience;
     private CityKeyChinaHr cityKeyChinaHr;
+    private ExperienceKey experienceKey;
 
-    public ChinaHrClawer(int page, String city, String keyWord, String experience, CityKeyChinaHr cityKeyChinaHr) {
+    public ChinaHrClawer(int page, String city, String keyWord, String experience, CityKeyChinaHr cityKeyChinaHr, ExperienceKey experienceKey) {
         this.page = page;
         this.city = city;
         this.keyWord = keyWord;
         this.experience = experience;
         this.cityKeyChinaHr = cityKeyChinaHr;
+        this.experienceKey = experienceKey;
     }
 
     @Override
@@ -70,6 +73,6 @@ public class ChinaHrClawer implements Callable<List<JobInfo>> {
     }
 
     private String getUrl() {
-        return String.format(this.url, this.keyWord, this.cityKeyChinaHr.getCityKey(this.city), this.page);
+        return String.format(this.url, this.keyWord, this.cityKeyChinaHr.getCityKey(this.city), this.page, this.experienceKey.getChinaHrExperience(this.experience));
     }
 }

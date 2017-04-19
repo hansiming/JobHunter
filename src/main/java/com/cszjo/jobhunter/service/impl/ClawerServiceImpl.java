@@ -3,9 +3,10 @@ package com.cszjo.jobhunter.service.impl;
 import com.cszjo.jobhunter.clawer.ChinaHrClawer;
 import com.cszjo.jobhunter.clawer.Job51Clawer;
 import com.cszjo.jobhunter.clawer.LagouClawer;
-import com.cszjo.jobhunter.model.CityKey51Job;
-import com.cszjo.jobhunter.model.CityKeyChinaHr;
+import com.cszjo.jobhunter.model.city.CityKey51Job;
+import com.cszjo.jobhunter.model.city.CityKeyChinaHr;
 import com.cszjo.jobhunter.model.JobInfo;
+import com.cszjo.jobhunter.model.experience.ExperienceKey;
 import com.cszjo.jobhunter.model.request.ClawerRequest;
 import com.cszjo.jobhunter.service.ClawerService;
 import com.google.common.collect.Lists;
@@ -39,6 +40,9 @@ public class ClawerServiceImpl implements ClawerService {
     @Autowired
     private CityKeyChinaHr cityKeyChinaHr;
 
+    @Autowired
+    private ExperienceKey experienceKey;
+
     @Override
     public List<JobInfo> clawer(ClawerRequest request) {
 
@@ -46,13 +50,13 @@ public class ClawerServiceImpl implements ClawerService {
         jobInfos = Lists.newArrayList();
 
         lagouResult = request.isLagou() ?
-                es.submit(new LagouClawer(request.getPage(), request.getArea(), request.getKeyWord(), "")) : null;
+                es.submit(new LagouClawer(request.getPage(), request.getArea(), request.getKeyWord(), request.getExperience(), this.experienceKey)) : null;
 
         job51Result = request.isJob51() ?
-                es.submit(new Job51Clawer(request.getPage(), request.getArea(), request.getKeyWord(), "", cityKey51Job)) : null;
+                es.submit(new Job51Clawer(request.getPage(), request.getArea(), request.getKeyWord(), request.getExperience(), cityKey51Job, this.experienceKey)) : null;
 
         chinaHrResult = request.isChinahr() ?
-                es.submit(new ChinaHrClawer(request.getPage(), request.getArea(), request.getKeyWord(), "", cityKeyChinaHr)) : null;
+                es.submit(new ChinaHrClawer(request.getPage(), request.getArea(), request.getKeyWord(), request.getExperience(), cityKeyChinaHr, this.experienceKey)) : null;
 
         try {
 

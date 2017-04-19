@@ -12,6 +12,7 @@ public class ClawerRequest {
     private boolean job51;
     private boolean chinahr;
     private int page;
+    private String experience;
 
     public String getKeyWord() {
         return keyWord;
@@ -61,6 +62,14 @@ public class ClawerRequest {
         this.page = page;
     }
 
+    public String getExperience() {
+        return experience;
+    }
+
+    public void setExperience(String experience) {
+        this.experience = experience;
+    }
+
     @Override
     public String toString() {
         return "ClawerRequest{" +
@@ -70,6 +79,7 @@ public class ClawerRequest {
                 ", job51=" + job51 +
                 ", chinahr=" + chinahr +
                 ", page=" + page +
+                ", experience='" + experience + '\'' +
                 '}';
     }
 }

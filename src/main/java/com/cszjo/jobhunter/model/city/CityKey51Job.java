@@ -1,4 +1,4 @@
-package com.cszjo.jobhunter.model;
+package com.cszjo.jobhunter.model.city;
 
 import com.google.common.collect.Maps;
 import org.jsoup.Jsoup;

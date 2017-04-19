@@ -1,6 +1,6 @@
 package com.cszjo.test;
 
-import com.cszjo.jobhunter.model.CityKeyChinaHr;
+import com.cszjo.jobhunter.model.city.CityKeyChinaHr;
 import org.junit.Test;
 
 /**
