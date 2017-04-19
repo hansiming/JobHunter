@@ -44,6 +44,17 @@
                     <option value="4">成都</option>
                 </select>
             </div>
+            <div class="layui-input-inline">
+                <select id="experience" lay-filter="aihao">
+                    <option value=""></option>
+                    <option value="0" selected="">不限</option>
+                    <option value="1">应届毕业生</option>
+                    <option value="2">1-3年</option>
+                    <option value="3">3-5年</option>
+                    <option value="4">5-10年</option>
+                    <option value="5">10年及以上</option>
+                </select>
+            </div>
             <div class="layui-input-inline" style="margin: 0 20px;">
                 <input type="checkbox" id="lagou" title="拉勾网" checked="">
                 <input type="checkbox" id="job51" title="前程无忧" checked="">
@@ -125,7 +136,8 @@
             $(".loadingWrap").show();
 
             var keyWord = $("#keyWord").val();
-            var area = $("#areaSelect").find("option:selected").text();;
+            var area = $("#areaSelect").find("option:selected").text();
+            var experience = $("#experience").find("option:selected").val();
             var lagou = $("#lagou").is(':checked') == true ? true : false;
             var job51 = $("#job51").is(':checked') == true ? true : false;
             var chinahr = $("#chinahr").is(':checked') == true ? true : false;
@@ -133,7 +145,7 @@
             $.ajax({
                 type : 'POST',
                 url : 'doClawer',
-                data : {keyWord : keyWord, area : area, lagou : lagou, job51 : job51, chinahr : chinahr, page : page},
+                data : {keyWord : keyWord, area : area, lagou : lagou, job51 : job51, chinahr : chinahr, page : page, experience : experience},
                 dataType : 'json',
                 success : function (data) {
                     $("#progress").hide();
