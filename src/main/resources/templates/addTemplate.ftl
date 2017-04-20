@@ -19,7 +19,7 @@
 <form class="layui-form" action="doAddTask" method="POST">
     <div style="margin: 15px;">
         <fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;">
-            <legend>任务主要信息</legend>
+            <legend>模板主要信息</legend>
         </fieldset>
 
         <div class="layui-form-item">
@@ -97,13 +97,6 @@
             <label class="layui-form-label">薪资范围</label>
             <div class="layui-input-inline">
                 <input type="text" name="maxMoney" placeholder="薪资范围 autocomplete="off" class="layui-input">
-            </div>
-        </div>
-
-        <div class="layui-form-item">
-            <label class="layui-form-label">学历要求</label>
-            <div class="layui-input-inline">
-                <input type="text" name="educationRequire" placeholder="学历要求" autocomplete="off" class="layui-input">
             </div>
         </div>
 

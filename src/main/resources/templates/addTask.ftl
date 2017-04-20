@@ -44,29 +44,25 @@
             </div>
         </div>
         <div class="layui-form-item">
-            <label class="layui-form-label">模板选择</label>
+            <label class="layui-form-label">爬取关键字</label>
             <div class="layui-input-inline">
-                <select id="areaSelect" lay-filter="aihao">
-                    <option value=""></option>
-                    <option value="0" selected="">北京</option>
-                    <option value="1">上海</option>
-                    <option value="2">广州</option>
-                    <option value="3">杭州</option>
-                    <option value="4">成都</option>
-                </select>
+                <input type="text" name="keyWord" lay-verify="required" autocomplete="off" placeholder="任务名称" class="layui-input">
             </div>
         </div>
         <div class="layui-form-item">
             <label class="layui-form-label">经验要求</label>
             <div class="layui-input-inline">
-                <select id="experience" lay-filter="aihao">
+                <input type="text" name="experience" lay-verify="required" autocomplete="off" placeholder="任务名称" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">模板选择</label>
+            <div class="layui-input-inline">
+                <select id="areaSelect" lay-filter="aihao">
                     <option value=""></option>
-                    <option value="0" selected="">不限</option>
-                    <option value="1">应届毕业生</option>
-                    <option value="2">1-3年</option>
-                    <option value="3">3-5年</option>
-                    <option value="4">5-10年</option>
-                    <option value="5">10年及以上</option>
+                    <option value="99" selected="">拉勾网</option>
+                    <option value="98">前程无忧</option>
+                    <option value="97">中华英才网</option>
                 </select>
             </div>
         </div>
