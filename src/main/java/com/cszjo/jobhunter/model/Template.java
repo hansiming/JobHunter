@@ -8,12 +8,12 @@ import java.util.Date;
 public class Template {
 
     private int id;
-    private String taskName;
+    private String templateName;
     private String url;
-    private int statu;
     private Date createTime;
     private String cityKey;
     private String keyWordKey;
+    private String experienceKey;
     private String pageKey;
     private String jobList;
     private String jobName;
@@ -21,7 +21,6 @@ public class Template {
     private String placeTime;
     private String jobAddress;
     private String maxMoney;
-    private String educationRequire;
     private String companyName;
     private String remark;
 
@@ -33,12 +32,12 @@ public class Template {
         this.id = id;
     }
 
-    public String getTaskName() {
-        return taskName;
+    public String getTemplateName() {
+        return templateName;
     }
 
-    public void setTaskName(String taskName) {
-        this.taskName = taskName;
+    public void setTemplateName(String templateName) {
+        this.templateName = templateName;
     }
 
     public String getUrl() {
@@ -47,14 +46,6 @@ public class Template {
 
     public void setUrl(String url) {
         this.url = url;
-    }
-
-    public int getStatu() {
-        return statu;
-    }
-
-    public void setStatu(int statu) {
-        this.statu = statu;
     }
 
     public Date getCreateTime() {
@@ -71,6 +62,14 @@ public class Template {
 
     public void setCityKey(String cityKey) {
         this.cityKey = cityKey;
+    }
+
+    public String getExperienceKey() {
+        return experienceKey;
+    }
+
+    public void setExperienceKey(String experienceKey) {
+        this.experienceKey = experienceKey;
     }
 
     public String getKeyWordKey() {
@@ -137,14 +136,6 @@ public class Template {
         this.maxMoney = maxMoney;
     }
 
-    public String getEducationRequire() {
-        return educationRequire;
-    }
-
-    public void setEducationRequire(String educationRequire) {
-        this.educationRequire = educationRequire;
-    }
-
     public String getCompanyName() {
         return companyName;
     }
@@ -159,5 +150,27 @@ public class Template {
 
     public void setRemark(String remark) {
         this.remark = remark;
+    }
+
+    @Override
+    public String toString() {
+        return "Template{" +
+                "id=" + id +
+                ", templateName='" + templateName + '\'' +
+                ", url='" + url + '\'' +
+                ", createTime=" + createTime +
+                ", cityKey='" + cityKey + '\'' +
+                ", keyWordKey='" + keyWordKey + '\'' +
+                ", experienceKey='" + experienceKey + '\'' +
+                ", pageKey='" + pageKey + '\'' +
+                ", jobList='" + jobList + '\'' +
+                ", jobName='" + jobName + '\'' +
+                ", urlQuery='" + urlQuery + '\'' +
+                ", placeTime='" + placeTime + '\'' +
+                ", jobAddress='" + jobAddress + '\'' +
+                ", maxMoney='" + maxMoney + '\'' +
+                ", companyName='" + companyName + '\'' +
+                ", remark='" + remark + '\'' +
+                '}';
     }
 }
