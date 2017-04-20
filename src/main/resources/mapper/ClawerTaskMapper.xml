@@ -7,25 +7,13 @@
     <resultMap id="clawerTaskResult" type="com.cszjo.jobhunter.model.ClawerTask">
         <id property="id" column="id"/>
         <result property="taskName" column="task_name"/>
-        <result property="url" column="url"/>
         <result property="jobCount" column="job_count"/>
         <result property="statu" column="statu"/>
         <result property="createTime" column="create_time"/>
         <result property="threadCount" column="thread_count"/>
-        <result property="cityKey" column="city_key"/>
-        <result property="cityValue" column="city_value"/>
-        <result property="keyWordKey" column="key_word_key"/>
-        <result property="keyWordValue" column="key_word_value"/>
-        <result property="jobList" column="job_list_jquery"/>
-        <result property="jobName" column="job_name_jquery"/>
-        <result property="placeTime" column="place_time_jquery"/>
-        <result property="jobAddress" column="job_address_jquery"/>
-        <result property="maxMoney" column="max_money_jquery"/>
-        <result property="minMoney" column="min_money_jquery"/>
-        <result property="educationRequire" column="education_require_jquery"/>
-        <result property="companyName" column="company_name_jquery"/>
-        <result property="remark" column="remark"/>
-        <result property="pageKey" column="page_key"/>
+        <result property="keyWord" column="key_word"/>
+        <result property="templateId" column="template_id"/>
+        <result property="experience" column="experience"/>
     </resultMap>
 
     <select id="selectAll" resultMap="clawerTaskResult">
@@ -33,10 +21,8 @@
     </select>
 
     <insert id="addTask" parameterType="com.cszjo.jobhunter.model.ClawerTask">
-        INSERT INTO clawer_task (task_name, url, job_count, statu, create_time, thread_count, city_key, city_value, key_word_key, key_word_value, job_list_jquery, job_name_jquery, place_time_jquery,
-         job_address_jquery, max_money_jquery, min_money_jquery, education_require_jquery, company_name_jquery, remark, page_key)
-          VALUES (#{taskName}, #{url}, #{jobCount}, #{statu}, NOW(), #{threadCount}, #{cityKey}, #{cityValue}, #{keyWordKey}, #{keyWordValue},
-          #{jobList}, #{jobName}, #{placeTime}, #{jobAddress}, #{maxMoney}, #{minMoney}, #{educationRequire}, #{companyName}, #{remark}, #{pageKey});
+        INSERT INTO jobhunter.clawer_task (task_name, job_count, statu, create_time, thread_count, key_word, experience, template_id)
+	    VALUES  (#{taskName}, #{jobCount}, #{statu}, NOW(), #{threadCount}, #{keyWord}, #{experience}, #{templateId});
     </insert>
 
     <select id="selectById" resultMap="clawerTaskResult" parameterType="Integer">

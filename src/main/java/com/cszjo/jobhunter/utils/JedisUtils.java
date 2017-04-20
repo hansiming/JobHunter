@@ -8,12 +8,9 @@ import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
-import redis.clients.jedis.JedisPoolConfig;
 import redis.clients.jedis.JedisPubSub;
 import redis.clients.jedis.exceptions.JedisException;
 
@@ -27,9 +24,9 @@ import java.util.Set;
  * Created by Han on 2017/4/20.
  */
 @Component
-public class RedisUtils {
+public class JedisUtils {
 
-    private  final Logger LOOGER = LoggerFactory.getLogger(RedisUtils.class);
+    private  final Logger LOOGER = LoggerFactory.getLogger(JedisUtils.class);
 
     @Autowired
     private  JedisPool jedisPool;

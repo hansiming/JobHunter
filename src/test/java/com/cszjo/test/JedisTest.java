@@ -1,7 +1,7 @@
 package com.cszjo.test;
 
 import com.cszjo.jobhunter.JobHunterApplication;
-import com.cszjo.jobhunter.utils.RedisUtils;
+import com.cszjo.jobhunter.utils.JedisUtils;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +18,7 @@ import org.springframework.test.context.web.WebAppConfiguration;
 public class JedisTest {
 
     @Autowired
-    RedisUtils redisUtils;
+    JedisUtils redisUtils;
 
     @Test
     public void setTest() {

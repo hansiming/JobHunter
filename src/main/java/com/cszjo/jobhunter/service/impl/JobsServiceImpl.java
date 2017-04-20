@@ -1,6 +1,6 @@
 package com.cszjo.jobhunter.service.impl;
 
-import com.cszjo.jobhunter.clawer.JobHunterClawer;
+//import com.cszjo.jobhunter.clawer.JobHunterClawer;
 import com.cszjo.jobhunter.dao.JobsDao;
 import com.cszjo.jobhunter.model.ClawerTask;
 import com.cszjo.jobhunter.model.JobInfo;
@@ -31,6 +31,6 @@ public class JobsServiceImpl implements JobsService {
     @Override
     public void startClawer(ClawerTask task) {
         executorService = Executors.newFixedThreadPool(task.getThreadCount());
-        executorService.execute(new JobHunterClawer(task, 2, this));
+//        executorService.execute(new JobHunterClawer(task, 2, this));
     }
 }

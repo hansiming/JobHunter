@@ -48,8 +48,8 @@ public class ClawerTaskServiceImpl implements ClawerTaskService {
 //            baseResponse.setInfo(ResponseInfo.ADD_TASK_SUCCESS);
 //            jobsService.startClawer(task);
 //        }
-//        return baseResponse;
-        return null;
+        dao.addTask(task);
+        return baseResponse;
     }
 
     @Override
