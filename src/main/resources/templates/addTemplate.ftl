@@ -39,17 +39,17 @@
             <div class="layui-input-inline">
                 <input type="text" name="cityKey" lay-verify="required" placeholder="城市参数名" autocomplete="off" class="layui-input">
             </div>
-            <div class="layui-input-inline">
-                <input type="text" name="cityValue" placeholder="城市参数值" autocomplete="off" class="layui-input">
-            </div>
         </div>
         <div class="layui-form-item">
             <label class="layui-form-label">关键字参数</label>
             <div class="layui-input-inline">
                 <input type="text" name="keyWordKey" lay-verify="required" placeholder="关键字参数名" autocomplete="off" class="layui-input">
             </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">工作经验要求参数</label>
             <div class="layui-input-inline">
-                <input type="text" name="keyWordValue" lay-verify="required" placeholder="关键字值" autocomplete="off" class="layui-input">
+                <input type="text" name="experience" lay-verify="required" placeholder="关键字参数名" autocomplete="off" class="layui-input">
             </div>
         </div>
         <div class="layui-form-item">
@@ -104,13 +104,6 @@
             <label class="layui-form-label">学历要求</label>
             <div class="layui-input-inline">
                 <input type="text" name="educationRequire" placeholder="学历要求" autocomplete="off" class="layui-input">
-            </div>
-        </div>
-
-        <div class="layui-form-item">
-            <label class="layui-form-label">公司名</label>
-            <div class="layui-input-inline">
-                <input type="text" name="companyName" placeholder="公司名" autocomplete="off" class="layui-input">
             </div>
         </div>
 

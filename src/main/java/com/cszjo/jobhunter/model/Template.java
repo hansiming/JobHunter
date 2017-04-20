@@ -13,16 +13,14 @@ public class Template {
     private int statu;
     private Date createTime;
     private String cityKey;
-    private String cityValue;
     private String keyWordKey;
-    private String keyWordValue;
     private String pageKey;
     private String jobList;
     private String jobName;
+    private String urlQuery;
     private String placeTime;
     private String jobAddress;
     private String maxMoney;
-    private String minMoney;
     private String educationRequire;
     private String companyName;
     private String remark;
@@ -75,28 +73,12 @@ public class Template {
         this.cityKey = cityKey;
     }
 
-    public String getCityValue() {
-        return cityValue;
-    }
-
-    public void setCityValue(String cityValue) {
-        this.cityValue = cityValue;
-    }
-
     public String getKeyWordKey() {
         return keyWordKey;
     }
 
     public void setKeyWordKey(String keyWordKey) {
         this.keyWordKey = keyWordKey;
-    }
-
-    public String getKeyWordValue() {
-        return keyWordValue;
-    }
-
-    public void setKeyWordValue(String keyWordValue) {
-        this.keyWordValue = keyWordValue;
     }
 
     public String getPageKey() {
@@ -123,6 +105,14 @@ public class Template {
         this.jobName = jobName;
     }
 
+    public String getUrlQuery() {
+        return urlQuery;
+    }
+
+    public void setUrlQuery(String urlQuery) {
+        this.urlQuery = urlQuery;
+    }
+
     public String getPlaceTime() {
         return placeTime;
     }
@@ -145,14 +135,6 @@ public class Template {
 
     public void setMaxMoney(String maxMoney) {
         this.maxMoney = maxMoney;
-    }
-
-    public String getMinMoney() {
-        return minMoney;
-    }
-
-    public void setMinMoney(String minMoney) {
-        this.minMoney = minMoney;
     }
 
     public String getEducationRequire() {
