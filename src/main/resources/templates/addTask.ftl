@@ -50,15 +50,15 @@
             </div>
         </div>
         <div class="layui-form-item">
-            <label class="layui-form-label">经验要求</label>
+            <label class="layui-form-label">城市</label>
             <div class="layui-input-inline">
-                <input type="text" name="experience" lay-verify="required" autocomplete="off" placeholder="任务名称" class="layui-input">
+                <input type="text" name="city" lay-verify="required" autocomplete="off" placeholder="经验要求" class="layui-input">
             </div>
         </div>
         <div class="layui-form-item">
             <label class="layui-form-label">模板选择</label>
             <div class="layui-input-inline">
-                <select id="areaSelect" lay-filter="aihao">
+                <select name="templateId" lay-filter="aihao">
                     <option value=""></option>
                     <option value="99" selected="">拉勾网</option>
                     <option value="98">前程无忧</option>
