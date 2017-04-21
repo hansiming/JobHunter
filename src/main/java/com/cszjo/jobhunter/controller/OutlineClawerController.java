@@ -12,6 +12,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.util.List;
+import java.util.Map;
+
 /**
  * Created by Han on 2017/4/19.
  */
@@ -46,5 +49,14 @@ public class OutlineClawerController {
 
         task.setExperience("0");
         return clawerTaskService.addTask(task);
+    }
+
+    @RequestMapping("/doDeleteTask")
+    public String doDeleteTask(int id, Map<String,Object> model) {
+
+        clawerTaskService.deleteById(id);
+        List<ClawerTask> taskList = clawerTaskService.selectAll();
+        model.put("taskList", taskList);
+        return "main";
     }
 }

@@ -52,7 +52,7 @@ public class CallableTaskContainer {
             return this;
         }
 
-        if (task.getTemplateId() == ClawerTemplate.LAGOU.getId()) {
+        if (task.getTemplateId() == ClawerTemplate.Job51.getId()) {
 
             for (int i = 0; i < 100; i++) {
 
@@ -62,7 +62,7 @@ public class CallableTaskContainer {
             return this;
         }
 
-        if (task.getTemplateId() == ClawerTemplate.LAGOU.getId()) {
+        if (task.getTemplateId() == ClawerTemplate.CHINA_HR.getId()) {
 
             for (int i = 0; i < 100; i++) {
 

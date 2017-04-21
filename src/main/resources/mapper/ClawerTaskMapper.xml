@@ -21,7 +21,7 @@
         SELECT * FROM clawer_task;
     </select>
 
-    <insert id="addTask" parameterType="com.cszjo.jobhunter.model.ClawerTask">
+    <insert id="addTask" parameterType="com.cszjo.jobhunter.model.ClawerTask" useGeneratedKeys="true" keyProperty="id">
         INSERT INTO jobhunter.clawer_task (task_name, job_count, statu, create_time, thread_count, key_word, experience, template_id, now_count)
 	    VALUES  (#{taskName}, #{jobCount}, #{statu}, NOW(), #{threadCount}, #{keyWord}, #{experience}, #{templateId}, 0);
     </insert>
@@ -34,7 +34,7 @@
         UPDATE jobhunter.clawer_task SET task_name = #{taskName} , job_count = #{jobCount} , statu = #{statu} ,
         thread_count = #{threadCount} , key_word = #{keyWord} , experience = #{experience} ,
         template_id = #{templateId} , now_count = #{nowCount}
-        WHERE id = 'id' ;
+        WHERE id = #{id} ;
     </update>
 
     <delete id="deleteById" parameterType="Integer">

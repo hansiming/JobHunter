@@ -107,4 +107,21 @@ public class ClawerTask {
     public void setNowCount(int nowCount) {
         this.nowCount = nowCount;
     }
+
+    @Override
+    public String toString() {
+        return "ClawerTask{" +
+                "id=" + id +
+                ", taskName='" + taskName + '\'' +
+                ", jobCount=" + jobCount +
+                ", statu=" + statu +
+                ", createTime=" + createTime +
+                ", threadCount=" + threadCount +
+                ", templateId=" + templateId +
+                ", keyWord='" + keyWord + '\'' +
+                ", experience='" + experience + '\'' +
+                ", city='" + city + '\'' +
+                ", nowCount=" + nowCount +
+                '}';
+    }
 }

@@ -59,10 +59,4 @@ public class JobHunterController {
     public BaseResponse doEditTask(@RequestBody ClawerTask task) {
         return clawerTaskService.updateById(task);
     }
-
-    @RequestMapping("/doDeleteTask")
-    public String doDeleteTask(int id) {
-        clawerTaskService.deleteById(id);
-        return "main";
-    }
 }

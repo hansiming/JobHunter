@@ -37,7 +37,6 @@
                     <tr>
                         <td>${task.taskName}</td>
                         <td>${task.createTime?string("yyyy-MM-dd HH:mm:ss")}</td>
-                        <td>${task.url}</td>
                         <#if task.statu == 0>
                             <td style="text-align:center;"><i class="layui-icon" style="color:yellow;"></i>爬取中...</td>
                         <#elseif task.statu == 1>
@@ -95,14 +94,18 @@
         });
 
         $('.del').on('click', function() {
+
+            var button = $(this);
+
             layer.confirm('确定要删除吗？', {
                 btn: ['确定', '取消'] //可以无限个按钮
                 ,btn2: function(index, layero){
 
                 }
             }, function(index, layero){
-                var id = $(this).attr("data-id");
-                $.ajax({url:"doDeleteTask?id=" + id,async:false})
+                var id = button.data('id');
+                window.location.href="doDeleteTask?id=" + id;
+                layer.close(index);
             });
         });
 

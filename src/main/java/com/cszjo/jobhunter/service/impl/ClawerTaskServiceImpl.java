@@ -10,6 +10,8 @@ import com.cszjo.jobhunter.model.response.ResponseInfo;
 import com.cszjo.jobhunter.model.response.ResponseStatus;
 import com.cszjo.jobhunter.service.ClawerTaskService;
 import com.cszjo.jobhunter.service.JobsService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
@@ -21,6 +23,8 @@ import java.util.List;
  */
 @Service
 public class ClawerTaskServiceImpl implements ClawerTaskService {
+
+    private final Logger LOGGER = LoggerFactory.getLogger(ClawerTaskServiceImpl.class);
 
     @Autowired
     private ClawerTaskDao dao;
@@ -45,6 +49,8 @@ public class ClawerTaskServiceImpl implements ClawerTaskService {
 
     public BaseResponse addTask(ClawerTask task) {
 
+        LOGGER.info("add task, task = {}", task);
+
         if (dao.addTask(task) == 1) {
 
             baseResponse.setStatus(ResponseStatus.SUCCESS);
@@ -68,6 +74,7 @@ public class ClawerTaskServiceImpl implements ClawerTaskService {
 
     @Override
     public int deleteById(int id) {
+        LOGGER.info("delete clawer task, id = {}", id);
         return dao.deleteById(id);
     }
 

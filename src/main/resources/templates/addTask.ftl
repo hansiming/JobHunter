@@ -46,13 +46,13 @@
         <div class="layui-form-item">
             <label class="layui-form-label">爬取关键字</label>
             <div class="layui-input-inline">
-                <input type="text" name="keyWord" lay-verify="required" autocomplete="off" placeholder="任务名称" class="layui-input">
+                <input type="text" name="keyWord" lay-verify="required" autocomplete="off" placeholder="爬取关键字" class="layui-input">
             </div>
         </div>
         <div class="layui-form-item">
             <label class="layui-form-label">城市</label>
             <div class="layui-input-inline">
-                <input type="text" name="city" lay-verify="required" autocomplete="off" placeholder="经验要求" class="layui-input">
+                <input type="text" name="city" lay-verify="required" autocomplete="off" placeholder="城市" class="layui-input">
             </div>
         </div>
         <div class="layui-form-item">

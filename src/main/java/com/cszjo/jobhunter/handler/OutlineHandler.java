@@ -11,6 +11,7 @@ import com.google.common.collect.Queues;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -36,6 +37,7 @@ public class OutlineHandler {
     @Autowired
     private ClawerTaskService clawerTaskService;
 
+    @Async
     public void outlineHandler(CallableTaskContainer container) {
 
         if (container == null) {
@@ -63,7 +65,7 @@ public class OutlineHandler {
 
                 if (queue.size() > 0) {
 
-                    Future<List<JobInfo>> future = queue.peek();
+                    Future<List<JobInfo>> future = queue.poll();
                     List<JobInfo> jobInfoList = future.get();
 
                     if(jobInfoList != null && jobInfoList.size() > 0) {
@@ -72,12 +74,14 @@ public class OutlineHandler {
                         nowCount += insertCount;
                     }
 
+                    task.setNowCount(nowCount);
+
                     if(nowCount > jobCount) {
                         task.setStatu(ClawerStatus.SUCCESS.getStatus());
+                        clawerTaskService.updateById(task);
                         break;
                     }
 
-                    task.setNowCount(nowCount);
                     clawerTaskService.updateById(task);
                 } else {
 
@@ -95,6 +99,7 @@ public class OutlineHandler {
         } catch (Exception e) {
 
             LOGGER.error("out line has a error, container = {}, e = {}", container, e.getMessage());
+            e.printStackTrace();
         }
     }
 }

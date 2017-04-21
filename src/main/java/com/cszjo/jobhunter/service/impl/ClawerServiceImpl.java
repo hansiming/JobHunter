@@ -39,9 +39,6 @@ public class ClawerServiceImpl implements ClawerService {
     private OnlineHandler onlineHandler;
 
     @Autowired
-    private OutlineHandler outlineHandler;
-
-    @Autowired
     private CallableTaskContainer callableTaskContainer;
 
     @Override
@@ -49,14 +46,14 @@ public class ClawerServiceImpl implements ClawerService {
         return onlineHandler.onlineClawer(request);
     }
 
-    public void outlineClawer(ClawerTask task) {
-
-        if (task == null) {
-
-            LOGGER.error("out line clawer, task is null");
-        }
-
-        callableTaskContainer = callableTaskContainer.setTask(task).init();
-        outlineHandler.outlineHandler(callableTaskContainer);
-    }
+//    public void outlineClawer(ClawerTask task) {
+//
+//        if (task == null) {
+//
+//            LOGGER.error("out line clawer, task is null");
+//        }
+//
+//        callableTaskContainer = callableTaskContainer.setTask(task).init();
+//        outlineHandler.outlineHandler(callableTaskContainer);
+//    }
 }
