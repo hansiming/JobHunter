@@ -17,6 +17,7 @@ public class ClawerTask {
     private int templateId;
     private String keyWord;
     private String experience;
+    private String city;
 
     public int getId() {
         return id;
@@ -90,12 +91,11 @@ public class ClawerTask {
         this.experience = experience;
     }
 
-    //    public String getFullPath(int page) {
-//        StringBuilder sb = new StringBuilder();
-//        sb.append(this.url);
-//        sb.append("&" + this.keyWordKey + "=" + this.keyWordValue);
-//        sb.append("&" + this.cityKey + "=" + this.cityValue);
-//        sb.append("&" + this.pageKey + "=" + page);
-//        return sb.toString();
-//    }
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
 }

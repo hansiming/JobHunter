@@ -24,13 +24,13 @@
 
         <div class="layui-form-item">
             <label class="layui-form-label">任务名称</label>
-            <div class="layui-input-block">
+            <div class="layui-input-inline">
                 <input type="text" name="taskName" lay-verify="required" autocomplete="off" placeholder="任务名称" class="layui-input">
             </div>
         </div>
         <div class="layui-form-item">
             <label class="layui-form-label">任务链接</label>
-            <div class="layui-input-block">
+            <div class="layui-input-inline">
                 <input type="text" name="url" lay-verify="required" autocomplete="off" placeholder="任务链接" class="layui-input">
             </div>
         </div>
@@ -47,7 +47,7 @@
             </div>
         </div>
         <div class="layui-form-item">
-            <label class="layui-form-label">工作经验要求参数</label>
+            <label class="layui-form-label">工作经验</label>
             <div class="layui-input-inline">
                 <input type="text" name="experience" lay-verify="required" placeholder="关键字参数名" autocomplete="off" class="layui-input">
             </div>
@@ -96,7 +96,7 @@
         <div class="layui-form-item">
             <label class="layui-form-label">薪资范围</label>
             <div class="layui-input-inline">
-                <input type="text" name="maxMoney" placeholder="薪资范围 autocomplete="off" class="layui-input">
+                <input type="text" name="maxMoney" placeholder="薪资范围" autocomplete="off" class="layui-input">
             </div>
         </div>
 
