@@ -54,11 +54,13 @@ public class ClawerTaskServiceImpl implements ClawerTaskService {
         if (dao.addTask(task) == 1) {
 
             baseResponse.setStatus(ResponseStatus.SUCCESS);
+            baseResponse.setInfo(ResponseInfo.ADD_TASK_SUCCESS);
             callableTaskContainer.setTask(task).init();
             outlineHandler.outlineHandler(callableTaskContainer);
         } else {
 
             baseResponse.setStatus(ResponseStatus.FAIL);
+            baseResponse.setInfo(ResponseInfo.ADD_TASK_FAIL);
         }
         return baseResponse;
     }

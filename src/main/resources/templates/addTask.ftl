@@ -106,7 +106,6 @@
             $.ajax({
                 type:'POST',
                 url: 'doAddTask',
-                timeout: 3000,
                 data: JSON.stringify(data.field),
                 dataType: 'json',
                 contentType: 'application/json;charse=UTF-8',
