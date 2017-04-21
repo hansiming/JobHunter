@@ -87,4 +87,12 @@ public class CallableTaskContainer {
         this.task = task;
         return this;
     }
+
+    public List<Callable<List<JobInfo>>> getCallableTaskList() {
+        return callableTaskList;
+    }
+
+    public ClawerTask getTask() {
+        return task;
+    }
 }

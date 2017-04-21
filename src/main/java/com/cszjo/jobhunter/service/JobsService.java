@@ -10,7 +10,5 @@ import java.util.List;
  */
 public interface JobsService {
 
-    int insertJobs(List<JobInfo> jobs);
-
-    void startClawer(ClawerTask task);
+    int insertJobs(List<JobInfo> jobs, ClawerTask task);
 }

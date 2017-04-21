@@ -1,5 +1,7 @@
 package com.cszjo.jobhunter.model;
 
+import com.alibaba.fastjson.JSON;
+
 import java.util.Date;
 
 /**
@@ -109,18 +111,6 @@ public class JobInfo {
 
     @Override
     public String toString() {
-        return "JobInfo{" +
-                "id=" + id +
-                ", jobName='" + jobName + '\'' +
-                ", addressName='" + addressName + '\'' +
-                ", createDate='" + createDate + '\'' +
-                ", maxMoney='" + maxMoney + '\'' +
-                ", minMoney='" + minMoney + '\'' +
-                ", educationRequire='" + educationRequire + '\'' +
-                ", companyName='" + companyName + '\'' +
-                ", remark='" + remark + '\'' +
-                ", taskId=" + taskId +
-                ", url='" + url + '\'' +
-                '}';
+        return JSON.toJSONString(this);
     }
 }

@@ -18,6 +18,7 @@ public class ClawerTask {
     private String keyWord;
     private String experience;
     private String city;
+    private int nowCount;
 
     public int getId() {
         return id;
@@ -97,5 +98,13 @@ public class ClawerTask {
 
     public void setCity(String city) {
         this.city = city;
+    }
+
+    public int getNowCount() {
+        return nowCount;
+    }
+
+    public void setNowCount(int nowCount) {
+        this.nowCount = nowCount;
     }
 }

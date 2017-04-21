@@ -1,16 +1,16 @@
 package com.cszjo.jobhunter.service.impl;
 
-//import com.cszjo.jobhunter.clawer.JobHunterClawer;
-import com.cszjo.jobhunter.dao.JobsDao;
 import com.cszjo.jobhunter.model.ClawerTask;
 import com.cszjo.jobhunter.model.JobInfo;
+import com.cszjo.jobhunter.model.RedisJobInfo;
 import com.cszjo.jobhunter.service.JobsService;
+import com.cszjo.jobhunter.utils.JedisUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 
 /**
  * Created by Han on 2017/4/6.
@@ -18,19 +18,24 @@ import java.util.concurrent.Executors;
 @Service
 public class JobsServiceImpl implements JobsService {
 
+    private final Logger LOGGER = LoggerFactory.getLogger(JobsServiceImpl.class);
+
     @Autowired
-    private JobsDao dao;
-
-    private ExecutorService executorService;
+    private JedisUtils jedisUtils;
 
     @Override
-    public int insertJobs(List<JobInfo> jobs) {
-        return dao.insertJobs(jobs);
-    }
+    public int insertJobs(List<JobInfo> jobs, ClawerTask task) {
 
-    @Override
-    public void startClawer(ClawerTask task) {
-        executorService = Executors.newFixedThreadPool(task.getThreadCount());
-//        executorService.execute(new JobHunterClawer(task, 2, this));
+        if (jobs == null || task == null) {
+            LOGGER.error("insert jobs has error, jobs = {}, task = {}", jobs, task);
+            return 0;
+        }
+
+        String key = RedisJobInfo.getRedisJobInfoName(task.getId());
+
+        for (JobInfo jobInfo : jobs) {
+            jedisUtils.listAdd(key, jobInfo.toString());
+        }
+        return jobs.size();
     }
 }

@@ -3,6 +3,8 @@ package com.cszjo.jobhunter.service.impl;
 import com.cszjo.jobhunter.clawer.ChinaHrClawer;
 import com.cszjo.jobhunter.clawer.Job51Clawer;
 import com.cszjo.jobhunter.clawer.LagouClawer;
+import com.cszjo.jobhunter.handler.OnlineHandler;
+import com.cszjo.jobhunter.handler.OutlineHandler;
 import com.cszjo.jobhunter.model.CallableTaskContainer;
 import com.cszjo.jobhunter.model.ClawerTask;
 import com.cszjo.jobhunter.model.ClawerTemplate;
@@ -33,51 +35,18 @@ public class ClawerServiceImpl implements ClawerService {
 
     private final Logger LOGGER = LoggerFactory.getLogger(ClawerServiceImpl.class);
 
-    private List<JobInfo> jobInfos;
-    private ExecutorService es;
-    private Future<List<JobInfo>> lagouResult;
-    private Future<List<JobInfo>> job51Result;
-    private Future<List<JobInfo>> chinaHrResult;
+    @Autowired
+    private OnlineHandler onlineHandler;
 
     @Autowired
-    private CityKey51Job cityKey51Job;
-
-    @Autowired
-    private CityKeyChinaHr cityKeyChinaHr;
-
-    @Autowired
-    private ExperienceKey experienceKey;
+    private OutlineHandler outlineHandler;
 
     @Autowired
     private CallableTaskContainer callableTaskContainer;
 
     @Override
     public List<JobInfo> clawer(ClawerRequest request) {
-
-        es = Executors.newFixedThreadPool(16);
-        jobInfos = Lists.newArrayList();
-
-        lagouResult = request.isLagou() ?
-                es.submit(new LagouClawer(request.getPage(), request.getArea(), request.getKeyWord(), request.getExperience(), this.experienceKey)) : null;
-
-        job51Result = request.isJob51() ?
-                es.submit(new Job51Clawer(request.getPage(), request.getArea(), request.getKeyWord(), request.getExperience(), cityKey51Job, this.experienceKey)) : null;
-
-        chinaHrResult = request.isChinahr() ?
-                es.submit(new ChinaHrClawer(request.getPage(), request.getArea(), request.getKeyWord(), request.getExperience(), cityKeyChinaHr, this.experienceKey)) : null;
-
-        try {
-
-            appendJobinfoFormFuture(lagouResult);
-            appendJobinfoFormFuture(job51Result);
-            appendJobinfoFormFuture(chinaHrResult);
-
-        } catch (Exception e) {
-
-            LOGGER.error("clawer job info has a error, request = {}, error = {}", request, e.getMessage());
-        }
-
-        return jobInfos;
+        return onlineHandler.onlineClawer(request);
     }
 
     public void outlineClawer(ClawerTask task) {
@@ -88,18 +57,6 @@ public class ClawerServiceImpl implements ClawerService {
         }
 
         callableTaskContainer = callableTaskContainer.setTask(task).init();
-
-        es = Executors.newFixedThreadPool(task.getThreadCount());
-
-    }
-
-    private void appendJobinfoFormFuture(Future<List<JobInfo>> future) throws Exception {
-
-        if(future != null) {
-            List<JobInfo> lagouJobs = future.get();
-            for (JobInfo jobInfo : lagouJobs) {
-                jobInfos.add(jobInfo);
-            }
-        }
+        outlineHandler.outlineHandler(callableTaskContainer);
     }
 }

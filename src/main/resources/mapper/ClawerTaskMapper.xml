@@ -14,6 +14,7 @@
         <result property="keyWord" column="key_word"/>
         <result property="templateId" column="template_id"/>
         <result property="experience" column="experience"/>
+        <result property="nowCount" column="now_count"/>
     </resultMap>
 
     <select id="selectAll" resultMap="clawerTaskResult">
@@ -21,8 +22,8 @@
     </select>
 
     <insert id="addTask" parameterType="com.cszjo.jobhunter.model.ClawerTask">
-        INSERT INTO jobhunter.clawer_task (task_name, job_count, statu, create_time, thread_count, key_word, experience, template_id)
-	    VALUES  (#{taskName}, #{jobCount}, #{statu}, NOW(), #{threadCount}, #{keyWord}, #{experience}, #{templateId});
+        INSERT INTO jobhunter.clawer_task (task_name, job_count, statu, create_time, thread_count, key_word, experience, template_id, now_count)
+	    VALUES  (#{taskName}, #{jobCount}, #{statu}, NOW(), #{threadCount}, #{keyWord}, #{experience}, #{templateId}, 0);
     </insert>
 
     <select id="selectById" resultMap="clawerTaskResult" parameterType="Integer">
@@ -30,11 +31,10 @@
     </select>
 
     <update id="updateById" parameterType="com.cszjo.jobhunter.model.ClawerTask">
-        UPDATE jobhunter.clawer_task SET  task_name = #{taskName}, url = #{url}, job_count = #{jobCount}, statu = #{statu}, thread_count = #{threadCount}, city_key = #{cityKey},
-         city_value = #{cityValue}, key_word_key = #{keyWordKey}, key_word_value = #{keyWordValue}, job_name_jquery = #{jobName},
-	     place_time_jquery = #{placeTime}, job_address_jquery = #{jobAddress}, max_money_jquery = #{maxMoney}, min_money_jquery = #{minMoney},
-	    education_require_jquery = #{educationRequire}, company_name_jquery = #{companyName}, job_list_jquery = #{jobList}, remark = #{remark}, page_key = #{pageKey}
-	    WHERE id = #{id};
+        UPDATE jobhunter.clawer_task SET task_name = #{taskName} , job_count = #{jobCount} , statu = #{statu} ,
+        thread_count = #{threadCount} , key_word = #{keyWord} , experience = #{experience} ,
+        template_id = #{templateId} , now_count = #{nowCount}
+        WHERE id = 'id' ;
     </update>
 
     <delete id="deleteById" parameterType="Integer">
