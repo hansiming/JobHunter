@@ -5,6 +5,7 @@ import com.cszjo.jobhunter.model.ClawerStatus;
 import com.cszjo.jobhunter.model.ClawerTask;
 import com.cszjo.jobhunter.model.JobInfo;
 import com.cszjo.jobhunter.service.ClawerService;
+import com.cszjo.jobhunter.service.ClawerTaskService;
 import com.cszjo.jobhunter.service.JobsService;
 import com.google.common.collect.Queues;
 import org.slf4j.Logger;
@@ -26,14 +27,14 @@ import java.util.concurrent.Future;
 public class OutlineHandler {
 
     private final Logger LOGGER = LoggerFactory.getLogger(OutlineHandler.class);
-    private Queue<Future<List<JobInfo>>> queue = Queues.newSynchronousQueue();
+    private Queue<Future<List<JobInfo>>> queue = Queues.newLinkedBlockingQueue();
     private ExecutorService es;
 
     @Autowired
     private JobsService jobsService;
 
     @Autowired
-    private ClawerService clawerService;
+    private ClawerTaskService clawerTaskService;
 
     public void outlineHandler(CallableTaskContainer container) {
 
@@ -77,7 +78,7 @@ public class OutlineHandler {
                     }
 
                     task.setNowCount(nowCount);
-                    //update clawer task to db
+                    clawerTaskService.updateById(task);
                 } else {
 
                     testCount++;
@@ -86,7 +87,9 @@ public class OutlineHandler {
 
                 if(testCount > 10) {
 
-                    //fail
+                    task.setStatu(ClawerStatus.FAIL.getStatus());
+                    clawerTaskService.updateById(task);
+                    break;
                 }
             }
         } catch (Exception e) {

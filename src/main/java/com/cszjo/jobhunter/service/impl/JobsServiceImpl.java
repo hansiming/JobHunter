@@ -34,7 +34,11 @@ public class JobsServiceImpl implements JobsService {
         String key = RedisJobInfo.getRedisJobInfoName(task.getId());
 
         for (JobInfo jobInfo : jobs) {
-            jedisUtils.listAdd(key, jobInfo.toString());
+
+            String jobInfoJson = jobInfo.toString();
+
+            jedisUtils.listAdd(key, jobInfoJson);
+            LOGGER.info("add a job info to redis, key = {}, job info = {}", key, jobInfoJson);
         }
         return jobs.size();
     }
