@@ -48,16 +48,6 @@ public class JobHunterController {
         return "addTask";
     }
 
-    /**
-     * 添加爬取任务
-     * @return
-     */
-    @RequestMapping(value = "/doAddTask", method = RequestMethod.POST)
-    @ResponseBody
-    public BaseResponse doAddTask(@RequestBody ClawerTask task) {
-        return clawerTaskService.addTask(task);
-    }
-
     @RequestMapping("/editTask")
     public String taskEdit(int id, Map<String,Object> model) {
         ClawerTask task = clawerTaskService.selectById(id);

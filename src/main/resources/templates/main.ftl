@@ -26,9 +26,9 @@
                 <tr>
                     <th>任务名</th>
                     <th>创建时间</th>
-                    <th>爬取路径</th>
                     <th>爬取状态</th>
-                    <th>爬取条数</th>
+                    <th>已爬取条数</th>
+                    <th>目标条数</th>
                     <th>操作</th>
                 </tr>
                 </thead>
@@ -45,9 +45,10 @@
                         <#else>
                             <td style="text-align:center;"><i class="layui-icon" style="color:green;"></i>爬取成功</td>
                         </#if>
+                        <td>${task.nowCount}</td>
                         <td>${task.jobCount}</td>
                         <td>
-                            <a href="editTask?id=${task.id}">编辑</a>
+                            <a href="editTask?id=${task.id}">查看</a>
                             <a href="javascript:void(0);" data-id="${task.id}" class="del">删除</a>
                         </td>
                     </tr>

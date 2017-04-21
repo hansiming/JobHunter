@@ -1,6 +1,8 @@
 package com.cszjo.jobhunter.service.impl;
 
 import com.cszjo.jobhunter.dao.ClawerTaskDao;
+import com.cszjo.jobhunter.handler.OutlineHandler;
+import com.cszjo.jobhunter.model.CallableTaskContainer;
 import com.cszjo.jobhunter.model.ClawerStatus;
 import com.cszjo.jobhunter.model.ClawerTask;
 import com.cszjo.jobhunter.model.response.BaseResponse;
@@ -30,6 +32,12 @@ public class ClawerTaskServiceImpl implements ClawerTaskService {
     @Qualifier("addTaskResponse")
     private BaseResponse baseResponse;
 
+    @Autowired
+    private OutlineHandler outlineHandler;
+
+    @Autowired
+    private CallableTaskContainer callableTaskContainer;
+
     @Override
     public List<ClawerTask> selectAll() {
         return dao.selectAll();
@@ -37,18 +45,15 @@ public class ClawerTaskServiceImpl implements ClawerTaskService {
 
     public BaseResponse addTask(ClawerTask task) {
 
-        //set clawer status
-//        task.setStatu(ClawerStatus.IN_CLAWERING.getStatus());
-//        if(dao.addTask(task) == 0) {
-//            //add task fail
-//            baseResponse.setStatus(ResponseStatus.FAIL);
-//            baseResponse.setInfo(ResponseInfo.ADD_TASK_FAIL);
-//        } else {
-//            baseResponse.setStatus(ResponseStatus.SUCCESS);
-//            baseResponse.setInfo(ResponseInfo.ADD_TASK_SUCCESS);
-//            jobsService.startClawer(task);
-//        }
-        dao.addTask(task);
+        if (dao.addTask(task) == 1) {
+
+            baseResponse.setStatus(ResponseStatus.SUCCESS);
+            callableTaskContainer.setTask(task).init();
+            outlineHandler.outlineHandler(callableTaskContainer);
+        } else {
+
+            baseResponse.setStatus(ResponseStatus.FAIL);
+        }
         return baseResponse;
     }
 
