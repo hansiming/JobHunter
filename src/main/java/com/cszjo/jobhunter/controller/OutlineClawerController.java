@@ -72,7 +72,7 @@ public class OutlineClawerController {
 
     @RequestMapping(value = "/clawerResult", method = RequestMethod.POST)
     @ResponseBody
-    public List<JSONObject> getClawerResult(@RequestBody int taskId) {
+    public List<JSONObject> getClawerResult(int taskId) {
         return jobsService.getJobInfoList(taskId);
     }
 }

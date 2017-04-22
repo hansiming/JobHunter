@@ -29,13 +29,11 @@
 
 <body>
 <div class="admin-main">
-    <form class="layui-form">
-        <blockquote class="layui-elem-quote">
-            <div class="layui-input-inline">
-                <label class="layui-form-label">离线爬取结果</label>
-            </div>
-        </blockquote>
-    </form>
+    <blockquote class="layui-elem-quote">
+        <a href="javascript:window.history.back();" class="layui-btn layui-btn-small">
+             返回
+        </a>
+    </blockquote>
     <fieldset class="layui-elem-field">
         <legend>任务列表</legend>
         <div class="layui-field-box">
@@ -96,7 +94,7 @@
                     $(".loadingWrap").hide();
                     $("#resultBody").append("<tr><td><a href='" + value["url"] + "' target='view_window'>" + value["jobName"] + "</a></td>"
                             + "<td>" + value["companyName"] + "</td>" + "<td>" + value["maxMoney"] + "</td>"
-                            + "<td>" + value["addressName"] + "</td>" + "<td>" + value["createDate"] + "</td></tr>";
+                            + "<td>" + value["addressName"] + "</td>" + "<td>" + value["createDate"] + "</td></tr>");
                 });
             }
         });

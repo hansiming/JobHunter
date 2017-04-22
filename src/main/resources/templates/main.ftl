@@ -47,7 +47,7 @@
                         <td>${task.nowCount}</td>
                         <td>${task.jobCount}</td>
                         <td>
-                            <a href="clawerTaskResult?id=${task.id}">查看</a>
+                            <a href="clawerTaskResult?taskId=${task.id}">查看</a>
                             <a href="javascript:void(0);" data-id="${task.id}" class="del">删除</a>
                         </td>
                     </tr>
@@ -110,7 +110,7 @@
         });
 
         $('#search').on('click', function() {
-            window.reload(true);
+            window.location.reload(true);
         });
 
         $('#import').on('click', function() {
