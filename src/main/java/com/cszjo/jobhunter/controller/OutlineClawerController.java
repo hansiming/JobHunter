@@ -1,9 +1,11 @@
 package com.cszjo.jobhunter.controller;
 
+import com.alibaba.fastjson.JSONObject;
 import com.cszjo.jobhunter.model.ClawerTask;
 import com.cszjo.jobhunter.model.Template;
 import com.cszjo.jobhunter.model.response.BaseResponse;
 import com.cszjo.jobhunter.service.ClawerTaskService;
+import com.cszjo.jobhunter.service.JobsService;
 import com.cszjo.jobhunter.service.TemplateService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -26,6 +28,9 @@ public class OutlineClawerController {
 
     @Autowired
     ClawerTaskService clawerTaskService;
+
+    @Autowired
+    JobsService jobsService;
 
     @RequestMapping("addTemplate")
     public String addTemplate() {
@@ -58,5 +63,16 @@ public class OutlineClawerController {
         List<ClawerTask> taskList = clawerTaskService.selectAll();
         model.put("taskList", taskList);
         return "main";
+    }
+
+    @RequestMapping("/clawerTaskResult")
+    public String clawerTaskResult(int taskId) {
+        return "clawerTaskResult";
+    }
+
+    @RequestMapping(value = "/clawerResult", method = RequestMethod.POST)
+    @ResponseBody
+    public List<JSONObject> getClawerResult(@RequestBody int taskId) {
+        return jobsService.getJobInfoList(taskId);
     }
 }

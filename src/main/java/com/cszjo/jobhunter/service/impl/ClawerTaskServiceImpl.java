@@ -77,6 +77,7 @@ public class ClawerTaskServiceImpl implements ClawerTaskService {
     @Override
     public int deleteById(int id) {
         LOGGER.info("delete clawer task, id = {}", id);
+        jobsService.del(id);
         return dao.deleteById(id);
     }
 

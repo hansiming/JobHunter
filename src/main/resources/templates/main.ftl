@@ -47,7 +47,7 @@
                         <td>${task.nowCount}</td>
                         <td>${task.jobCount}</td>
                         <td>
-                            <a href="editTask?id=${task.id}">查看</a>
+                            <a href="clawerTaskResult?id=${task.id}">查看</a>
                             <a href="javascript:void(0);" data-id="${task.id}" class="del">删除</a>
                         </td>
                     </tr>
