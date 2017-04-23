@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
 /**
  * Created by Han on 2017/4/19.
@@ -75,8 +76,14 @@ public class OutlineClawerController {
         return jobsService.getJobInfoList(taskId);
     }
 
-    public AnalysisResult getAnalyisResult() {
+    @RequestMapping(value = "/getAnalysisUUID")
+    @ResponseBody
+    public UUID getAnalysisUUID(List<Integer> taskIds) {
 
-        return null;
+        UUID uuid = UUID.randomUUID();
+
+
+
+        return uuid;
     }
 }
