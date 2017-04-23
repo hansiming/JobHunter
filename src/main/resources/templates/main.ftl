@@ -17,6 +17,9 @@
         <a href="javascript:;" class="layui-btn layui-btn-small" id="search">
             <i class="layui-icon">&#x1002;</i> 刷新
         </a>
+        <a href="javascript:;" class="layui-btn layui-btn-small" id="analysis">
+            职位数据分析
+        </a>
     </blockquote>
     <fieldset class="layui-elem-field">
         <legend>任务列表</legend>
@@ -24,7 +27,7 @@
             <table class="site-table table-hover" id="tastTable">
                 <thead>
                 <tr>
-                    <th><input type="checkbox" name="" lay-skin="primary" lay-filter="allChoose"></th>
+                    <th></th>
                     <th>任务名</th>
                     <th>创建时间</th>
                     <th>爬取状态</th>
@@ -35,24 +38,24 @@
                 </thead>
                 <tbody>
                 <#list taskList as task>
-                    <tr>
-                        <td><input type="checkbox" name="" lay-skin="primary"></td>
-                        <td>${task.taskName}</td>
-                        <td>${task.createTime?string("yyyy-MM-dd HH:mm:ss")}</td>
-                        <#if task.statu == 0>
-                            <td style="text-align:center;"><i class="layui-icon" style="color:yellow;"></i>爬取中...</td>
-                        <#elseif task.statu == 1>
-                            <td style="text-align:center;"><i class="layui-icon" style="color:red;"></i>爬取失败</td>
-                        <#else>
-                            <td style="text-align:center;"><i class="layui-icon" style="color:green;"></i>爬取成功</td>
-                        </#if>
-                        <td>${task.nowCount}</td>
-                        <td>${task.jobCount}</td>
-                        <td>
-                            <a href="clawerTaskResult?taskId=${task.id}">查看</a>
-                            <a href="javascript:void(0);" data-id="${task.id}" class="del">删除</a>
-                        </td>
-                    </tr>
+                <tr>
+                    <td><input type="checkbox" name="analysis" data-id="${task.id}" lay-skin="primary"></td>
+                    <td>${task.taskName}</td>
+                    <td>${task.createTime?string("yyyy-MM-dd HH:mm:ss")}</td>
+                    <#if task.statu == 0>
+                        <td style="text-align:center;"><i class="layui-icon" style="color:yellow;"></i>爬取中...</td>
+                    <#elseif task.statu == 1>
+                        <td style="text-align:center;"><i class="layui-icon" style="color:red;"></i>爬取失败</td>
+                    <#else>
+                        <td style="text-align:center;"><i class="layui-icon" style="color:green;"></i>爬取成功</td>
+                    </#if>
+                    <td>${task.nowCount}</td>
+                    <td>${task.jobCount}</td>
+                    <td>
+                        <a href="clawerTaskResult?taskId=${task.id}">查看</a>
+                        <a href="javascript:void(0);" data-id="${task.id}" class="del">删除</a>
+                    </td>
+                </tr>
                 </#list>
                 </tbody>
             </table>
@@ -80,16 +83,6 @@
         $('input').iCheck({
             checkboxClass: 'icheckbox_flat-green'
         });
-
-        //全选
-        form.on('checkbox(allChoose)', function(data){
-            var child = $(data.elem).parents('table').find('tbody input[type="checkbox"]');
-            child.each(function(index, item){
-                item.checked = data.elem.checked;
-            });
-            form.render('checkbox');
-        });
-
 
         //page
         laypage({
@@ -125,6 +118,25 @@
 
         $('#search').on('click', function() {
             window.location.reload(true);
+        });
+        
+        $('#analysis').on('click', function () {
+
+            var chk_value =[];
+            $('input[name="analysis"]:checked').each(function(){
+                chk_value.push($(this).val());
+            });
+
+            if (chk_value.length==0) {
+
+                layer.open({
+                    title: '未选中任何任务'
+                    ,content: '一个任务都没选中，怎么做数据分析呢？？'
+                });
+            } else {
+
+
+            }
         });
 
         $('#import').on('click', function() {
