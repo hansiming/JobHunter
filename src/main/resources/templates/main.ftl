@@ -24,6 +24,7 @@
             <table class="site-table table-hover" id="tastTable">
                 <thead>
                 <tr>
+                    <th><input type="checkbox" name="" lay-skin="primary" lay-filter="allChoose"></th>
                     <th>任务名</th>
                     <th>创建时间</th>
                     <th>爬取状态</th>
@@ -35,6 +36,7 @@
                 <tbody>
                 <#list taskList as task>
                     <tr>
+                        <td><input type="checkbox" name="" lay-skin="primary"></td>
                         <td>${task.taskName}</td>
                         <td>${task.createTime?string("yyyy-MM-dd HH:mm:ss")}</td>
                         <#if task.statu == 0>
@@ -69,13 +71,25 @@
         base: 'plugins/layui/modules/'
     });
 
-    layui.use(['icheck', 'laypage','layer'], function() {
+    layui.use(['icheck', 'laypage','layer', 'form'], function() {
+
         var $ = layui.jquery,
+                form = layui.form(),
                 laypage = layui.laypage,
                 layer = parent.layer === undefined ? layui.layer : parent.layer;
         $('input').iCheck({
             checkboxClass: 'icheckbox_flat-green'
         });
+
+        //全选
+        form.on('checkbox(allChoose)', function(data){
+            var child = $(data.elem).parents('table').find('tbody input[type="checkbox"]');
+            child.each(function(index, item){
+                item.checked = data.elem.checked;
+            });
+            form.render('checkbox');
+        });
+
 
         //page
         laypage({

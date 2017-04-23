@@ -56,6 +56,15 @@
             </div>
         </div>
         <div class="layui-form-item">
+            <div class="layui-inline">
+                <label class="layui-form-label">工作经验</label>
+                <div class="layui-input-inline">
+                    <input type="number" name="experience" lay-verify="required" placeholder="工作经验"  autocomplete="off" class="layui-input">
+                </div>
+                <div class="layui-form-mid layui-word-aux">*若选用固定模板，0表示不限，1表示应届毕业生，2表示1-3年，3表示3-5年，4表示5-10年，5表示10年以上</div>
+            </div>
+        </div>
+        <div class="layui-form-item">
             <label class="layui-form-label">模板选择</label>
             <div class="layui-input-inline">
                 <select name="templateId" lay-filter="aihao">

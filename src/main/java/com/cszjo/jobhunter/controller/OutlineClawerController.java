@@ -51,8 +51,6 @@ public class OutlineClawerController {
     @RequestMapping(value = "/doAddTask", method = RequestMethod.POST)
     @ResponseBody
     public BaseResponse doAddTask(@RequestBody ClawerTask task) {
-
-        task.setExperience("0");
         return clawerTaskService.addTask(task);
     }
 
