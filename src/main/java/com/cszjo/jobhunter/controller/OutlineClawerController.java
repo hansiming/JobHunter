@@ -5,6 +5,7 @@ import com.cszjo.jobhunter.model.ClawerTask;
 import com.cszjo.jobhunter.model.Template;
 import com.cszjo.jobhunter.model.analysis.AnalysisResult;
 import com.cszjo.jobhunter.model.response.BaseResponse;
+import com.cszjo.jobhunter.service.AnalysisService;
 import com.cszjo.jobhunter.service.ClawerTaskService;
 import com.cszjo.jobhunter.service.JobsService;
 import com.cszjo.jobhunter.service.TemplateService;
@@ -26,13 +27,16 @@ import java.util.UUID;
 public class OutlineClawerController {
 
     @Autowired
-    TemplateService templateService;
+    private TemplateService templateService;
 
     @Autowired
-    ClawerTaskService clawerTaskService;
+    private ClawerTaskService clawerTaskService;
 
     @Autowired
-    JobsService jobsService;
+    private JobsService jobsService;
+
+    @Autowired
+    private AnalysisService analysisService;
 
     @RequestMapping("addTemplate")
     public String addTemplate() {
@@ -81,8 +85,7 @@ public class OutlineClawerController {
     public UUID getAnalysisUUID(List<Integer> taskIds) {
 
         UUID uuid = UUID.randomUUID();
-
-
+        analysisService.startAnalysis(uuid, taskIds);
 
         return uuid;
     }

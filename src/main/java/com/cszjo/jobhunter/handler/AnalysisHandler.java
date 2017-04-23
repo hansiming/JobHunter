@@ -35,17 +35,23 @@ public class AnalysisHandler implements Callable<AnalysisResult> {
         long sumMoney = 0;
         int maxMoney = 0;
         int minMoney = 0;
+        String maxMoneyJobName = "";
+        String minMoneyJobName = "";
 
         for (JobInfo jobInfo : lists) {
 
             int money = getMoneyFormMaxAndMinMoney(jobInfo.getMaxMoney());
             if (money != 0) {
+
                 size++;
+                sumMoney += money;
+                maxMoney = maxMoney > money ? maxMoney : money;
+                maxMoneyJobName = maxMoney > money ? maxMoneyJobName : jobInfo.getJobName();
+                minMoney = minMoney < money ? minMoney : money;
+                minMoneyJobName = minMoney < money ? minMoneyJobName : jobInfo.getJobName();
             }
 
-            sumMoney += money;
-            maxMoney = maxMoney > money ? maxMoney : money;
-            minMoney = minMoney < money ? minMoney : money;
+            LOGGER.info("analysis a job info, job name = {}, money = {}", jobInfo.getJobName(), money);
         }
 
         result.setAverageMoney((int)(sumMoney / size));

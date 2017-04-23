@@ -9,6 +9,8 @@ import com.cszjo.jobhunter.model.analysis.AnalysisResult;
 import com.cszjo.jobhunter.service.AnalysisService;
 import com.cszjo.jobhunter.service.JobsService;
 import com.google.common.collect.Lists;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
@@ -25,14 +27,24 @@ import java.util.concurrent.Future;
 @Service
 public class AnalysisServiceImpl implements AnalysisService {
 
+    private final Logger LOGGER = LoggerFactory.getLogger(AnalysisServiceImpl.class);
+
     @Autowired
     private JobsService jobsService;
 
     private ExecutorService es;
 
     @Override
-    @Async
+//    @Async
     public void startAnalysis(UUID uuid, List<Integer> taskIds) {
+
+        if (uuid == null) {
+            LOGGER.error("start analysis, uuid is null");
+        }
+
+        if (taskIds == null || taskIds.size() == 0) {
+            LOGGER.error("start analysis, taskIds is null or empty");
+        }
 
         List<Future<AnalysisResult>> futures = Lists.newArrayList();
         List<AnalysisResult> results = Lists.newArrayList();

@@ -10,6 +10,8 @@ public class AnalysisResult {
     private int averageMoney;
     //中位数
     private int medianMoney;
+    private String maxMoneyJobName;
+    private String minMoneyJobName;
 
     public int getMaxMoney() {
         return maxMoney;
@@ -41,5 +43,21 @@ public class AnalysisResult {
 
     public void setMedianMoney(int medianMoney) {
         this.medianMoney = medianMoney;
+    }
+
+    public String getMaxMoneyJobName() {
+        return maxMoneyJobName;
+    }
+
+    public void setMaxMoneyJobName(String maxMoneyJobName) {
+        this.maxMoneyJobName = maxMoneyJobName;
+    }
+
+    public String getMinMoneyJobName() {
+        return minMoneyJobName;
+    }
+
+    public void setMinMoneyJobName(String minMoneyJobName) {
+        this.minMoneyJobName = minMoneyJobName;
     }
 }
