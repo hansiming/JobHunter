@@ -4,7 +4,8 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.cszjo.jobhunter.model.ClawerTask;
 import com.cszjo.jobhunter.model.JobInfo;
-import com.cszjo.jobhunter.model.RedisJobInfo;
+import com.cszjo.jobhunter.model.RedisPrefix;
+import com.cszjo.jobhunter.model.analysis.AnalysisResult;
 import com.cszjo.jobhunter.service.JobsService;
 import com.cszjo.jobhunter.utils.JedisUtils;
 import com.google.common.collect.Lists;
@@ -14,6 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.UUID;
 
 /**
  * Created by Han on 2017/4/6.
@@ -34,7 +36,7 @@ public class JobsServiceImpl implements JobsService {
             return 0;
         }
 
-        String key = RedisJobInfo.getRedisJobInfoName(task.getId());
+        String key = RedisPrefix.getRedisJobInfoName(task.getId());
 
         for (JobInfo jobInfo : jobs) {
 
@@ -46,9 +48,16 @@ public class JobsServiceImpl implements JobsService {
         return jobs.size();
     }
 
+    @Override
+    public void insertAnalysis(List<AnalysisResult> results, UUID uuid) {
+
+        String key = RedisPrefix.getAnalysisResultName(uuid.toString());
+        jedisUtils.set(key, JSON.toJSONString(results), 0);
+    }
+
     public List<JSONObject> getJobInfoList(int taskId) {
 
-        String key = RedisJobInfo.getRedisJobInfoName(taskId);
+        String key = RedisPrefix.getRedisJobInfoName(taskId);
         List<String> lists = jedisUtils.getList(key);
         List<JSONObject> jobInfos = Lists.newArrayList();
 
@@ -62,7 +71,7 @@ public class JobsServiceImpl implements JobsService {
     @Override
     public long del(int taskId) {
 
-        String key = RedisJobInfo.getRedisJobInfoName(taskId);
+        String key = RedisPrefix.getRedisJobInfoName(taskId);
         return jedisUtils.del(key);
     }
 }
