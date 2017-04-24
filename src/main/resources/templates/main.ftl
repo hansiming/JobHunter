@@ -122,12 +122,12 @@
         
         $('#analysis').on('click', function () {
 
-            var chk_value =[];
+            var taskIds =[];
             $('input[name="analysis"]:checked').each(function(){
-                chk_value.push($(this).val());
+                taskIds.push($(this).attr("data-id"));
             });
 
-            if (chk_value.length==0) {
+            if (taskIds.length==0) {
 
                 layer.open({
                     title: '未选中任何任务'
@@ -135,7 +135,17 @@
                 });
             } else {
 
+                $.ajax({
 
+                    type : 'POST',
+                    url : 'getAnalysisUUID',
+                    data : JSON.stringify(taskIds),
+                    contentType:"application/json",
+                    dataType : 'json',
+                    success : function (data) {
+                        window.location.href = "dataAnalysis?uuid=" + data.uuid;
+                    }
+                })
             }
         });
 

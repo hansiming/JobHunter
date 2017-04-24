@@ -3,12 +3,13 @@ package com.cszjo.jobhunter.controller;
 import com.alibaba.fastjson.JSONObject;
 import com.cszjo.jobhunter.model.ClawerTask;
 import com.cszjo.jobhunter.model.Template;
-import com.cszjo.jobhunter.model.analysis.AnalysisResult;
 import com.cszjo.jobhunter.model.response.BaseResponse;
 import com.cszjo.jobhunter.service.AnalysisService;
 import com.cszjo.jobhunter.service.ClawerTaskService;
 import com.cszjo.jobhunter.service.JobsService;
 import com.cszjo.jobhunter.service.TemplateService;
+import com.google.common.collect.Lists;
+import com.google.common.collect.Maps;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -70,7 +71,7 @@ public class OutlineClawerController {
     }
 
     @RequestMapping("/clawerTaskResult")
-    public String clawerTaskResult(int taskId) {
+    public String clawerTaskResult() {
         return "clawerTaskResult";
     }
 
@@ -80,13 +81,27 @@ public class OutlineClawerController {
         return jobsService.getJobInfoList(taskId);
     }
 
-    @RequestMapping(value = "/getAnalysisUUID")
+    @RequestMapping(value = "/getAnalysisUUID", method = RequestMethod.POST)
     @ResponseBody
-    public UUID getAnalysisUUID(List<Integer> taskIds) {
+    public Map<String, String> getAnalysisUUID(@RequestBody List<String> taskIds) {
 
+        List<Integer> taskIdsInt = Lists.newArrayList();
+        Map<String, String> maps = Maps.newHashMap();
         UUID uuid = UUID.randomUUID();
-        analysisService.startAnalysis(uuid, taskIds);
 
-        return uuid;
+        for(String id : taskIds) {
+            taskIdsInt.add(Integer.parseInt(id));
+        }
+
+        analysisService.startAnalysis(uuid, taskIdsInt);
+        maps.put("uuid", uuid.toString());
+
+        return maps;
+    }
+
+    @RequestMapping("dataAnalysis")
+    public String dataAnalysis() {
+
+        return "dataAnalysis";
     }
 }
