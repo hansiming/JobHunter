@@ -1,39 +1,51 @@
 package com.cszjo.jobhunter.model.analysis;
 
+import com.cszjo.jobhunter.model.ClawerTask;
+import com.cszjo.jobhunter.model.JobInfo;
+
 /**
  * Created by Han on 2017/4/23.
  */
 public class AnalysisResult {
 
-    private int maxMoney;
-    private int minMoney;
-    private int averageMoney;
+    private ClawerTask task;
+    private double maxMoney;
+    private double minMoney;
+    private double averageMoney;
     //中位数
     private int medianMoney;
-    private String maxMoneyJobName;
-    private String minMoneyJobName;
+    private JobInfo maxMoneyJobInfo;
+    private JobInfo minMoneyJobInfo;
 
-    public int getMaxMoney() {
+    public ClawerTask getTask() {
+        return task;
+    }
+
+    public void setTask(ClawerTask task) {
+        this.task = task;
+    }
+
+    public double getMaxMoney() {
         return maxMoney;
     }
 
-    public void setMaxMoney(int maxMoney) {
+    public void setMaxMoney(double maxMoney) {
         this.maxMoney = maxMoney;
     }
 
-    public int getMinMoney() {
+    public double getMinMoney() {
         return minMoney;
     }
 
-    public void setMinMoney(int minMoney) {
+    public void setMinMoney(double minMoney) {
         this.minMoney = minMoney;
     }
 
-    public int getAverageMoney() {
+    public double getAverageMoney() {
         return averageMoney;
     }
 
-    public void setAverageMoney(int averageMoney) {
+    public void setAverageMoney(double averageMoney) {
         this.averageMoney = averageMoney;
     }
 
@@ -45,19 +57,19 @@ public class AnalysisResult {
         this.medianMoney = medianMoney;
     }
 
-    public String getMaxMoneyJobName() {
-        return maxMoneyJobName;
+    public JobInfo getMaxMoneyJobInfo() {
+        return maxMoneyJobInfo;
     }
 
-    public void setMaxMoneyJobName(String maxMoneyJobName) {
-        this.maxMoneyJobName = maxMoneyJobName;
+    public void setMaxMoneyJobInfo(JobInfo maxMoneyJobInfo) {
+        this.maxMoneyJobInfo = maxMoneyJobInfo;
     }
 
-    public String getMinMoneyJobName() {
-        return minMoneyJobName;
+    public JobInfo getMinMoneyJobInfo() {
+        return minMoneyJobInfo;
     }
 
-    public void setMinMoneyJobName(String minMoneyJobName) {
-        this.minMoneyJobName = minMoneyJobName;
+    public void setMinMoneyJobInfo(JobInfo minMoneyJobInfo) {
+        this.minMoneyJobInfo = minMoneyJobInfo;
     }
 }

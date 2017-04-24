@@ -31,12 +31,10 @@ public class AnalysisHandler implements Callable<AnalysisResult> {
         }
 
         AnalysisResult result = new AnalysisResult();
-        int size = 0;
+        double size = 0;
         long sumMoney = 0;
-        int maxMoney = 0;
-        int minMoney = 0;
-        String maxMoneyJobName = "";
-        String minMoneyJobName = "";
+        double maxMoney = 0;
+        double minMoney = 0;
 
         for (JobInfo jobInfo : lists) {
 
@@ -45,18 +43,22 @@ public class AnalysisHandler implements Callable<AnalysisResult> {
 
                 size++;
                 sumMoney += money;
-                maxMoney = maxMoney > money ? maxMoney : money;
-                maxMoneyJobName = maxMoney > money ? maxMoneyJobName : jobInfo.getJobName();
-                minMoney = minMoney < money ? minMoney : money;
-                minMoneyJobName = minMoney < money ? minMoneyJobName : jobInfo.getJobName();
+                if (maxMoney < money) {
+                    result.setMaxMoneyJobInfo(jobInfo);
+                    result.setMaxMoney(money);
+                }
+
+                if (money < minMoney) {
+                    result.setMinMoneyJobInfo(jobInfo);
+                    result.setMinMoney(money);
+                }
             }
 
             LOGGER.info("analysis a job info, job name = {}, money = {}", jobInfo.getJobName(), money);
         }
 
-        result.setAverageMoney((int)(sumMoney / size));
-        result.setMaxMoney(maxMoney);
-        result.setMinMoney(minMoney);
+        //设置平均数
+        result.setAverageMoney(sumMoney / size);
 
         return result;
     }
