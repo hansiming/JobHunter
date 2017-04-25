@@ -21,5 +21,5 @@ public interface JobsService {
 
     long del(int taskId);
 
-    List<String> getAnalysisResults(String uuid);
+    String getAnalysisResults(String uuid);
 }

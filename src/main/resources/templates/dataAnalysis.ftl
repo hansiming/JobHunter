@@ -60,9 +60,8 @@
                     myChart.setOption({
                         title: {
                             x: 'center',
-                            text: 'ECharts例子个数统计',
-                            subtext: 'Rainbow bar example',
-                            link: 'http://echarts.baidu.com/doc/example.html'
+                            text: '数据分析',
+                            subtext: '工作寻职位分析'
                         },
                         tooltip: {
                             trigger: 'item'

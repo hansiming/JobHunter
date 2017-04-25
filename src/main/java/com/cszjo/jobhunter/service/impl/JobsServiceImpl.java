@@ -76,9 +76,26 @@ public class JobsServiceImpl implements JobsService {
     }
 
     @Override
-    public List<String> getAnalysisResults(String uuid) {
+    public String getAnalysisResults(String uuid) {
 
         String key = RedisPrefix.getAnalysisResultName(uuid);
-        return jedisUtils.getList(key);
+        String result = jedisUtils.get(key);
+        int count = 0;
+        try {
+            while (result == null && count < 3) {
+
+                LOGGER.info("get analysis result, key = {}, result = {}, count = {}", key, result, count);
+
+                Thread.sleep(500);
+                result = jedisUtils.get(key);
+                count++;
+            }
+        } catch (InterruptedException e) {
+
+            LOGGER.error("get analysis result has a InterruptedException, e = {}", e.getMessage());
+        }
+
+        LOGGER.info("get a analysis result, analysis result = {}", result);
+        return result;
     }
 }

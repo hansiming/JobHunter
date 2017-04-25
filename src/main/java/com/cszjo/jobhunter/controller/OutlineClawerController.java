@@ -108,7 +108,7 @@ public class OutlineClawerController {
 
     @RequestMapping("/getDataAnalysisResultByUUID")
     @ResponseBody
-    public List<String> getDataAnalysisResultByUUID(String uuid) {
+    public String getDataAnalysisResultByUUID(String uuid) {
 
         return jobsService.getAnalysisResults(uuid);
     }
