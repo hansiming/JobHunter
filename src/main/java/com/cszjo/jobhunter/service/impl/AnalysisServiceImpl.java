@@ -35,7 +35,7 @@ public class AnalysisServiceImpl implements AnalysisService {
     private ExecutorService es;
 
     @Override
-//    @Async
+    @Async
     public void startAnalysis(UUID uuid, List<Integer> taskIds) {
 
         if (uuid == null) {

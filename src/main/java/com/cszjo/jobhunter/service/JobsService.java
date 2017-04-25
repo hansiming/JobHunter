@@ -20,4 +20,6 @@ public interface JobsService {
     List<JSONObject> getJobInfoList(int taskId);
 
     long del(int taskId);
+
+    List<String> getAnalysisResults(String uuid);
 }

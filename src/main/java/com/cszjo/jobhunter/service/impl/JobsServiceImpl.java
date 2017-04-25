@@ -74,4 +74,11 @@ public class JobsServiceImpl implements JobsService {
         String key = RedisPrefix.getRedisJobInfoName(taskId);
         return jedisUtils.del(key);
     }
+
+    @Override
+    public List<String> getAnalysisResults(String uuid) {
+
+        String key = RedisPrefix.getAnalysisResultName(uuid);
+        return jedisUtils.getList(key);
+    }
 }
