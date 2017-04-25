@@ -57,7 +57,9 @@
                 var myChart = ec.init(document.getElementById('main'));
 
                 $.get('getDataAnalysisResultByUUID?uuid=' + getUrlParam("uuid")).done(function (data) {
-                    var result = eval('(' + data + ')');
+
+                    var result = JSON.parse(data);
+
                     myChart.setOption({
                         title: {
                             text: '平均薪资分析',
@@ -70,7 +72,7 @@
                             }
                         },
                         legend: {
-                            data: result["category"]
+                            data: result.category
                         },
                         grid: {
                             left: '3%',
@@ -84,9 +86,9 @@
                         },
                         yAxis: {
                             type: 'category',
-                            data: result["taskNames"]
+                            data: result.taskNames
                         },
-                        series: result["results"]
+                        series: result.results
 
                     });
                 });
