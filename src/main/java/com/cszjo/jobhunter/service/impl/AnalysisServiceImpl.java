@@ -7,6 +7,7 @@ import com.cszjo.jobhunter.handler.AnalysisHandler;
 import com.cszjo.jobhunter.model.JobInfo;
 import com.cszjo.jobhunter.model.analysis.AnalysisResult;
 import com.cszjo.jobhunter.service.AnalysisService;
+import com.cszjo.jobhunter.service.ClawerTaskService;
 import com.cszjo.jobhunter.service.JobsService;
 import com.google.common.collect.Lists;
 import org.slf4j.Logger;
@@ -32,7 +33,11 @@ public class AnalysisServiceImpl implements AnalysisService {
     @Autowired
     private JobsService jobsService;
 
-    private ExecutorService es;
+    @Autowired
+    private ClawerTaskService clawerTaskService;
+
+    @Autowired
+    private AnalysisHandler handler;
 
     @Override
     @Async
@@ -46,25 +51,14 @@ public class AnalysisServiceImpl implements AnalysisService {
             LOGGER.error("start analysis, taskIds is null or empty");
         }
 
-        List<Future<AnalysisResult>> futures = Lists.newArrayList();
-        List<AnalysisResult> results = Lists.newArrayList();
-        es = Executors.newFixedThreadPool(taskIds.size());
+        AnalysisResult result = new AnalysisResult();
 
         for (int taskId : taskIds) {
 
             List<JobInfo> jobInfos = JSONObject.parseArray(JSON.toJSONString(jobsService.getJobInfoList(taskId)), JobInfo.class);
-            futures.add(es.submit(new AnalysisHandler(jobInfos)));
+            handler.analysis(jobInfos, result, clawerTaskService.selectById(taskId));
         }
 
-        try {
-
-            for (Future<AnalysisResult> future : futures) {
-                results.add(future.get());
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        jobsService.insertAnalysis(results, uuid);
+        jobsService.insertAnalysis(result, uuid);
     }
 }

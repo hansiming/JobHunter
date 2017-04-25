@@ -15,7 +15,7 @@ public interface JobsService {
 
     int insertJobs(List<JobInfo> jobs, ClawerTask task);
 
-    void insertAnalysis(List<AnalysisResult> results, UUID uuid);
+    void insertAnalysis(AnalysisResult result, UUID uuid);
 
     List<JSONObject> getJobInfoList(int taskId);
 

@@ -1,40 +1,37 @@
 package com.cszjo.jobhunter.handler;
 
+import com.cszjo.jobhunter.model.ClawerTask;
 import com.cszjo.jobhunter.model.JobInfo;
 import com.cszjo.jobhunter.model.analysis.AnalysisResult;
+import com.cszjo.jobhunter.model.analysis.ItemResult;
+import com.google.common.collect.Lists;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
+import java.util.Map;
 import java.util.concurrent.Callable;
 
 /**
  * Created by Han on 2017/4/23.
  */
-public class AnalysisHandler implements Callable<AnalysisResult> {
+@Component
+public class AnalysisHandler {
 
     private final Logger LOGGER = LoggerFactory.getLogger(AnalysisHandler.class);
 
-    //待分析的数据
-    private List<JobInfo> lists;
-
-    public AnalysisHandler(List<JobInfo> lists) {
-        this.lists = lists;
-    }
-
-    @Override
-    public AnalysisResult call() throws Exception {
+    public AnalysisResult analysis(List<JobInfo> lists, AnalysisResult result, ClawerTask clawerTask) {
 
         if (lists == null || lists.size() == 0) {
             LOGGER.error("analysis job info has a error, job info is null or empty");
             return null;
         }
 
-        AnalysisResult result = new AnalysisResult();
         double size = 0;
         long sumMoney = 0;
         double maxMoney = 0;
-        double minMoney = 0;
+        double minMoney = Double.MAX_VALUE;
 
         for (JobInfo jobInfo : lists) {
 
@@ -43,22 +40,30 @@ public class AnalysisHandler implements Callable<AnalysisResult> {
 
                 size++;
                 sumMoney += money;
-                if (maxMoney < money) {
-                    result.setMaxMoneyJobInfo(jobInfo);
-                    result.setMaxMoney(money);
-                }
-
-                if (money < minMoney) {
-                    result.setMinMoneyJobInfo(jobInfo);
-                    result.setMinMoney(money);
-                }
+                maxMoney = maxMoney > money ? maxMoney : money;
+                minMoney = minMoney < money ? minMoney : money;
             }
 
             LOGGER.info("analysis a job info, job name = {}, money = {}", jobInfo.getJobName(), money);
         }
 
-        //设置平均数
-        result.setAverageMoney(sumMoney / size);
+        double average = sumMoney / size;
+
+        List<String> taskNames = result.getTaskNames();
+
+        taskNames.add(clawerTask.getTaskName());
+
+        List<ItemResult> results = result.getResults();
+        ItemResult itemResult = new ItemResult();
+        itemResult.setName(clawerTask.getTaskName());
+
+        List<Double> r = Lists.newArrayList();
+        r.add(average);
+        r.add(maxMoney);
+        r.add(minMoney);
+        itemResult.setData(r);
+
+        results.add(itemResult);
 
         return result;
     }

@@ -49,10 +49,10 @@ public class JobsServiceImpl implements JobsService {
     }
 
     @Override
-    public void insertAnalysis(List<AnalysisResult> results, UUID uuid) {
+    public void insertAnalysis(AnalysisResult result, UUID uuid) {
 
         String key = RedisPrefix.getAnalysisResultName(uuid.toString());
-        jedisUtils.set(key, JSON.toJSONString(results), 0);
+        jedisUtils.set(key, JSON.toJSONString(result), 0);
     }
 
     public List<JSONObject> getJobInfoList(int taskId) {
@@ -82,7 +82,7 @@ public class JobsServiceImpl implements JobsService {
         String result = jedisUtils.get(key);
         int count = 0;
         try {
-            while (result == null && count < 3) {
+            while (result == null && count < 6) {
 
                 LOGGER.info("get analysis result, key = {}, result = {}, count = {}", key, result, count);
 
