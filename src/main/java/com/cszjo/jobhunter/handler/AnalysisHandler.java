@@ -54,16 +54,10 @@ public class AnalysisHandler {
         taskNames.add(clawerTask.getTaskName());
 
         List<ItemResult> results = result.getResults();
-        ItemResult itemResult = new ItemResult();
-        itemResult.setName(clawerTask.getTaskName());
 
-        List<Double> r = Lists.newArrayList();
-        r.add(average);
-        r.add(maxMoney);
-        r.add(minMoney);
-        itemResult.setData(r);
-
-        results.add(itemResult);
+        results.get(0).getData().add(average);
+        results.get(1).getData().add(maxMoney);
+        results.get(2).getData().add(minMoney);
 
         return result;
     }

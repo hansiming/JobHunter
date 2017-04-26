@@ -14,7 +14,7 @@ import java.util.Map;
 import java.util.concurrent.Callable;
 
 /**
- * 拉勾网有反爬取措施，只有Request Header一一对应，才能爬取
+ * 拉勾网有反爬取措施，只有Request Header一一对应，才能爬取,Cookie需要更新
  * Created by Han on 2017/4/11.
  */
 public class LagouClawer implements Callable<List<JobInfo>> {
@@ -49,10 +49,10 @@ public class LagouClawer implements Callable<List<JobInfo>> {
                     header("Accept-Encoding", "gzip, deflate, br").
                     header("Accept-Language", "zh-CN,zh;q=0.8").
                     header("Connection", "keep-alive").
-                    header("Content-Length", "22").
+                    header("Content-Length", "25").
                     header("Content-Type", "application/x-www-form-urlencoded; charset=UTF-8").
                     ignoreContentType(true).
-                    header("Cookie", "user_trace_token=20160821185106-85f17b62695544629f059c2855aca300; LGUID=20160821185106-29797195-678d-11e6-ac36-525400f775ce; JSESSIONID=21DC10B903BCA12CA259E64927DA8B98; TG-TRACK-CODE=search_code; SEARCH_ID=b2a85ebc9f8b4e2ca335aa2c15bd4f74").
+                    header("Cookie", "LGUID=20170417155429-15f20b69-2343-11e7-8890-525400f775ce; user_trace_token=20170417155429-efbca5a3ab4b4b48ac345f364d21505e; JSESSIONID=36D702AE437655FDF081E9841E968C53; PRE_UTM=; PRE_HOST=; PRE_SITE=; PRE_LAND=https%3A%2F%2Fwww.lagou.com%2F; _gat=1; TG-TRACK-CODE=index_navigation; index_location_city=%E5%8C%97%E4%BA%AC; isCloseNotice=0; _ga=GA1.2.1712411254.1492415669; Hm_lvt_4233e74dff0ae5bd0a3d81c6ccf756e6=1492600979,1492693500,1492948309,1493186670; Hm_lpvt_4233e74dff0ae5bd0a3d81c6ccf756e6=1493187242; LGSID=20170426140432-3774a532-2a46-11e7-801a-525400f775ce; LGRID=20170426141404-8c4a1f9a-2a47-11e7-b3a7-5254005c3644; SEARCH_ID=7ff092e41b3c4815b102e08cd5ced151").
                     header("Host", "www.lagou.com").
                     header("Origin", "https://www.lagou.com").
                     header("Referer", "https://www.lagou.com/jobs/list_php?city=%E6%88%90%E9%83%BD&cl=false&fromSearch=true&labelWords=&suginput=").

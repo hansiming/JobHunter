@@ -1,5 +1,7 @@
 package com.cszjo.jobhunter.model.analysis;
 
+import com.google.common.collect.Lists;
+
 import java.util.List;
 
 /**
@@ -9,7 +11,7 @@ public class ItemResult {
 
     private String name;
     private final String type = "bar";
-    private List<Double> data;
+    private List<Double> data = Lists.newArrayList();
 
     public String getName() {
         return name;

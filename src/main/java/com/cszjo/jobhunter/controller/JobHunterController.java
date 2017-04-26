@@ -1,8 +1,10 @@
 package com.cszjo.jobhunter.controller;
 
+import com.cszjo.jobhunter.model.Template;
 import com.cszjo.jobhunter.model.response.BaseResponse;
 import com.cszjo.jobhunter.model.ClawerTask;
 import com.cszjo.jobhunter.service.ClawerTaskService;
+import com.cszjo.jobhunter.service.TemplateService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
@@ -13,6 +15,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
 /**
  * Created by Han on 2017/3/5.
@@ -23,6 +26,9 @@ public class JobHunterController {
     @Autowired
     private ClawerTaskService clawerTaskService;
 
+    @Autowired
+    private TemplateService templateService;
+
     private BaseResponse baseResponse;
 
     @InitBinder
@@ -32,19 +38,22 @@ public class JobHunterController {
     }
 
     @RequestMapping("/index")
-    public String toIndex() {
+    public String toIndex(Map<String,Object> model) {
         return "index";
     }
 
     @RequestMapping("/main")
-    public String toMain(Map<String,Object> model) {
+    public String toMain(Map<String, Object> model) {
         List<ClawerTask> taskList = clawerTaskService.selectAll();
         model.put("taskList", taskList);
         return "main";
     }
 
     @RequestMapping("/addTask")
-    public String toAddTast() {
+    public String toAddTast(Map<String, Object> model) {
+
+        List<Template> templates = templateService.selectAll();
+        model.put("templates", templates);
         return "addTask";
     }
 
