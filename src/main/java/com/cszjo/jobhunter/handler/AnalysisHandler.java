@@ -9,6 +9,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
+import java.text.DecimalFormat;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.Callable;
@@ -20,6 +21,7 @@ import java.util.concurrent.Callable;
 public class AnalysisHandler {
 
     private final Logger LOGGER = LoggerFactory.getLogger(AnalysisHandler.class);
+    private final DecimalFormat df = new DecimalFormat("######0.00");
 
     public AnalysisResult analysis(List<JobInfo> lists, AnalysisResult result, ClawerTask clawerTask) {
 
@@ -32,6 +34,8 @@ public class AnalysisHandler {
         long sumMoney = 0;
         double maxMoney = 0;
         double minMoney = Double.MAX_VALUE;
+        String maxMoneyUrl = "";
+        String minMoneyUrl = "";
 
         for (JobInfo jobInfo : lists) {
 
@@ -41,13 +45,16 @@ public class AnalysisHandler {
                 size++;
                 sumMoney += money;
                 maxMoney = maxMoney > money ? maxMoney : money;
+                maxMoneyUrl = maxMoney > money ? maxMoneyUrl : jobInfo.getUrl();
                 minMoney = minMoney < money ? minMoney : money;
+                minMoneyUrl = minMoney < money ? minMoneyUrl : jobInfo.getUrl();
             }
 
             LOGGER.info("analysis a job info, job name = {}, money = {}", jobInfo.getJobName(), money);
         }
 
         double average = sumMoney / size;
+        average = Double.parseDouble(df.format(average));
 
         List<String> taskNames = result.getTaskNames();
 
@@ -57,7 +64,9 @@ public class AnalysisHandler {
 
         results.get(0).getData().add(average);
         results.get(1).getData().add(maxMoney);
+        results.get(1).getUrls().add(maxMoneyUrl);
         results.get(2).getData().add(minMoney);
+        results.get(2).getUrls().add(minMoneyUrl);
 
         return result;
     }

@@ -12,6 +12,7 @@ public class ItemResult {
     private String name;
     private final String type = "bar";
     private List<Double> data = Lists.newArrayList();
+    private List<String> urls = Lists.newArrayList();
 
     public String getName() {
         return name;
@@ -31,5 +32,13 @@ public class ItemResult {
 
     public void setData(List<Double> data) {
         this.data = data;
+    }
+
+    public List<String> getUrls() {
+        return urls;
+    }
+
+    public void setUrls(List<String> urls) {
+        this.urls = urls;
     }
 }

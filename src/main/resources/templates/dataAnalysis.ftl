@@ -44,7 +44,7 @@
             echarts: 'echarts'
         }
     });
-
+    
     // 使用
     require(
             [
@@ -59,7 +59,18 @@
                 $.get('getDataAnalysisResultByUUID?uuid=' + getUrlParam("uuid")).done(function (data) {
 
                     var result = JSON.parse(data);
+                    var ecConfig = require('echarts/config');
 
+
+                    function eConsole(param) {
+
+                        if (param.seriesIndex == 1 || param.seriesIndex == 2) {
+                            var url = result.results[param.seriesIndex].urls[param.dataIndex];
+                            window.open(url)
+                        }
+                    }
+
+                    myChart.on(ecConfig.EVENT.CLICK, eConsole);
                     myChart.setOption({
                         title: {
                             text: '平均薪资分析',
