@@ -1,8 +1,8 @@
 package com.cszjo.jobhunter.controller;
 
+import com.cszjo.jobhunter.model.ClawerTask;
 import com.cszjo.jobhunter.model.Template;
 import com.cszjo.jobhunter.model.response.BaseResponse;
-import com.cszjo.jobhunter.model.ClawerTask;
 import com.cszjo.jobhunter.service.ClawerTaskService;
 import com.cszjo.jobhunter.service.TemplateService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +15,6 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 
 /**
  * Created by Han on 2017/3/5.

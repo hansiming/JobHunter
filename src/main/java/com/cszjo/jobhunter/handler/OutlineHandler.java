@@ -37,6 +37,55 @@ public class OutlineHandler {
     @Autowired
     private ClawerTaskService clawerTaskService;
 
+    private volatile boolean isOver = false;
+
+    @Async
+    public void saveJobInfos2Redis (CallableTaskContainer container) throws Exception {
+
+        int jobCount = container.getTask().getJobCount();
+        ClawerTask task = container.getTask();
+
+        int nowCount = 0;
+        int testCount = 0;
+
+        while(!isOver) {
+
+            if (queue.size() > 0) {
+
+                Future<List<JobInfo>> future = queue.poll();
+                List<JobInfo> jobInfoList = future.get();
+
+                if(jobInfoList != null && jobInfoList.size() > 0) {
+
+                    int insertCount = jobsService.insertJobs(jobInfoList, task);
+                    nowCount += insertCount;
+                }
+
+                task.setNowCount(nowCount);
+
+                if(nowCount > jobCount) {
+                    task.setStatu(ClawerStatus.SUCCESS.getStatus());
+                    clawerTaskService.updateById(task);
+                    break;
+                }
+
+                clawerTaskService.updateById(task);
+            } else {
+
+                testCount++;
+                Thread.sleep(1000);
+            }
+
+            if(testCount > 10) {
+
+                task.setStatu(ClawerStatus.FAIL.getStatus());
+                clawerTaskService.updateById(task);
+                LOGGER.info("out line task is fail, task name = {}", task.getTaskName());
+                break;
+            }
+        }
+    }
+
     @Async
     public void outlineHandler(CallableTaskContainer container) {
 
@@ -46,56 +95,20 @@ public class OutlineHandler {
         }
 
         int threadCount = container.getTask().getThreadCount();
-        int jobCount = container.getTask().getJobCount();
         List<Callable<List<JobInfo>>> callables = container.getCallableTaskList();
         es = Executors.newFixedThreadPool(threadCount);
-        ClawerTask task = container.getTask();
 
         try {
 
+            //start to save to redis
+            saveJobInfos2Redis(container);
             //start thread to clawer
             for (Callable<List<JobInfo>> callable : callables) {
+                Thread.sleep(500);
                 queue.offer(es.submit(callable));
             }
 
-            int nowCount = 0;
-            int testCount = 0;
-
-            while(true) {
-
-                if (queue.size() > 0) {
-
-                    Future<List<JobInfo>> future = queue.poll();
-                    List<JobInfo> jobInfoList = future.get();
-
-                    if(jobInfoList != null && jobInfoList.size() > 0) {
-
-                        int insertCount = jobsService.insertJobs(jobInfoList, task);
-                        nowCount += insertCount;
-                    }
-
-                    task.setNowCount(nowCount);
-
-                    if(nowCount > jobCount) {
-                        task.setStatu(ClawerStatus.SUCCESS.getStatus());
-                        clawerTaskService.updateById(task);
-                        break;
-                    }
-
-                    clawerTaskService.updateById(task);
-                } else {
-
-                    testCount++;
-                    Thread.sleep(1000);
-                }
-
-                if(testCount > 10) {
-
-                    task.setStatu(ClawerStatus.FAIL.getStatus());
-                    clawerTaskService.updateById(task);
-                    break;
-                }
-            }
+            isOver = true;
         } catch (Exception e) {
 
             LOGGER.error("out line has a error, container = {}, e = {}", container, e.getMessage());
