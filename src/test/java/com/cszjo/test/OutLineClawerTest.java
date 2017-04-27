@@ -27,7 +27,7 @@ public class OutLineClawerTest {
     private OutlineHandler outlineHandler;
 
     @Test
-    public void outLineLagouTest() {
+    public void outLineLagouTest() throws Exception {
 
         ClawerTask task = new ClawerTask();
         task.setStatu(ClawerStatus.IN_CLAWERING.getStatus());

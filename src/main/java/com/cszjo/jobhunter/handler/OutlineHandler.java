@@ -84,10 +84,12 @@ public class OutlineHandler {
                 break;
             }
         }
+
+        isOver = true;
     }
 
     @Async
-    public void outlineHandler(CallableTaskContainer container) {
+    public void outlineHandler(CallableTaskContainer container) throws Exception {
 
         if (container == null) {
 
@@ -98,21 +100,14 @@ public class OutlineHandler {
         List<Callable<List<JobInfo>>> callables = container.getCallableTaskList();
         es = Executors.newFixedThreadPool(threadCount);
 
-        try {
-
-            //start to save to redis
-            saveJobInfos2Redis(container);
-            //start thread to clawer
-            for (Callable<List<JobInfo>> callable : callables) {
-                Thread.sleep(500);
-                queue.offer(es.submit(callable));
-            }
-
-            isOver = true;
-        } catch (Exception e) {
-
-            LOGGER.error("out line has a error, container = {}, e = {}", container, e.getMessage());
-            e.printStackTrace();
+        //start thread to clawer
+        for (Callable<List<JobInfo>> callable : callables) {
+            Thread.sleep(500);
+            if(isOver)
+                break;
+            queue.offer(es.submit(callable));
         }
+
+        isOver = true;
     }
 }
