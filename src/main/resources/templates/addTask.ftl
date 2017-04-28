@@ -72,6 +72,9 @@
                     <option value="99" selected="">拉勾网</option>
                     <option value="98">前程无忧</option>
                     <option value="97">中华英才网</option>
+                    <#list templates as template>
+                        <option value="${template.id}">${template.templateName}</option>
+                    </#list>
                 </select>
             </div>
         </div>

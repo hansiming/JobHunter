@@ -23,13 +23,13 @@
         </fieldset>
 
         <div class="layui-form-item">
-            <label class="layui-form-label">任务名称</label>
+            <label class="layui-form-label">模板名称</label>
             <div class="layui-input-inline">
-                <input type="text" name="taskName" lay-verify="required" autocomplete="off" placeholder="任务名称" class="layui-input">
+                <input type="text" name="templateName" lay-verify="required" autocomplete="off" placeholder="任务名称" class="layui-input">
             </div>
         </div>
         <div class="layui-form-item">
-            <label class="layui-form-label">任务链接</label>
+            <label class="layui-form-label">模板链接</label>
             <div class="layui-input-inline">
                 <input type="text" name="url" lay-verify="required" autocomplete="off" placeholder="任务链接" class="layui-input">
             </div>
@@ -49,7 +49,7 @@
         <div class="layui-form-item">
             <label class="layui-form-label">工作经验</label>
             <div class="layui-input-inline">
-                <input type="text" name="experience" lay-verify="required" placeholder="关键字参数名" autocomplete="off" class="layui-input">
+                <input type="text" name="experienceKey" lay-verify="required" placeholder="关键字参数名" autocomplete="off" class="layui-input">
             </div>
         </div>
         <div class="layui-form-item">
@@ -76,6 +76,20 @@
             <label class="layui-form-label">职位名</label>
             <div class="layui-input-inline">
                 <input type="text" name="jobName" lay-verify="required" placeholder="职位名" autocomplete="off" class="layui-input">
+            </div>
+        </div>
+
+        <div class="layui-form-item">
+            <label class="layui-form-label">职位链接</label>
+            <div class="layui-input-inline">
+                <input type="text" name="urlQuery" lay-verify="required" placeholder="职位名" autocomplete="off" class="layui-input">
+            </div>
+        </div>
+
+        <div class="layui-form-item">
+            <label class="layui-form-label">公司名</label>
+            <div class="layui-input-inline">
+                <input type="text" name="companyName" lay-verify="required" placeholder="职位名" autocomplete="off" class="layui-input">
             </div>
         </div>
 

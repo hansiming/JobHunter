@@ -9,6 +9,8 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.List;
 import java.util.concurrent.Callable;
@@ -18,6 +20,8 @@ import java.util.concurrent.Callable;
  * Created by Han on 2017/4/20.
  */
 public class CustomClawer implements Callable<List<JobInfo>> {
+
+    private final Logger LOGGER = LoggerFactory.getLogger(CustomClawer.class);
 
     private final String HREF = "href";
     private Template template;
@@ -34,6 +38,8 @@ public class CustomClawer implements Callable<List<JobInfo>> {
     @Override
     public List<JobInfo> call() throws Exception {
 
+        LOGGER.info("custom clawer start, template = {}, task = {}, page = {}", template, task, page);
+        
         Document doc = Jsoup.connect(this.getUrl()).get();
         Elements jobInfoList = doc.select(this.template.getJobList());
         List<JobInfo> jobList = Lists.newArrayList();
@@ -48,6 +54,7 @@ public class CustomClawer implements Callable<List<JobInfo>> {
             jobInfo.setCreateDate(ClawerUtils.clawerHtmlBySelectQuery(this.template.getPlaceTime(), e));
             jobInfo.setUrl(ClawerUtils.clawerAttrBySelectQuery(this.template.getUrlQuery(), HREF, e));
             jobList.add(jobInfo);
+            LOGGER.info("custom clawer add a job info, job info = {}", jobInfo);
         }
 
         return jobList;

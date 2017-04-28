@@ -47,7 +47,7 @@ public class OutlineClawerController {
 
     @RequestMapping(value = "doAddTemplate", method = RequestMethod.POST)
     @ResponseBody
-    public BaseResponse doAddTemplate(Template template) {
+    public BaseResponse doAddTemplate(@RequestBody Template template) {
 
         return templateService.addTemplate(template);
     }

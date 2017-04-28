@@ -11,14 +11,14 @@
         <result property="createTime" column="create_time"/>
         <result property="cityKey" column="city_key"/>
         <result property="keyWordKey" column="key_word_key"/>
-        <result property="jobList" column="job_list_jquery"/>
-        <result property="jobName" column="job_name_jquery"/>
+        <result property="jobList" column="job_list_query"/>
+        <result property="jobName" column="job_name_query"/>
         <result property="urlQuery" column="job_url_query" />
-        <result property="placeTime" column="place_time_jquery"/>
-        <result property="jobAddress" column="job_address_jquery"/>
-        <result property="maxMoney" column="max_money_jquery"/>
+        <result property="placeTime" column="place_time_query"/>
+        <result property="jobAddress" column="job_address_query"/>
+        <result property="maxMoney" column="max_money_query"/>
         <result property="experienceKey" column="experience_key"/>
-        <result property="companyName" column="company_name_jquery"/>
+        <result property="companyName" column="company_name_query"/>
         <result property="remark" column="remark"/>
         <result property="pageKey" column="page_key"/>
     </resultMap>
@@ -30,7 +30,7 @@
     <insert id="addTemplate" parameterType="com.cszjo.jobhunter.model.Template">
         INSERT INTO jobhunter.template (template_name, url, create_time, city_key, key_word_key, experience_key, job_list_query,
 	    job_name_query, job_url_query, place_time_query, job_address_query, max_money_query, company_name_query, remark, page_key)
-	    VALUES (#{templateName}, #{url}, #{createTime}, #{cityKey}, #{keyWordKey}, #{experienceKey}, #{jobList},
+	    VALUES (#{templateName}, #{url}, NOW(), #{cityKey}, #{keyWordKey}, #{experienceKey}, #{jobList},
 	    #{jobName}, #{urlQuery}, #{placeTime}, #{jobAddress}, #{maxMoney}, #{companyName}, #{remark},
 	    #{pageKey} );
 
