@@ -56,6 +56,7 @@ public class CustomClawer implements Callable<List<JobInfo>> {
 
             jobInfo.setJobName(ClawerUtils.clawerHtmlBySelectQuery(this.template.getJobName(), e));
             jobInfo.setAddressName(ClawerUtils.clawerHtmlBySelectQuery(this.template.getJobAddress(), e));
+            jobInfo.setCompanyName(ClawerUtils.clawerHtmlBySelectQuery(this.template.getCompanyName(), e));
             jobInfo.setMaxMoney(ClawerUtils.clawerHtmlBySelectQuery(this.template.getMaxMoney(), e));
             jobInfo.setCreateDate(ClawerUtils.clawerHtmlBySelectQuery(this.template.getPlaceTime(), e));
             jobInfo.setUrl(ClawerUtils.clawerAttrBySelectQuery(this.template.getUrlQuery(), HREF, e));
