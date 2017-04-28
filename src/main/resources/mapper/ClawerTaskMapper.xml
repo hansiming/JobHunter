@@ -15,6 +15,7 @@
         <result property="templateId" column="template_id"/>
         <result property="experience" column="experience"/>
         <result property="nowCount" column="now_count"/>
+        <result property="city" column="city"/>
     </resultMap>
 
     <select id="selectAll" resultMap="clawerTaskResult">
@@ -22,8 +23,8 @@
     </select>
 
     <insert id="addTask" parameterType="com.cszjo.jobhunter.model.ClawerTask" useGeneratedKeys="true" keyProperty="id">
-        INSERT INTO jobhunter.clawer_task (task_name, job_count, statu, create_time, thread_count, key_word, experience, template_id, now_count)
-	    VALUES  (#{taskName}, #{jobCount}, #{statu}, NOW(), #{threadCount}, #{keyWord}, #{experience}, #{templateId}, 0);
+        INSERT INTO jobhunter.clawer_task (task_name, job_count, statu, create_time, thread_count, key_word, experience, template_id, now_count, city)
+	    VALUES  (#{taskName}, #{jobCount}, #{statu}, NOW(), #{threadCount}, #{keyWord}, #{experience}, #{templateId}, 0, #{city});
     </insert>
 
     <select id="selectById" resultMap="clawerTaskResult" parameterType="Integer">

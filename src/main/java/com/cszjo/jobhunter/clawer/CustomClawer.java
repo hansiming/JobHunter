@@ -38,13 +38,19 @@ public class CustomClawer implements Callable<List<JobInfo>> {
     @Override
     public List<JobInfo> call() throws Exception {
 
-        LOGGER.info("custom clawer start, template = {}, task = {}, page = {}", template, task, page);
-        
+
         Document doc = Jsoup.connect(this.getUrl()).get();
+        LOGGER.info("custom clawer start, template = {}, task = {}, page = {}, url = {}", template, task, page, this.getUrl());
         Elements jobInfoList = doc.select(this.template.getJobList());
         List<JobInfo> jobList = Lists.newArrayList();
+        int count = 0;
 
         for(Element e : jobInfoList) {
+
+            if(count == 0) {
+                count++;
+                continue;
+            }
 
             JobInfo jobInfo = new JobInfo();
 
@@ -61,7 +67,7 @@ public class CustomClawer implements Callable<List<JobInfo>> {
     }
 
     private String getUrl() {
-        return this.template.getUrl() + this.template.getKeyWordKey() + "=" + this.task.getKeyWord() +
+        return this.template.getUrl() + "?" + this.template.getKeyWordKey() + "=" + this.task.getKeyWord() +
                 "&" + this.template.getCityKey() + "=" + this.task.getCity() + "&" +
                 this.template.getExperienceKey() + "=" + this.task.getExperience() + "&" +
                 this.template.getPageKey() + "=" + this.page;
