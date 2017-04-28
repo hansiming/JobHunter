@@ -13,3 +13,4 @@ target/
 jobhunter.iml
 
 src/main/resources/logback.xml
+src/main/resources/application.properties
