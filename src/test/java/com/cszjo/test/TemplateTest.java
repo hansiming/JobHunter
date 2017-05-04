@@ -40,6 +40,7 @@ public class TemplateTest {
         t.setUrl("111");
         t.setUrlQuery("111");
         t.setJobList("11");
+        //爬取模板业务逻辑层，添加一个爬取模板
         service.addTemplate(t);
     }
 
