@@ -56,6 +56,11 @@
                 // 基于准备好的dom，初始化echarts图表
                 var myChart = ec.init(document.getElementById('main'));
 
+                myChart.showLoading({
+                    text : '数据分析中',
+                    effect: 'whirling'
+                });
+
                 $.get('getDataAnalysisResultByUUID?uuid=' + getUrlParam("uuid")).done(function (data) {
 
                     var result = JSON.parse(data);
@@ -71,6 +76,7 @@
                     }
 
                     myChart.on(ecConfig.EVENT.CLICK, eConsole);
+                    myChart.hideLoading();
                     myChart.setOption({
                         title: {
                             text: '平均薪资分析',
