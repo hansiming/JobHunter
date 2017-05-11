@@ -56,6 +56,7 @@ public class ClawerTaskServiceImpl implements ClawerTaskService {
             baseResponse.setStatus(ResponseStatus.SUCCESS);
             baseResponse.setInfo(ResponseInfo.ADD_TASK_SUCCESS);
             callableTaskContainer.setTask(task).init();
+            outlineHandler.setOver(false);
 
             try {
 
