@@ -103,7 +103,7 @@ public class AnalysisHandler {
                 maxMoney = Integer.parseInt(maxAndMinMoney[0]);
                 minMoney = Integer.parseInt(maxAndMinMoney[1]);
 
-                return (maxMoney + minMoney) / 2;
+                return (maxMoney + minMoney) / 2 / 1000;
             }
         }
 
