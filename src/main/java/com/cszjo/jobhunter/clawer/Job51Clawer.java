@@ -45,17 +45,17 @@ public class Job51Clawer implements Callable<List<JobInfo>> {
     public List<JobInfo> call() {
 
         try {
-            Document doc = Jsoup.connect(this.getUrl()).get();
+            Document doc = Jsoup.connect(this.getUrl()).userAgent("Mozilla/5.0 (Windows NT 6.1; WOW64; rv:38.0) Gecko/20100101 Firefox/38.0").get();
             Element resultList = doc.getElementById("resultList");
             Elements jobs = resultList.select(".el");
             List<JobInfo> jobInfos = Lists.newArrayList();
-            boolean isFirst = false;
+            int loopCount = 0;
 
             for (Element job : jobs) {
 
                 //first job info has error
-                if (!isFirst) {
-                    isFirst = true;
+                if (loopCount < 3) {
+                    loopCount++;
                     continue;
                 }
 
@@ -76,7 +76,7 @@ public class Job51Clawer implements Callable<List<JobInfo>> {
             return jobInfos;
         } catch (IOException e) {
 
-            LOGGER.error("get a job info form 51 job create a error, error = {}, url = {}", e.getMessage(), this.getUrl());
+            LOGGER.error("get a job info form 51 job create a error, error = {}, url = {}", e, this.getUrl());
         }
         return null;
     }

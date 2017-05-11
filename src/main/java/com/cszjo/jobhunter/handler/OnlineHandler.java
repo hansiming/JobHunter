@@ -66,7 +66,7 @@ public class OnlineHandler {
 
         } catch (Exception e) {
 
-            LOGGER.error("clawer job info has a error, request = {}, error = {}", request, e.getMessage());
+            LOGGER.error("clawer job info has a error, request = {}, error = {}", request, e);
         }
 
         return jobInfos;
