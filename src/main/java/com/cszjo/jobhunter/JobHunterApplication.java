@@ -12,12 +12,12 @@ import org.springframework.scheduling.annotation.EnableAsync;
  */
 @SpringBootApplication
 @EnableAsync
-public class JobHunterApplication extends SpringBootServletInitializer {
+public class JobHunterApplication/* extends SpringBootServletInitializer */{
 
-    @Override
+    /*@Override
     protected SpringApplicationBuilder configure(SpringApplicationBuilder builder) {
         return builder.sources(this.getClass());
-    }
+    }*/
 
     public static void main (String[] args) {
         SpringApplication.run(JobHunterApplication.class, args);
