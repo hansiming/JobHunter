@@ -122,4 +122,8 @@ public class OutlineHandler {
         //Callable的List已经全部放入缓冲区之中
         isOver = true;
     }
+
+    public void setOver(boolean over) {
+        isOver = over;
+    }
 }

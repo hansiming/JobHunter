@@ -82,11 +82,11 @@ public class JobsServiceImpl implements JobsService {
         String result = jedisUtils.get(key);
         int count = 0;
         try {
-            while (result == null && count < 6) {
+            while (result == null && count < 10) {
 
                 LOGGER.info("get analysis result, key = {}, result = {}, count = {}", key, result, count);
 
-                Thread.sleep(500);
+                Thread.sleep(2000);
                 result = jedisUtils.get(key);
                 count++;
             }
