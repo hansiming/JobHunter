@@ -19,7 +19,7 @@
     </resultMap>
 
     <select id="selectAll" resultMap="clawerTaskResult">
-        SELECT * FROM clawer_task;
+        SELECT * FROM clawer_task ORDER BY id DESC;
     </select>
 
     <insert id="addTask" parameterType="com.cszjo.jobhunter.model.ClawerTask" useGeneratedKeys="true" keyProperty="id">
