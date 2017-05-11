@@ -17,6 +17,9 @@
         <a href="javascript:;" class="layui-btn layui-btn-small" id="search">
             <i class="layui-icon">&#x1002;</i> 刷新
         </a>
+        <a href="javascript:window.history.back();" class="layui-btn layui-btn-small">
+             返回
+        </a>
     </blockquote>
     <fieldset class="layui-elem-field">
         <legend>分析结果</legend>
@@ -61,54 +64,58 @@
                     effect: 'whirling'
                 });
 
-                $.get('getDataAnalysisResultByUUID?uuid=' + getUrlParam("uuid")).done(function (data) {
+                setTimeout(function (){
 
-                    var result = JSON.parse(data);
-                    var ecConfig = require('echarts/config');
+                    $.get('getDataAnalysisResultByUUID?uuid=' + getUrlParam("uuid")).done(function (data) {
+
+                        var result = JSON.parse(data);
+                        var ecConfig = require('echarts/config');
 
 
-                    function eConsole(param) {
+                        function eConsole(param) {
 
-                        if (param.seriesIndex == 1 || param.seriesIndex == 2) {
-                            var url = result.results[param.seriesIndex].urls[param.dataIndex];
-                            window.open(url)
-                        }
-                    }
-
-                    myChart.on(ecConfig.EVENT.CLICK, eConsole);
-                    myChart.hideLoading();
-                    myChart.setOption({
-                        title: {
-                            text: '平均薪资分析',
-                            subtext: '数据来自网络'
-                        },
-                        tooltip: {
-                            trigger: 'axis',
-                            axisPointer: {
-                                type: 'shadow'
+                            if (param.seriesIndex == 1 || param.seriesIndex == 2) {
+                                var url = result.results[param.seriesIndex].urls[param.dataIndex];
+                                window.open(url)
                             }
-                        },
-                        legend: {
-                            data: result.category
-                        },
-                        grid: {
-                            left: '3%',
-                            right: '4%',
-                            bottom: '3%',
-                            containLabel: true
-                        },
-                        xAxis: {
-                            type: 'value',
-                            boundaryGap: [0, 0.01]
-                        },
-                        yAxis: {
-                            type: 'category',
-                            data: result.taskNames
-                        },
-                        series: result.results
+                        }
 
+                        myChart.on(ecConfig.EVENT.CLICK, eConsole);
+                        myChart.setOption({
+                            title: {
+                                text: '平均薪资分析',
+                                subtext: '数据来自网络'
+                            },
+                            tooltip: {
+                                trigger: 'axis',
+                                axisPointer: {
+                                    type: 'shadow'
+                                }
+                            },
+                            legend: {
+                                data: result.category
+                            },
+                            grid: {
+                                left: '3%',
+                                right: '4%',
+                                bottom: '3%',
+                                containLabel: true
+                            },
+                            xAxis: {
+                                type: 'value',
+                                boundaryGap: [0, 0.01]
+                            },
+                            yAxis: {
+                                type: 'category',
+                                data: result.taskNames
+                            },
+                            series: result.results
+
+                        });
+
+                        myChart.hideLoading();
                     });
-                });
+                }, 2000)
             }
     );
 
