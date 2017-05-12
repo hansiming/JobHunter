@@ -150,7 +150,6 @@
                 success : function (data) {
                     $("#progress").hide();
                     $.each(data, function(index, value){
-                        $(".loadingWrap").hide();
                         var taskId = value["taskId"];
                         var domain = taskId == 0 ? "拉勾网" : taskId == 1 ? "前程无忧" : "中华英才网";
                         $("#resultBody").append("<tr><td><a href='" + value["url"] + "' target='view_window'>" + value["jobName"] + "</a></td>"
@@ -158,6 +157,7 @@
                                 + "<td>" + value["addressName"] + "</td>" + "<td>" + value["createDate"] + "</td>"
                                 + "<td>" + domain + "</td></tr>");
                     });
+                    $(".loadingWrap").hide();
                 }
             });
         }

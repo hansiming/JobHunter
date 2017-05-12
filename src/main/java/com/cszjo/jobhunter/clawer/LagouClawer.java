@@ -7,6 +7,8 @@ import com.cszjo.jobhunter.utils.ParseUtils;
 import com.google.common.collect.Maps;
 import org.jsoup.Connection;
 import org.jsoup.Jsoup;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 import java.util.List;
@@ -19,6 +21,7 @@ import java.util.concurrent.Callable;
  */
 public class LagouClawer implements Callable<List<JobInfo>> {
 
+    private final Logger LOGGER = LoggerFactory.getLogger(LagouClawer.class);
     private final String URL = "https://www.lagou.com/jobs/positionAjax.json?gj=%s&px=default&city=%s&needAddtionalResult=false";
     private int page;
     private String city;
@@ -37,6 +40,8 @@ public class LagouClawer implements Callable<List<JobInfo>> {
     @Override
     public List<JobInfo> call() {
 
+        LOGGER.info("begin a lagou clawer, page = {}, city = {}, keyWord = {} experience = {}, experienceKey = {}",
+                this.page, this.city, this.keyWord, this.experience, this.experienceKey);
         Map<String, String> data = Maps.newHashMap();
         data.put("first", "true");
         data.put("pn", String.valueOf(this.page));

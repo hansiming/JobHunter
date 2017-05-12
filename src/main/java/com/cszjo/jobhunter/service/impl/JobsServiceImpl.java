@@ -55,13 +55,14 @@ public class JobsServiceImpl implements JobsService {
         jedisUtils.set(key, JSON.toJSONString(result), 0);
     }
 
+    @Override
     public List<JSONObject> getJobInfoList(int taskId) {
 
         String key = RedisPrefix.getRedisJobInfoName(taskId);
         List<String> lists = jedisUtils.getList(key);
         List<JSONObject> jobInfos = Lists.newArrayList();
 
-        for(int i = 0; i < lists.size() / 2; i++) {
+        for(int i = 0; i < lists.size(); i++) {
             jobInfos.add(JSONObject.parseObject(lists.get(i)));
         }
 

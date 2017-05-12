@@ -91,11 +91,11 @@
             success : function (data) {
                 $("#progress").hide();
                 $.each(data, function(index, value){
-                    $(".loadingWrap").hide();
                     $("#resultBody").append("<tr><td><a href='" + value["url"] + "' target='view_window'>" + value["jobName"] + "</a></td>"
                             + "<td>" + value["companyName"] + "</td>" + "<td>" + value["maxMoney"] + "</td>"
                             + "<td>" + value["addressName"] + "</td>" + "<td>" + value["createDate"] + "</td></tr>");
                 });
+                $(".loadingWrap").hide();
             }
         });
 

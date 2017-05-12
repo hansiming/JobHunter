@@ -126,4 +126,8 @@ public class OutlineHandler {
     public void setOver(boolean over) {
         isOver = over;
     }
+
+    public void clearQueue() {
+        this.queue.clear();
+    }
 }

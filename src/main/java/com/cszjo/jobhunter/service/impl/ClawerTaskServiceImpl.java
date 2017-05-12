@@ -58,6 +58,7 @@ public class ClawerTaskServiceImpl implements ClawerTaskService {
             //初始化Task容器
             callableTaskContainer.setTask(task).init();
             outlineHandler.setOver(false);
+            outlineHandler.clearQueue();
 
             try {
 
