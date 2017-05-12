@@ -83,7 +83,7 @@
                         myChart.on(ecConfig.EVENT.CLICK, eConsole);
                         myChart.setOption({
                             title: {
-                                text: '平均薪资分析',
+                                text: '平均薪资分析(单位k)',
                                 subtext: '数据来自网络'
                             },
                             tooltip: {
