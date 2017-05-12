@@ -55,17 +55,19 @@ public class ClawerTaskServiceImpl implements ClawerTaskService {
 
             baseResponse.setStatus(ResponseStatus.SUCCESS);
             baseResponse.setInfo(ResponseInfo.ADD_TASK_SUCCESS);
+            //初始化Task容器
             callableTaskContainer.setTask(task).init();
             outlineHandler.setOver(false);
 
             try {
 
+                //生产者
                 outlineHandler.outlineHandler(callableTaskContainer);
+                //消费者
                 outlineHandler.saveJobInfos2Redis(callableTaskContainer);
             } catch (Exception e) {
 
                 LOGGER.error("out line has a error, container = {}, e = {}", callableTaskContainer, e.getMessage());
-                e.printStackTrace();
             }
         } else {
 

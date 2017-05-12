@@ -82,6 +82,7 @@ public class JobsServiceImpl implements JobsService {
         String result = jedisUtils.get(key);
         int count = 0;
         try {
+            //等待分析结果
             while (result == null && count < 10) {
 
                 LOGGER.info("get analysis result, key = {}, result = {}, count = {}", key, result, count);
