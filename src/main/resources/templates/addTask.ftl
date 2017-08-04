@@ -46,7 +46,7 @@
         <div class="layui-form-item">
             <label class="layui-form-label">爬取关键字</label>
             <div class="layui-input-inline">
-                <input type="text" name="keyWord" lay-verify="required" autocomplete="off" placeholder="爬取关键字" class="layui-input">
+                <input type="text" name="keyWord" autocomplete="off" placeholder="爬取关键字" class="layui-input">
             </div>
         </div>
         <div class="layui-form-item">
