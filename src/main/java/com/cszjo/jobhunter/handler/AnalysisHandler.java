@@ -71,6 +71,11 @@ public class AnalysisHandler {
         return result;
     }
 
+    /**
+     * 得到最高薪资和最低薪资，暂时只支持Lagou和招聘
+     * @param money
+     * @return
+     */
     private int getMoneyFormMaxAndMinMoney(String money) {
 
         int maxMoney = 0;

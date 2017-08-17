@@ -11,6 +11,7 @@ import java.lang.annotation.Annotation;
 /**
  * Created by Han on 2017/3/5.
  */
+@Deprecated
 public class CheckLoginInterceptor extends HandlerInterceptorAdapter {
 
     @Override

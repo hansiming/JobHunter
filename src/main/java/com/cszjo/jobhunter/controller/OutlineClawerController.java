@@ -88,6 +88,7 @@ public class OutlineClawerController {
 
         List<Integer> taskIdsInt = Lists.newArrayList();
         Map<String, String> maps = Maps.newHashMap();
+        //设置一个uuid,表示分析结果的key,Ajax通过该key拿到分析结果,用户可以不用等待分析过程
         UUID uuid = UUID.randomUUID();
 
         for(String id : taskIds) {
@@ -106,6 +107,11 @@ public class OutlineClawerController {
         return "dataAnalysis";
     }
 
+    /**
+     * 通过uuid拿到分析结果
+     * @param uuid
+     * @return
+     */
     @RequestMapping("/getDataAnalysisResultByUUID")
     @ResponseBody
     public String getDataAnalysisResultByUUID(String uuid) {

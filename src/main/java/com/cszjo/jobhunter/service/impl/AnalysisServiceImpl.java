@@ -39,6 +39,11 @@ public class AnalysisServiceImpl implements AnalysisService {
     @Autowired
     private AnalysisHandler handler;
 
+    /**
+     * 开始分析任务，异步执行
+     * @param uuid
+     * @param taskIds
+     */
     @Override
     @Async
     public void startAnalysis(UUID uuid, List<Integer> taskIds) {
