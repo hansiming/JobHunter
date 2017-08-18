@@ -3,7 +3,6 @@ package com.cszjo.jobhunter.controller;
 import com.alibaba.fastjson.JSONObject;
 import com.cszjo.jobhunter.model.ClawerTask;
 import com.cszjo.jobhunter.model.Template;
-import com.cszjo.jobhunter.model.analysis.AnalysisResult;
 import com.cszjo.jobhunter.model.response.BaseResponse;
 import com.cszjo.jobhunter.service.AnalysisService;
 import com.cszjo.jobhunter.service.ClawerTaskService;
