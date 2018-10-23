@@ -18,7 +18,6 @@ public class JobHunterApplication/* extends SpringBootServletInitializer */{
     protected SpringApplicationBuilder configure(SpringApplicationBuilder builder) {
         return builder.sources(this.getClass());
     }*/
-
     public static void main (String[] args) {
         SpringApplication.run(JobHunterApplication.class, args);
     }
